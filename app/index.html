@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="teamform-index-app">
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,7 +31,6 @@
    </head>
    <body>
    
-   <style>#forkongithub a{background:#000;color:#fff;text-decoration:none;font-family:arial,sans-serif;text-align:center;font-weight:bold;padding:5px 40px;font-size:1rem;line-height:2rem;position:relative;transition:0.5s;}#forkongithub a:hover{background:#c11;color:#fff;}#forkongithub a::before,#forkongithub a::after{content:"";width:100%;display:block;position:absolute;top:1px;left:0;height:1px;background:#fff;}#forkongithub a::after{bottom:1px;top:auto;}@media screen and (min-width:800px){#forkongithub{position:fixed;display:block;top:0;right:0;width:200px;overflow:hidden;height:200px;z-index:9999;}#forkongithub a{width:200px;position:absolute;top:60px;right:-60px;transform:rotate(45deg);-webkit-transform:rotate(45deg);-ms-transform:rotate(45deg);-moz-transform:rotate(45deg);-o-transform:rotate(45deg);box-shadow:4px 4px 10px rgba(0,0,0,0.8);}}</style><span id="forkongithub"><a href="https://github.com/hkpeterpeter/teamform-seed" target="_blank">Fork me on GitHub</a></span>
    
   
    
@@ -81,6 +80,8 @@
 								<li><a href="#">TODO: Add more test cases here... </a></li>
 							</ul>
 						</li>
+						<li><a href="#feedback">Feedback</a></li>
+
                         
                      </ul>
                   </div>
@@ -186,7 +187,7 @@
             <div class="col-md-12">
                <h2 class="featurette-heading">Development Team
                   <br>
-                  <span class="text-muted">[Your Team Name]</span>
+                  <span class="text-muted">IT Dog Team</span>
                </h2>
                
 
@@ -214,27 +215,130 @@
                     </div>
                   </div>
                  </div> 
-              
+ 
+                 <div class="col-xs-6 col-md-3">
+                  <div class="thumbnail text-center">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member2&w=150&h=150" class="img-circle img-responsive">
+                    <div class="caption">
+                     <h4>[Your name]</h4>
+                     <p>[ITSC email]</p>
+                     
+                    </div>
+                  </div>
+                 </div>
+
+                 <div class="col-xs-6 col-md-3">
+                  <div class="thumbnail text-center">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member2&w=150&h=150" class="img-circle img-responsive">
+                    <div class="caption">
+                     <h4>[Your name]</h4>
+                     <p>[ITSC email]</p>
+                     
+                    </div>
+                  </div>
+                 </div>
+
+                 <div class="col-xs-6 col-md-3">
+                  <div class="thumbnail text-center">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member2&w=150&h=150" class="img-circle img-responsive">
+                    <div class="caption">
+                     <h4>[Your name]</h4>
+                     <p>[ITSC email]</p>
+                     
+                    </div>
+                  </div>
+                 </div>
+
+                 <div class="col-xs-6 col-md-3">
+                  <div class="thumbnail text-center">
+                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member2&w=150&h=150" class="img-circle img-responsive">
+                    <div class="caption">
+                     <h4>[Your name]</h4>
+                     <p>[ITSC email]</p>
+                     
+                    </div>
+                  </div>
+                 </div>				 
                </div>
 
              </div>
          </div>
+		 
+		 <hr class="featurette-divider">
+		 
+		 <!-- The div is about feedback form -->
+		 <div id="feedback">
+		 
+		    <form name="feedbackform" ng-controller="FeedbackCtrl">
+				   <h2 class="featurette-heading">Feedback Form
+					  <br>
+					  <span class="text-muted">We want to hear you!</span>
+				   </h2>
 
 
+				  <div class="row">
+				  
+					<div class="form-group col-md-4">
+					  <!-- user email -->
+					  <label class="form-control-label">Your email (optional)</label>
+					  <input class="form-control input" ng-model="feedbackEmail" placeholder="email" name="feedbackEmail"/>
+					  <!-- end of user email -->
+					</div>
+					
+					<div class="form-group col-md-3">
+					  <!-- user name -->
+					  <label class="form-control-label">Your name (optional)</label>
+					  <input type="text" class="form-control input" ng-model="feedbackName" placeholder="name"/>
+					  <!-- end of user name -->
+					</div>
+
+				  
+				  
+					<div class="form-group col-md-10">
+						<!-- feedback content -->
+						<label class="form-control-label">Your Feedback</label>
+						<textarea id="content-input" type="text" class="form-control input-lg" ng-model="feedbackContent" placeholder="leave your comment" required ng-focus="focused()" rows="6"></textarea>
+						<!-- end of feedback content -->
+					</div>
+		  
+					<div class="form-group col-md-4">
+						<!-- error message -->	
+						<button class="btn btn-primary" type="submit" ng-click="submitFeedback()">Send</button>
+						<span id="error_message" ng-show="errorMessage">Error if all empty</span>
+						</div>	
+					</div>
+				  
+			</form>
+			
+		 </div>
+		 <!-- End of feedback form -->
+
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
          <!-- /END THE FEATURETTES -->
          <!-- FOOTER -->
          <hr>
          <footer>
             <p class="pull-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2017 COMP3111/H teaching team </p>
+            <p>&copy; 2017 COMP3111/H teaching team & IT dog team </p>
             <p>Powered by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a></p>
          </footer>
       </div>
       <!-- /.container -->
 
-      <!-- JavaScript of this page -->
-      <script src="js/index.js"></script>
+		<!-- JavaScript of this page -->
+
+		<!-- Angular and Angular-route libraries (v1.5.7) -->
+		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-route.min.js"></script>        
+
+		<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+		<script src="lib/firebase.js"></script>     
+		<script src="lib/angularfire.min.js"></script>
+		
+		<script src="js/controller/index.js"></script>
+		<script src="js/controller/index-feedback.js"></script>
+		<script src="js/controller/index-transport.js"></script>
 
 
    </body>
