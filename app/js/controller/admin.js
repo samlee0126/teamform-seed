@@ -11,7 +11,7 @@ $(document).ready(function(){
 });
 
 angular.module('teamform-admin-app', ['firebase'])
-.controller('AdminCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
+.controller('AdminCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$window', function($scope, $firebaseObject, $firebaseArray, $window) {
 	
 	// TODO: implementation of AdminCtrl
 	
@@ -20,16 +20,26 @@ angular.module('teamform-admin-app', ['firebase'])
 			
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
-	
+		
 	var refPath, ref, eventName;
 
-	eventName = getURLParameter("q");
-	refPath = eventName + "/admin/param";	
-	ref = firebase.database().ref(refPath);
-		
-	// Link and sync a firebase object
+	//eventName = getURLParameter("q");
+	refEventPath = "events";	
+	refFeedbackPath = "Feedback";	
+	refEvent = firebase.database().ref(refEventPath);
+	refFeedback = firebase.database().ref(refFeedbackPath);
 	
-	$scope.param = $firebaseObject(ref);
+	// Link and sync a firebase object
+	$scope.paramEvent = $firebaseArray(refEvent);
+	$scope.paramFeedback = $firebaseArray(refFeedback);
+	
+	$scope.goToEvent = function(events) {
+	  $window.location.href = '../../index.html';
+	};
+	
+	
+	$scope.param = $firebaseArray(refEvent);
+	//alert(JSON.stringify($scope.param));
 	$scope.param.$loaded()
 		.then( function(data) {
 			
