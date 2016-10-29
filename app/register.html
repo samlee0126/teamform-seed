@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="teamform-index-app">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="teamform, team">
+		<!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<title>teamform by it dog - A real-time online team forming app</title>
+	  
+		<!-- libraries and CSS 	  
+			JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)		
+			Bootstrap: Library and CSS for bootstrap framework (v3.3.7 is used)
+			Font-awesome: More icons for the web development (v4.6.3 is used)		
+			site.css: A customized css for our web application. Not from any web framework. 
+		-->
+		<script src="css/site.css"></script>
+		<script src="lib/jquery.min.js"></script>      
+		<script src="lib/bootstrap.min.js"></script>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>      
+      	  
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">  
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.4.5/css/bootstrapvalidator.min.css"/> 
+
+		<!-- Customized libraries shared by pages -->
+		<script src="js/site.js"></script>
+		<script src="js/register.js"></script>
+   </head>
+   <body>
+
+      <div class="navbar-wrapper">
+	  
+         <div class="container">
+            <nav class="navbar navbar-static-top navbar-default">
+               <div class="container">
+                  <div class="navbar-header">
+                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                     <span class="sr-only">Toggle navigation</span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     </button>
+                     <a class="navbar-brand" href="#">teamform</a>
+                  </div>
+                  <div id="navbar" class="navbar-collapse collapse">
+                     <ul class="nav navbar-nav">
+                        
+                        <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+                           <ul class="dropdown-menu">
+                              <li><a href="#page_about">About teamform</a></li>
+                              <li>
+                              <a href="#page_team">Development team</a>
+                              </li>
+                              <li role="separator" class="divider"></li>
+                              <li><a href="#">TODO: Add menu items here... </a></li>
+                           </ul>
+                        </li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Coverage <span class="caret"></span></a>
+							
+							<ul class="dropdown-menu">
+								<li>
+									<a href="coverage/index.html" target="_blank">Report</a>
+								</li>
+								<li role="separator" class="divider"></li>
+								
+								<li>
+									<a href="unit_tests/test_site.js" target="_blank">test_site.js (sample)</a>
+								</li>
+								
+								<li><a href="#">TODO: Add more test cases here... </a></li>
+							</ul>
+						</li>
+						<li><a href="#feedback">Feedback</a></li>
+						                        
+                     </ul>		
+                  </div>
+               </div>
+            </nav>
+         </div>
+      </div>
+      <!-- A sample login page -->
+      <div class="container" id="page_home">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="row">
+                  <div class="col-md-6">
+                     	<h1>Register</h1><br>
+			<form id="register_form" class="form-horizontal" data-toggle="validator" role="form">
+			
+				<div class="form-group">
+					<label for="login_name" class="col-sm-3 control-label">User name</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="login_name" placeholder="User name" required>
+					</div>				
+				</div>
+				
+				<div class="form-group">				
+					<label for="gender" class="col-sm-3 control-label">Gender</label>					
+					<div class="radio col-sm-3">
+						<label>
+							<input type="radio" name="gender" id="gender_male" value="male" required>Male
+						</label>
+					</div>
+					<div class="radio col-sm-6">
+						<label>
+							<input type="radio" name="gender" id="gender_female" value="female" required>Female
+						</label>
+					</div>
+				</div>				
+				
+				<div class="form-group">
+					<label for="major" class="col-sm-3 control-label">Major</label>				
+					<div class="col-sm-9">					
+						<select name="major" class="form-control" required>					
+							<option value="" selected hidden>Please select</option>						 	
+							<option>ACCT</option> <option>AE</option> <option>BCB</option>
+						 	<option>BIBU</option> <option>BIOT</option> <option>BISC</option>
+							<option>CBME</option> <option>CEEV</option> <option>CENG</option>
+							<option>CHEM</option> <option>CIEV</option> <option>CIVL</option>
+							<option>COMP</option> <option>COSC</option> <option>CPEG</option>
+							<option>ECOF</option> <option>ECON</option> <option>ELEC</option>
+							<option>ENVS</option> <option>EVMT</option> <option>FINA</option>
+							<option>GBM</option> <option>GBUS</option> <option>GCS</option>
+							<option>IEEM</option> <option>IELM</option> <option>IIM</option>
+							<option>IS</option> <option>MAEC</option> <option>MARK</option>
+							<option>MATH</option> <option>MECH</option> <option>MGMT</option>
+							<option>OM</option> <option>PHYS</option> <option>QFIN</option>
+							<option>RMBI</option> <option>WBB</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="graduation_year" class="col-sm-3 control-label">Graduation year</label>				
+					<div class="col-sm-9">						
+						<select name="graduation_year" class="form-control" required>					
+							<option value="" selected hidden>Please select</option>							
+							<option>2016</option> <option>2015</option> <option>2014</option>
+							<option>2013</option> <option>2012</option> <option>2011</option>
+							<option>2010</option> <option>2009</option> <option>2008</option>
+							<option>2007</option> <option>2006</option> <option>2005</option>
+							<option>2004</option> <option>2003</option> <option>2002</option>
+							<option>2001</option> <option>2000</option> <option>1999</option>
+							<option>1998</option> <option>1997</option> <option>1996</option>
+							<option>1995</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group has-feedback">
+					<label for="password" class="col-sm-3 control-label">Password</label>
+					<div class = "col-sm-9">
+						<input type="password" class="form-control" name="input_password" placeholder="Password" required>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="password" class="col-sm-3 control-label">Confirm password</label>
+					<div class = "col-sm-9">
+						<input type="password" class="form-control" name="confirm_password" placeholder="Confirm password" required>
+					</div>
+				</div>
+
+				<div class="form-group">				
+					<label for="local_student" class="col-sm-3 control-label">Local student</label>					
+					<div class="radio col-sm-3">
+						<label>
+							<input type="radio" name="local_student" id="local_student_yes" value="yes" required>Yes
+						</label>
+					</div>
+					<div class="radio col-sm-6">
+						<label>
+							<input type="radio" name="local_student" id="local_student_no" value="no" required>No
+						</label>
+					</div>
+				</div>	
+				<br>
+				<button type="submit" class="btn btn-info" style="float: right;">Register</button>		
+			</form>
+			<br><br><br>
+			<p>Registered already? <a href="signIn.html">Sign in</a> here.</p>
+		  </div>
+	       </div>
+            </div>
+         </div>
+                    
+         <!-- /END THE FEATURETTES -->
+         <!-- FOOTER -->
+         <hr>
+         <footer>
+            <p class="pull-right"><a href="#">Back to top</a></p>
+            <p>&copy; 2017 COMP3111/H teaching team & IT dog team </p>
+            <p>Powered by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a></p>
+         </footer>
+      </div>
+      <!-- /.container -->
+
+		<!-- JavaScript of this page -->
+
+		<!-- Angular and Angular-route libraries (v1.5.7) -->
+		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-route.min.js"></script>        
+
+		<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+		<script src="lib/firebase.js"></script>     
+		<script src="lib/angularfire.min.js"></script>
+		
+		<script src="js/controller/index.js"></script>
+		<script src="js/controller/index-feedback.js"></script>
+		<script src="js/controller/index-transport.js"></script>
+
+
+   </body>
+</html>
