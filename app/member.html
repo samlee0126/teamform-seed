@@ -19,17 +19,87 @@
       <script src="lib/bootstrap.min.js"></script>      
       	  
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">     
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">     
       <link rel="stylesheet" href="css/site.css" >
-
+	  <link rel="stylesheet" href="css/member-style.css">
 
       <!-- Customized libraries shared by pages -->
       <script src="js/site.js"></script>
+
 	  	  
    </head>
    <body>
+	<div ng-include="'menu.html'"></div>
+	<div class="container">
 
+		<div id="fh5co-schedule-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<div class="text-center">
+							<h2>Table Information</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 text-center">
+						<ul class="schedule">
+							<li><a href="#" class="active">Filter 1</a></li>
+							<li><a href="#">Filter 2</a></li>
+							<li><a href="#">Filter 3</a></li>
+						</ul>
+					</div>
+					<div class="row text-center">
+
+						<div class="col-md-10 col-md-offset-1 schedule-container">
+
+							<div class="schedule-content">
+								<div class="col-md-4 col-sm-6">
+									<div class="program program-schedule">
+										<h3>Table for CSE</h3>
+										<br>
+										<p>Remaining seat: 2</p>
+										<span><a class="btn btn-primary btn-sm" href="#">Join Now</a></span>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-6">
+									<div class="program program-schedule">
+										<h3>Table for Civil</h3>
+										<br>
+										<p>Remaining seat: 2</p>
+										<span><a class="btn btn-primary btn-sm" href="#">Join Now</a></span>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-6">
+									<div class="program program-schedule">
+										<h3>Table for Civil</h3>
+										<br>
+										<p>Remaining seat: 2</p>
+										<span><a class="btn btn-primary btn-sm" href="#">Join Now</a></span>
+									</div>
+								</div>								
+							</div>
+						</div>
+
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+		
+	
+		
+		
+		
+		
+		
+		
+	<div style="margin-top:200px;" ng-include="'footer.html'"></div>
+	
+<!--
    <a href="index.html"
    <button id="btn_admin" type="button" class="btn btn-primary" >Back to the front-end</button></a>
 
@@ -100,7 +170,7 @@
 
        </div>
    </div>
-
+-->
 
    <!-- Angular and Angular-route libraries (v1.5.7) -->
    <script src="lib/angular.min.js"></script>
