@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="teamform-admin-app">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="keywords" content="teamform, team">
+      <!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <title>teamform by it dog - A real-time online team forming app</title>
+	  
+      <!-- libraries and CSS 	  
+			JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)		
+			Bootstrap: Library and CSS for bootstrap framework (v3.3.7 is used)
+			Font-awesome: More icons for the web development (v4.6.3 is used)		
+			site.css: A customized css for our web application. Not from any web framework. 
+      -->
+      <script src="css/site.css"></script>
+      <script src="lib/jquery.min.js"></script>      
+      <script src="lib/bootstrap.min.js"></script>
+		
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>      
+      	  
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">  
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.4.5/css/bootstrapvalidator.min.css"/> 
+
+      <!-- Customized libraries shared by pages -->
+      <script src="js/site.js"></script>
+
+   </head>
+   <body>
+      <!-- MENU -->
+      <div class="navbar-wrapper" ng-include="'menu.html'"></div>
+
+      <!-- Register page -->
+      <div class="container" id="page_home">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="row">
+                  <div class="col-md-6">
+                     	<h1>Create Event</h1><br>
+			<form id="register_form" class="form-horizontal" data-toggle="validator" role="form">
+			
+				<div class="form-group">
+					<label for="event_name" class="col-sm-3 control-label">Event Name</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="event_name" placeholder="Event Name" required>
+					</div>				
+				</div>
+				<div class="form-group">
+					<label for="description" class="col-sm-3 control-label">Description</label>
+					<div class="col-sm-9">
+						<textarea class="form-control" style="resize:none;" name="description" placeholder="Event Description"></textarea>
+					</div>				
+				</div>
+				<div class="form-group">
+					<label for="date" class="col-sm-3 control-label">Date</label>
+					<div class="col-sm-9">
+						<input type="date" class="form-control" name="date" placeholder="Date" required>
+					</div>				
+				</div>
+				<div class="form-group">
+					<label for="time" class="col-sm-3 control-label">Time</label>
+					<div class="col-sm-9">
+						<input type="time" class="form-control" name="time" placeholder="Time" required>
+					</div>				
+				</div>
+				<div class="form-group">
+					<label for="venue" class="col-sm-3 control-label">Venue</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" name="venue" placeholder="Venue" required>
+					</div>				
+				</div>
+				<div class="form-group">
+					<label for="table_num" class="col-sm-3 control-label">Number of Table</label>
+					<div class="col-sm-9">
+						<input type="number" class="form-control" name="table_num" placeholder="Table Number" required>
+					</div>				
+				</div>
+				<div class="form-group">
+					<label for="people_num" class="col-sm-3 control-label">Number of People per Table</label>
+					<div class="col-sm-9">
+						<input type="number" class="form-control" name="people_num" placeholder="People Number" required>
+					</div>				
+				</div>
+				<div class="form-group">
+					<label for="deadline" class="col-sm-3 control-label">Deadline</label>
+					<div class="col-sm-9">
+						<input type="date" class="form-control" name="deadline" placeholder="Deadline" required>
+					</div>				
+				</div>
+					
+				<br>
+				<button type="submit" class="btn btn-info">Register</button>		
+			</form>
+			<br><br><br>
+		  </div>
+	       </div>
+            </div>
+         </div>
+                    
+       <!-- /END THE FEATURETTES -->
+         <!-- FOOTER -->
+         <hr>
+         <div ng-include="'footer.html'"></div>
+      </div>
+      <!-- /.container -->
+
+		<!-- JavaScript of this page -->
+
+		<!-- Angular and Angular-route libraries (v1.5.7) -->
+		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-route.min.js"></script>        
+
+		<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+		<script src="lib/firebase.js"></script>     
+		<script src="lib/angularfire.min.js"></script>
+		
+		<script src="js/controller/admin.js"></script>
+
+   </body>
+</html>
