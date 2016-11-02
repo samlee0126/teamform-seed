@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="keywords" content="teamform, team">
       <!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title>teamform by it dog - A real-time online team forming app</title>
+      <title>sitAround@UST - Online Reservation and Team-forming Platform</title>
 	  
       <!-- libraries and CSS 	  
 		JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)		
@@ -16,12 +16,12 @@
 	  -->
 	        
       <script src="lib/jquery.min.js"></script>      
-      <script src="lib/bootstrap.min.js"></script>      
+      <script src="lib/bootstrap.min.js"></script> 	  
       	  
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">   
-
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">   
+      <link rel="stylesheet" href="css/index.css">
       
       <!-- Customized libraries shared by pages -->
       <script src="js/site.js"></script>
@@ -30,277 +30,316 @@
 	  	  
    </head>
    <body>
-   
-   
-  
-   
-   
-      <div class="navbar-wrapper">
-	  
-         <div class="container">
-            <nav class="navbar navbar-static-top navbar-default">
-               <div class="container">
-                  <div class="navbar-header">
-                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                     <span class="sr-only">Toggle navigation</span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                     </button>
-                     <a class="navbar-brand" href="#">teamform</a>
-                  </div>
-                  <div id="navbar" class="navbar-collapse collapse">
-                     <ul class="nav navbar-nav">
-                        
-                        <li class="dropdown">
-                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
-                           <ul class="dropdown-menu">
-                              <li><a href="#page_about">About teamform</a></li>
-                              <li>
-                              <a href="#page_team">Development team</a>
-                              </li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#">TODO: Add menu items here... </a></li>
-                           </ul>
-                        </li>
-						
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Coverage <span class="caret"></span></a>
-							
-							<ul class="dropdown-menu">
-								<li>
-									<a href="coverage/index.html" target="_blank">Report</a>
-								</li>
-								<li role="separator" class="divider"></li>
-								
-								<li>
-									<a href="unit_tests/test_site.js" target="_blank">test_site.js (sample)</a>
-								</li>
-								
-								<li><a href="#">TODO: Add more test cases here... </a></li>
-							</ul>
-						</li>
-						<li><a href="#feedback">Feedback</a></li>
-						                        
-                     </ul>
-		     <ul class="nav navbar-nav navbar-right">
-			<li><a href="signIn.html">Sign in</a></li>
-			<li><a href="register.html">Register</a></li>
-		     </ul>			
-                  </div>
-               </div>
-            </nav>
-         </div>
-      </div>
-      <!-- A sample login page -->
-      <div class="container" id="page_home">
-         <div class="row">
-            <div class="col-md-12">
-               <div class="row">
-                  <div class="col-md-12">
-                     
-                     <div class="text-center">
-                        <h1>teamform</h1>
-                        <p>A real-time online team forming app for any event</p>
-                     </div>
+         <div ng-include="'menu.html'"></div>
+         <!-- Design: JSSOR full-width slider-->
+         <script src="js/jssor.slider-21.1.6.mini.js" type="text/javascript"></script>
+         <script type="text/javascript">
+             jQuery(document).ready(function ($) {
+                 var jssor_1_SlideoTransitions = [
+                     [{b:-1,d:1,o:-1},{b:0,d:1000,o:1}],
+                     [{b:1900,d:2000,x:-379,e:{x:7}}],
+                     [{b:1900,d:2000,x:-379,e:{x:7}}],
+                     [{b:-1,d:1,o:-1,r:288,sX:9,sY:9},{b:1000,d:900,x:-1400,y:-660,o:1,r:-288,sX:-9,sY:-9,e:{r:6}},{b:1900,d:1600,x:-200,o:-1,e:{x:16}}]
+                ];
 
-                     <br >
+                 var jssor_1_options = {
+                     $AutoPlay: true,
+                     $SlideDuration: 800,
+                     $SlideEasing: $Jease$.$OutQuint,
+                     $CaptionSliderOptions: {
+                         $Class: $JssorCaptionSlideo$,
+                         $Transitions: jssor_1_SlideoTransitions
+                    },
+                     $ArrowNavigatorOptions: {
+                         $Class: $JssorArrowNavigator$
+                    },
+                     $BulletNavigatorOptions: {
+                         $Class: $JssorBulletNavigator$
+                    }
+                 };
 
-                     <div class="text-center">
+                 var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
 
-                        <input id="input_text" type="text" class="input-lg">
-                        <br>
-                        <em>Enter a name (e.g. COMP3111-L1, COMP3111-L2 or COMP3111H) to create/join an event</em>
-                        <br>
-                        <br>
+            /*responsive code begin*/
+             function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 1920);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+             ScaleSlider();
+             $(window).bind("load", ScaleSlider);
+             $(window).bind("resize", ScaleSlider);
+             $(window).bind("orientationchange", ScaleSlider);
+             /*responsive code end*/
+            });
+         </script>
+        <style>
+         /* bullet navigator skin*/
+         /*
+         .jssorb05 div           (normal)
+         .jssorb05 div:hover     (normal mouseover)
+         .jssorb05 .av           (active)
+         .jssorb05 .av:hover     (active mouseover)
+         .jssorb05 .dn           (mousedown)
+         */
+         .jssorb05 {
+            position: absolute;
+         }
+         .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+            position: absolute;
+            /* size of bullet elment */
+            width: 16px;
+            height: 16px;
+            background: url('img/b05.png') no-repeat;
+            overflow: hidden;
+            cursor: pointer;
+         }
+         .jssorb05 div { background-position: -7px -7px; }
+         .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
+         .jssorb05 .av { background-position: -67px -7px; }
+         .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
 
-                        <div>
-                           
-                           <button id="btn_admin" type="button" class="btn btn-primary" >Administrator</button>
-                          
-
-
-                           <button id="btn_leader" type="button" class="btn btn-primary" >Team Leader</button>
-                          
-                           <button id="btn_member" type="button" class="btn btn-primary" >Member</button>
-                          
-
-
-                        </div>
-                     </div>
-                     <br >
-					 
-																 
-					
-					 
-                     <br >
-                  </div>
-               </div>
-               <hr >
+         /* jssor slider arrow navigator skin 22 css */
+         /*
+         .jssora22l                  (normal)
+         .jssora22r                  (normal)
+         .jssora22l:hover            (normal mouseover)
+         .jssora22r:hover            (normal mouseover)
+         .jssora22l.jssora22ldn      (mousedown)
+         .jssora22r.jssora22rdn      (mousedown)
+         .jssora22l.jssora22lds      (disabled)
+         .jssora22r.jssora22rds      (disabled)
+         */
+         .jssora22l, .jssora22r {
+            display: block;
+            position: absolute;
+            /* size of arrow element */
+            width: 40px;
+            height: 58px;
+            cursor: pointer;
+            background: url('img/a22.png') center center no-repeat;
+            overflow: hidden;
+         }
+         .jssora22l { background-position: -10px -31px; }
+         .jssora22r { background-position: -70px -31px; }
+         .jssora22l:hover { background-position: -130px -31px; }
+         .jssora22r:hover { background-position: -190px -31px; }
+         .jssora22l.jssora22ldn { background-position: -250px -31px; }
+         .jssora22r.jssora22rdn { background-position: -310px -31px; }
+         .jssora22l.jssora22lds { background-position: -10px -31px; opacity: .3; pointer-events: none; }
+         .jssora22r.jssora22rds { background-position: -70px -31px; opacity: .3; pointer-events: none; }
+        </style>
+		
+     <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 400px; overflow: hidden; visibility: hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+           <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+           <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+        </div>
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 400px; overflow: hidden;">
+            <a data-u="any" href="http://www.jssor.com" style="display:none">Full Width Slider</a>
+            
+            <div class="pic" data-p="225.00" data-po="80% 55%" style="display: none;">
+                <img data-u="image" src="img/hkust.jpg"/>
             </div>
-         </div>
-      </div>
-      <!-- Marketing messaging and featurettes
-         ================================================== -->
-      <!-- Wrap the rest of the page in another container to center all the content. -->
+            <div class="pic" data-p="225.00" data-po="80% 55%" style="display: none;">
+                <img data-u="image" src="img/gathering.png" />
+            </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
+            <!-- bullet navigator item prototype -->
+            <div data-u="prototype" style="width:16px;height:16px;"></div>
+        </div>
+        <!-- Arrow Navigator -->
+        <span data-u="arrowleft" class="jssora22l" style="top:0px;left:8px;width:40px;height:58px;" data-autocenter="2"></span>
+        <span data-u="arrowright" class="jssora22r" style="top:0px;right:8px;width:40px;height:58px;" data-autocenter="2"></span>
+    </div>
+    <!-- #endregion Jssor Slider End -->
+	
+    <hr>  
+      
+     
       <div class="container marketing">
-
-
-         <!-- START THE FEATURETTES -->
+         <!-- Role Section -->
          <div class="row featurette" id="page_about">
             <div class="col-md-12">
-               <h2 class="featurette-heading">What is teamform?
-                  <br>
-                  <span class="text-muted">A real-time online team forming app</span>
-               </h2>
-               <p class="lead"> The following roles are supported in teamform:
-               </p>
-
                <div class="row">
                   <div class="col-md-4">
-                     <h3 class="text-center">Administrator</h3>
-                     <ul>
-                        <li>Be responsible for creating an event for team forming (e.g. COMP3111, COMP3111H, hackUST)</li>
-						<li>Be able to set the minimum and maximum team size for the event (e.g. 5..7 team members in COMP3111 and 5..8 team members in COMP3111H)</li>
-                     </ul>
+				     <div class="roundcard">
+                       <img src="img/admin.png">  
+                         <h4 align="center"><b>Administrator</b></h4> 
+                         <ul style="padding-bottom:10px">
+						     <li>Line 1</li>
+						     <li>Line 2</li>
+						 </ul>       
+                     </div>
                   </div>
 
                   <div class="col-md-4">
-                     <h3 class="text-center">Team</h3>
-                     <ul>
-                        <li>Be able to add and remove requests made by members</li>
-						<li>Once a member joins the team, all his/her requests will be deleted</li>
-                     </ul>
+                     <div class="roundcard">
+                       <img src="img/leader.png">  
+                         <h4 align="center"><b>Team Leader</b></h4> 
+                         <ul style="padding-bottom:10px">
+						     <li>Line 1</li>
+						     <li>Line 2</li>
+						 </ul> 
+                     </div>
                   </div>
-
                   <div class="col-md-4">
-                     <h3 class="text-center">Member</h3>
-                     <ul>
-                        <li>Be able to request to join multiple teams</li>
-                     </ul>
+                     <div class="roundcard">
+                       <img src="img/member.png">  
+                         <h4 align="center"><b>Member</b></h4> 
+                         <ul style="padding-bottom:10px">
+						     <li>Line 1</li>
+						     <li>Line 2</li>
+						 </ul> 
+                     </div>
                   </div>
                </div>
-
             </div>
          </div>
+		 <!-- End of Role-->
+		 
          <hr class="featurette-divider">
+		 
+		 
+		 <!-- Event List -->
+		 <div class="row featurette" id="event_List">
+		    <div class="col-md-12">
+			   <h3 class="featurette-heading" align="center"><b>-Popular Events-</b></h3>
+               <h4 align="center"><span class="text-muted">Discover the latest and hottest events in campus</span></h4><br>
+			
+			<div class="row">
+			     <div class="col-md-6">
+				     <input type="text" id="inputSearch" onkeyup="" placeholder="Search for events" style="width:100%; padding-top:8px">
+					 
+				 </div>
+                 <div class="col-md-4">
+				     <div class="btn-group">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Sort by <span class="caret"></span>
+                      </button>
+                     <ul class="dropdown-menu">
+                     <li><a href="#">Department</a></li>
+                     <li><a href="#">Event Type</a></li>
+                     <li><a href="#">Time</a></li>
+                     </ul>
+                     </div>
+                 </div>				 
+			</div>
+			<br>
+			<div class="row" style="border:solid; color:grey; border-radius: 20px">
+			     <div class="col-xs-6 col-md-3" style="padding-top:10px">
+					  <div class="thumbnail text-center">
+						<img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member1&w=150&h=150" class="img-responsive">
+						<div class="caption">
+						 <h4>[Your name]</h4>
+						 <p>[ITSC email]</p>        
+						</div>
+					  </div>
+				 </div> 
 
-          <!-- START THE FEATURETTES -->
+			</div>
+			</div>
+		 </div>
+		 <!--End of Event List-->
+		 
+         <hr>
+		 
+          <!-- Development Team -->
+		 
+		 
          <div class="row featurette" id="page_team">
             <div class="col-md-12">
-               <h2 class="featurette-heading">Development Team
-                  <br>
-                  <span class="text-muted">IT Dog Team</span>
-               </h2>
-               
-
-               <div class="row">
-            
-            
-                 <div class="col-xs-6 col-md-3">
-                  <div class="thumbnail text-center">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member1&w=150&h=150" class="img-circle img-responsive">
-                    <div class="caption">
-                     <h4>[Your name]</h4>
-                     <p>[ITSC email]</p>
-                     
-                    </div>
-                  </div>
-                 </div> 
-
-                 <div class="col-xs-6 col-md-3">
-                  <div class="thumbnail text-center">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member2&w=150&h=150" class="img-circle img-responsive">
-                    <div class="caption">
-                     <h4>[Your name]</h4>
-                     <p>[ITSC email]</p>
-                     
-                    </div>
-                  </div>
-                 </div> 
- 
-                 <div class="col-xs-6 col-md-3">
-                  <div class="thumbnail text-center">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member2&w=150&h=150" class="img-circle img-responsive">
-                    <div class="caption">
-                     <h4>[Your name]</h4>
-                     <p>[ITSC email]</p>
-                     
-                    </div>
-                  </div>
-                 </div>
-
-                 <div class="col-xs-6 col-md-3">
-                  <div class="thumbnail text-center">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member2&w=150&h=150" class="img-circle img-responsive">
-                    <div class="caption">
-                     <h4>[Your name]</h4>
-                     <p>[ITSC email]</p>
-                     
-                    </div>
-                  </div>
-                 </div>
-
-                 <div class="col-xs-6 col-md-3">
-                  <div class="thumbnail text-center">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member2&w=150&h=150" class="img-circle img-responsive">
-                    <div class="caption">
-                     <h4>[Your name]</h4>
-                     <p>[ITSC email]</p>
-                     
-                    </div>
-                  </div>
-                 </div>
-
-                 <div class="col-xs-6 col-md-3">
-                  <div class="thumbnail text-center">
-                    <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member2&w=150&h=150" class="img-circle img-responsive">
-                    <div class="caption">
-                     <h4>[Your name]</h4>
-                     <p>[ITSC email]</p>
-                     
-                    </div>
-                  </div>
-                 </div>				 
-               </div>
-
-             </div>
+               <h3 class="featurette-heading" align="center"><b>-Development Team-</b></h3>
+               <h4 align="center"><span class="text-muted">IT Dog Team</span></h4>
+      
+		       <div class="col-md-12">
+			     <div class="row">
+				     <div class="roundcard">
+                       <img src="" alt="member1">  
+                              
+                     </div>
+				 </div>
+			   </div>
+		       <div class="col-md-12">
+			     <div class="row">
+				     <div class="roundcard">
+                       <img src="" alt="member2">  
+                              
+                     </div>
+				 </div>
+			   </div>
+			   <div class="col-md-12">
+			     <div class="row">
+				     <div class="roundcard">
+                       <img src="" alt="member3">  
+                              
+                     </div>
+				 </div>
+			   </div>
+			   <div class="col-md-12">
+			     <div class="row">
+				     <div class="roundcard">
+                       <img src="" alt="member4">  
+                              
+                     </div>
+				 </div>
+			   </div>
+			   <div class="col-md-12">
+			     <div class="row">
+				     <div class="roundcard">
+                       <img src="" alt="member5">  
+                              
+                     </div>
+				 </div>
+			   </div>
+			   <div class="col-md-12">
+			     <div class="row">
+				     <div class="roundcard">
+                       <img src="" alt="member6">  
+                              
+                     </div>
+				 </div>
+			   </div>
+            </div>
          </div>
-		 
 		 <hr class="featurette-divider">
+		 <!--End of Development Team-->
 		 
-		 <!-- The div is about feedback form -->
-		 <div id="feedback">
-		 
+		 <!--Feedback form -->
+		 <div id="feedback"> 
 		    <form name="feedbackform" ng-controller="FeedbackCtrl">
-				   <h2 class="featurette-heading">Feedback Form
-					  <br>
-					  <span class="text-muted">We want to hear you!</span>
-				   </h2>
-
-
-				  <div class="row">
-				  
-					<div class="form-group col-md-4">
+				   <h3 class="featurette-heading" align="center"><b>-Feedback Form-</b></h3>
+				   <h4 align="center"><span class="text-muted">We want to hear from you!</span></h4>
+				   <br>
+				  <div class="row">		    
+					<div class="form-group col-md-6">
 					  <!-- user email -->
 					  <label class="form-control-label">Your email (optional)</label>
-					  <input class="form-control input" ng-model="feedbackEmail" placeholder="email" name="feedbackEmail"/>
+					  <input class="form-control input" ng-model="feedbackEmail" placeholder="Email" name="feedbackEmail"/>
 					  <!-- end of user email -->
 					</div>
 					
-					<div class="form-group col-md-3">
+					<div class="form-group col-md-5">
 					  <!-- user name -->
 					  <label class="form-control-label">Your name (optional)</label>
-					  <input type="text" class="form-control input" ng-model="feedbackName" placeholder="name"/>
+					  <input type="text" class="form-control input" ng-model="feedbackName" placeholder="Name"/>
 					  <!-- end of user name -->
 					</div>
 
 				  
-				  
-					<div class="form-group col-md-10">
+				    <div class="form-group col-md-1"></div>
+					<div class="form-group col-md-11">
 						<!-- feedback content -->
 						<label class="form-control-label">Your Feedback</label>
-						<textarea id="content-input" type="text" class="form-control input-lg" ng-model="feedbackContent" placeholder="leave your comment" required ng-focus="focused()" rows="6"></textarea>
+						<textarea id="content-input" type="text" class="form-control input" ng-model="feedbackContent" placeholder="Leave your comment" required ng-focus="focused()" rows="6"></textarea>
 						<!-- end of feedback content -->
 					</div>
 		  
@@ -316,18 +355,12 @@
 		 </div>
 		 <!-- End of feedback form -->
 
-          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+          <br>
 
          <!-- /END THE FEATURETTES -->
-         <!-- FOOTER -->
-         <hr>
-         <footer>
-            <p class="pull-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2017 COMP3111/H teaching team & IT dog team </p>
-            <p>Powered by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a></p>
-         </footer>
       </div>
       <!-- /.container -->
+      <div style="margin-top:200px;" ng-include="'footer.html'"></div>
 
 		<!-- JavaScript of this page -->
 
