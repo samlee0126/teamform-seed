@@ -36,7 +36,8 @@
     
   
    
-   
+		<div class="navbar-wrapper" ng-include="'menu.html'"></div>
+		<!--
       <div class="navbar-wrapper">
 	  
          <div class="container">
@@ -90,7 +91,7 @@
             </nav>
          </div>
       </div>
-	  
+	  -->
 	  
       <!-- Admin page -->
       <div class="container" id="page_home" ng-controller="AdminCtrl">
@@ -106,7 +107,7 @@
             <div class="col-md-12">
                <div class="row">
                   <div class="col-md-12">
-                     	<h2>Events List<button type="submit" class="btn btn-info" style="float:right;">Create</button></h2>
+                     	<h2>Events List<a href="createEvent.html" class="btn btn-info" style="float:right;">Create</a></h2>
 				  </div>
                   <div class="col-md-12">
 						<table class="table table-hover table-bordered">
@@ -160,13 +161,15 @@
                      
          <!-- /END THE FEATURETTES -->
          <!-- FOOTER -->
+		<div ng-include="'footer.html'"></div>
+		<!--
          <hr>
          <footer>
             <p class="pull-right"><a href="#">Back to top</a></p>
             <p>&copy; 2017 COMP3111/H teaching team & IT dog team </p>
             <p>Powered by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a></p>
          </footer>
-      </div>
+      </div>-->
       <!-- /.container -->
 
 		<!-- JavaScript of this page -->
