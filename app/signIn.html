@@ -14,15 +14,13 @@
 		Font-awesome: More icons for the web development (v4.6.3 is used)		
 		site.css: A customized css for our web application. Not from any web framework. 
 	  -->
-      <script src="css/site.css"></script>
       <script src="lib/jquery.min.js"></script>      
       <script src="lib/bootstrap.min.js"></script>      
       	  
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">   
-
-      
+	  <link rel="stylesheet" href="css/site.css">
       <!-- Customized libraries shared by pages -->
       <script src="js/site.js"></script>
       <style>
@@ -42,15 +40,15 @@
             <div class="col-md-12">
                <div class="row">
                   <div class="col-md-6">
-                     	<h1>Sign in</h1><br>
+                     	<h1>Sign In</h1><br>
 			<form>
 				<div class="form-group">
-					<label for="LoginName">User name</label>
-					<input type="text" class="form-control" id="LoginName" placeholder="User name">
+					<label for="LoginName">Username</label>
+					<input type="text" class="form-control" id="username" placeholder="User name">
 				</div>
 				<div class="form-group">
 					<label for="Password">Password</label>
-					<input type="password" class="form-control" id="Password" placeholder="Password">
+					<input type="password" class="form-control" id="pawword" placeholder="Password">
 				</div>
 				<button type="submit" class="btn btn-warning">Sign in</button>				
 			</form>
@@ -81,7 +79,6 @@
 		
 		<script src="js/controller/index.js"></script>
 		<script src="js/controller/index-feedback.js"></script>
-		<script src="js/controller/index-transport.js"></script>
 
    </body>
 </html>

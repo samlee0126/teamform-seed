@@ -14,14 +14,14 @@
 			Font-awesome: More icons for the web development (v4.6.3 is used)
 			site.css: A customized css for our web application. Not from any web framework.
 		-->
-		<script src="css/site.css"></script>
+
 		<script src="lib/jquery.min.js"></script>
 		<script src="lib/bootstrap.min.js"></script>
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-
+		<link rel="stylesheet" href="css/site.css">
 
 		<!-- Customized libraries shared by pages -->
 		<script src="js/site.js"></script>
@@ -44,131 +44,133 @@
 
 
         <!-- Content of leader start from here-->
-        <div id="content">
+		<div class="container">
+			<div id="content">
 
-        	<div id="application" class="col-12 col-sm-8">
-            	<div class="tab-content">
-                <div id="createTable" class="tab-pane fade in active">
-            	<h2> Create new table</h2>
-                <div class="form-group">
-            	<form>
-  					<div class="form-group">
-   						<label for="TableName">Table Name</label>
-    					<input type="text" class="form-control" id="InputTableName" placeholder="Text"  class="col-xs-4">
+				<div id="application" class="col-12 col-sm-8">
+					<div class="tab-content">
+					<div id="createTable" class="tab-pane fade in active">
+					<h2> Create new table</h2>
+					<div class="form-group">
+					<form>
+						<div class="form-group">
+							<label for="TableName">Table Name</label>
+							<input type="text" class="form-control" id="InputTableName" placeholder="Text"  class="col-xs-4">
+						</div>
+						<div class="input-group">
+							<label for="TablePassword">Password</label>
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+							<input type="password" class="form-control" id="inpputPassword" placeholder="Password">
+						 </div>
+						 <br>
+						 <div class="form-group">
+						<button type="submit" class="btn btn-primary">Create Table</button>
+						</div>
+					</form>
 					</div>
-                    <div class="input-group">
-                    	<label for="TablePassword">Password</label>
-                    </div>
-                    <div class="input-group">
-     					<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-      					<input type="password" class="form-control" id="inpputPassword" placeholder="Password">
-                     </div>
-                     <br>
-                     <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Create Table</button>
-                    </div>
-                </form>
-                </div>
-                </div>
-                <div id="assignLeader" class="tab-pane fade">
-           			<h2>Assign to another leader</h2>
-                    <br>
-                    <p>Please select the member you want to assign</p>
-                    <select class="form-control">
-                    <option>CHAN Tai Man</option>
-                    <option>CHEUNG Tai Wai</option>
-                    <option>LEE Shiu Wai</option>
-                    <option>WONG Shiu Ming</option>
-                    </select>
-                    <p></p>
-                    <button type="submit" class="btn btn-primary">Confirm</button>
-                    <button type="reset" class="btn btn-default">Cancel</button>
-           		</div>
-
-                <div id="memberRequest" class="tab-pane fade">
-           			<h2>Team Request</h2>
-                    <br>
-                    <p>Person that waiting to approval:</p>
-                    <table class="table table-bordered">
-                    <tr><td>
-                     	<button type="button" class="btn btn-default">Name: CHAN Tai Ming<br>Grad. Year: 2018<br>Major: COMP</button>
-               			<button type="button" class="btn btn-default">Name: TSOI Ka Yee<br>Grad. Year: 2020<br>Major: COMP</button>
-                		<button type="button" class="btn btn-default">Name: LEE Man Ho<br>Grad. Year: 2016<br>Major: MATH</button>
-               			<button type="button" class="btn btn-default">Name: LAI Tai Fung<br>Grad. Year: 2019<br>Major: ISOM</button>
-                        <button type="button" class="btn btn-default">Name: HO Ka Ka<br>Grad. Year: 2013<br>Major: MATH</button>
-                        </td>
-                    </tr>
-                    </table>
-                    <p>Person that having approval:</p>
-                    <table class="table table-bordered">
-                    <tr><td>
-                     	<button type="button" class="btn btn-primary">Name: CHAN Tai Man<br>Grad. Year: 2019<br>Major: COMP</button>
-               			<button type="button" class="btn btn-primary">Name: CEUNG Tai Wai<br>Grad. Year: 2019<br>Major: COMP</button>
-                		<button type="button" class="btn btn-primary">Name: LEE Shiu Wai<br>Grad. Year: 2019<br>Major: CPENG</button>
-               			<button type="button" class="btn btn-primary">Name: WONG Shiu Ming<br>Grad. Year: 2019<br>Major: MATH</button>
-                        </td>
-                    </tr>
-                    </table>
-           		</div>
-
-                <div id="information" class="tab-pane fade">
-                <h2>Information </h2>
-                <br>
-                <h4>Smart Seletion</h4>
-                <button type="button" class="btn btn-default">Same Major</button>
-                <button type="button" class="btn btn-default">Same Graduation Year</button>
-                <button type="button" class="btn btn-default">Same Gender</button>
-                <button type="button" class="btn btn-default">Another Gender</button>
-                <br>
-                <br>
-
-                    <table class="table table-striped">
-                        <tr><th>Name</th><th>Gender<th>Grad. Year</th></tr>
-						<tr><td>CHAN Tai Man</td><td>M</td><td>2019</td></tr>
-                        <tr><td>LEE Shiu Wai</td><td>F</td><td>2019</td></tr>
-                        <tr><td>WONG Shiu Ming</td><td>M</td><td>2019</td></tr>
-					</table>
-                </div>
-
-                </div>
- 			</div>
-
-            <div id="Progress" class="col-12 col-sm-4">
-            	<h2>Status</h2>
-                	<div class="list-group">
- 					 <a href="#" class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-ok-sign"></span> Your team is confirmed.</a>
- 					 <a data-toggle="tab" href="#memberRequest" class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-info-sign"></span> 7 new requests.</a>
-					 <a href="#" class="list-group-item list-group-item-danger"><span class="glyphicon glyphicon-remove-sign"></span> Your team is full. Fail to add other member.</a>
 					</div>
-                    <div class="progress">
-					<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-    				Current Members: 8/12
- 					</div>
+					<div id="assignLeader" class="tab-pane fade">
+						<h2>Assign to another leader</h2>
+						<br>
+						<p>Please select the member you want to assign</p>
+						<select class="form-control">
+						<option>CHAN Tai Man</option>
+						<option>CHEUNG Tai Wai</option>
+						<option>LEE Shiu Wai</option>
+						<option>WONG Shiu Ming</option>
+						</select>
+						<p></p>
+						<button type="submit" class="btn btn-primary">Confirm</button>
+						<button type="reset" class="btn btn-default">Cancel</button>
 					</div>
-                    <div id="changePage">
-                    <h2>Option</h2>
-                    <ul class="list-group">
-  						<li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#assignLeader">Assign Leader</a></li>
- 						<li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#memberRequest">Team Request</a></li>
-                        <li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#information">Information</a></li>
-					</ul>
-                    </div>
-            </div>
-            </div>
-            <div id="management">
-            </div>
-            <div id="">
-            </div>
-            <div id="">
-            </div>
-            <div id="">
-            </div>
+
+					<div id="memberRequest" class="tab-pane fade">
+						<h2>Team Request</h2>
+						<br>
+						<p>Person that waiting to approval:</p>
+						<table class="table table-bordered">
+						<tr><td>
+							<button type="button" class="btn btn-default">Name: CHAN Tai Ming<br>Grad. Year: 2018<br>Major: COMP</button>
+							<button type="button" class="btn btn-default">Name: TSOI Ka Yee<br>Grad. Year: 2020<br>Major: COMP</button>
+							<button type="button" class="btn btn-default">Name: LEE Man Ho<br>Grad. Year: 2016<br>Major: MATH</button>
+							<button type="button" class="btn btn-default">Name: LAI Tai Fung<br>Grad. Year: 2019<br>Major: ISOM</button>
+							<button type="button" class="btn btn-default">Name: HO Ka Ka<br>Grad. Year: 2013<br>Major: MATH</button>
+							</td>
+						</tr>
+						</table>
+						<p>Person that having approval:</p>
+						<table class="table table-bordered">
+						<tr><td>
+							<button type="button" class="btn btn-primary">Name: CHAN Tai Man<br>Grad. Year: 2019<br>Major: COMP</button>
+							<button type="button" class="btn btn-primary">Name: CEUNG Tai Wai<br>Grad. Year: 2019<br>Major: COMP</button>
+							<button type="button" class="btn btn-primary">Name: LEE Shiu Wai<br>Grad. Year: 2019<br>Major: CPENG</button>
+							<button type="button" class="btn btn-primary">Name: WONG Shiu Ming<br>Grad. Year: 2019<br>Major: MATH</button>
+							</td>
+						</tr>
+						</table>
+					</div>
+
+					<div id="information" class="tab-pane fade">
+					<h2>Information </h2>
+					<br>
+					<h4>Smart Seletion</h4>
+					<button type="button" class="btn btn-default">Same Major</button>
+					<button type="button" class="btn btn-default">Same Graduation Year</button>
+					<button type="button" class="btn btn-default">Same Gender</button>
+					<button type="button" class="btn btn-default">Another Gender</button>
+					<br>
+					<br>
+
+						<table class="table table-striped">
+							<tr><th>Name</th><th>Gender<th>Grad. Year</th></tr>
+							<tr><td>CHAN Tai Man</td><td>M</td><td>2019</td></tr>
+							<tr><td>LEE Shiu Wai</td><td>F</td><td>2019</td></tr>
+							<tr><td>WONG Shiu Ming</td><td>M</td><td>2019</td></tr>
+						</table>
+					</div>
+
+					</div>
+				</div>
+
+				<div id="Progress" class="col-12 col-sm-4">
+					<h2>Status</h2>
+						<div class="list-group">
+						 <a href="#" class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-ok-sign"></span> Your team is confirmed.</a>
+						 <a data-toggle="tab" href="#memberRequest" class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-info-sign"></span> 7 new requests.</a>
+						 <a href="#" class="list-group-item list-group-item-danger"><span class="glyphicon glyphicon-remove-sign"></span> Your team is full. Fail to add other member.</a>
+						</div>
+						<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+						Current Members: 8/12
+						</div>
+						</div>
+						<div id="changePage">
+						<h2>Option</h2>
+						<ul class="list-group">
+							<li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#assignLeader">Assign Leader</a></li>
+							<li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#memberRequest">Team Request</a></li>
+							<li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#information">Information</a></li>
+						</ul>
+						</div>
+				</div>
+				</div>
+				<div id="management">
+				</div>
+				<div id="">
+				</div>
+				<div id="">
+				</div>
+				<div id="">
+				</div>
 
 
 
-        </div>
+			</div>
+		</div>
 
         <!-- Content of leader -->
-		<div ng-include="'footer.html'"></div>
+		<div style="margin-top:200px;" ng-include="'footer.html'"></div>
    </body>
 </html>
