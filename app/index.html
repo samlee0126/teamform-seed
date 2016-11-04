@@ -6,7 +6,6 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="keywords" content="teamform, team">
       <!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
-      <title>sitAround@UST - Online Reservation and Team-forming Platform</title>
 	  
       <!-- libraries and CSS 	  
 		JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)		
@@ -22,7 +21,7 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">   
       <link rel="stylesheet" href="css/index.css">
-      
+      <link rel="stylesheet" href="css/site.css">
       <!-- Customized libraries shared by pages -->
       <script src="js/site.js"></script>
 
@@ -168,6 +167,9 @@
       <div class="container marketing">
          <!-- Role Section -->
          <div class="row featurette" id="page_about">
+			<br>
+			<br>
+			<br>
             <div class="col-md-12">
                <div class="row">
                   <div class="col-md-4">
@@ -210,42 +212,108 @@
 		 
 		 
 		 <!-- Event List -->
-		 <div class="row featurette" id="event_List">
+		 <div class="row featurette" id="events">
+			<br>
+			<br>
+			<br>
 		    <div class="col-md-12">
 			   <h3 class="featurette-heading" align="center"><b>-Popular Events-</b></h3>
                <h4 align="center"><span class="text-muted">Discover the latest and hottest events in campus</span></h4><br>
 			
-			<div class="row">
-			     <div class="col-md-6">
-				     <input type="text" id="inputSearch" onkeyup="" placeholder="Search for events" style="width:100%; padding-top:8px">
-					 
-				 </div>
-                 <div class="col-md-4">
-				     <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       Sort by <span class="caret"></span>
-                      </button>
-                     <ul class="dropdown-menu">
-                     <li><a href="#">Department</a></li>
-                     <li><a href="#">Event Type</a></li>
-                     <li><a href="#">Time</a></li>
-                     </ul>
-                     </div>
-                 </div>				 
-			</div>
-			<br>
-			<div class="row" style="border:solid; color:grey; border-radius: 20px">
-			     <div class="col-xs-6 col-md-3" style="padding-top:10px">
-					  <div class="thumbnail text-center">
-						<img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=member1&w=150&h=150" class="img-responsive">
-						<div class="caption">
-						 <h4>[Your name]</h4>
-						 <p>[ITSC email]</p>        
-						</div>
-					  </div>
-				 </div> 
+				<div class="row">
+					 <div class="col-md-6">
+						 <input type="text" id="inputSearch" onkeyup="" placeholder="Search for events" style="width:100%; padding-top:8px">
+						 
+					 </div>
+					 <div class="col-md-4">
+						 <div class="btn-group">
+						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						   Sort by <span class="caret"></span>
+						  </button>
+						 <ul class="dropdown-menu">
+						 <li><a href="#">Department</a></li>
+						 <li><a href="#">Event Type</a></li>
+						 <li><a href="#">Time</a></li>
+						 </ul>
+						 </div>
+					 </div>				 
+				</div>
+				<br>
 
-			</div>
+				<section id="event_box">
+
+					<article class="event_content roundcard">
+						<a>
+							<div style="background: url('../img/event-2016-annual-dinner.jpg');
+							width: 250px; 
+							height: 225px; background-repeat: 
+							no-repeat; background-position: center; 
+							background-size: 100% 100%; 
+							">
+							</div>
+						</a>
+						
+						<div class="overlay">
+							<ul class="stat_bar">
+								<li class="love"><span>20</span></li>
+								<li class="star"><span>0</span></li>
+								<li class="say"><span>5</span></li>
+							</ul>
+						</div>
+						<div class="content">
+							<div class="em"><div>by CSE Department, UST</div>17 Dec 2016</div>
+							<div class="p" data-bind="html: body">範例內容範例內容。</div>
+						</div>
+					</article>
+
+					<article class="event_content roundcard">
+						<a>
+							<div style="background: url('../img/event-2016-annual-dinner.jpg');
+							width: 250px; 
+							height: 225px; background-repeat: 
+							no-repeat; background-position: center; 
+							background-size: 100% 100%; 
+							">
+							</div>
+						</a>
+						<div class="overlay">
+							<ul class="stat_bar">
+								<li class="love"><span>20</span></li>
+								<li class="star"><span>0</span></li>
+								<li class="say"><span>5</span></li>
+							</ul>
+						</div>
+						<div class="content">
+							<div class="em"><div>by CSE Department, UST</div>17 Dec 2016</div>
+							<div class="p" data-bind="html: body">範例內容範例內容。</div>
+						</div>
+					</article>
+					
+					<article class="event_content roundcard">
+						<a>
+							<div style="background: url('../img/AnnualDinner2015Poster.jpg');
+							width: 250px; 
+							height: 225px; background-repeat: 
+							no-repeat; background-position: center; 
+							background-size: 100% 100%; 
+							">
+							</div>
+						</a>
+						<div class="overlay">
+							<ul class="stat_bar">
+								<li class="love"><span>20</span></li>
+								<li class="star"><span>0</span></li>
+								<li class="say"><span>5</span></li>
+							</ul>
+						</div>
+						<div class="content">
+							<div class="em"><div>by Civil Department, UST</div>17 Dec 2016</div>
+							<div class="p" data-bind="html: body">範例內容範例內容。</div>
+						</div>
+					</article>
+					
+					
+				</section>
 			</div>
 		 </div>
 		 <!--End of Event List-->
@@ -256,6 +324,9 @@
 		 
 		 
          <div class="row featurette" id="page_team">
+			<br>
+			<br>
+			<br>
             <div class="col-md-12">
                <h3 class="featurette-heading" align="center"><b>-Development Team-</b></h3>
                <h4 align="center"><span class="text-muted">IT Dog Team</span></h4>
@@ -315,52 +386,37 @@
 		 
 		 <!--Feedback form -->
 		 <div id="feedback"> 
-		    <form name="feedbackform" ng-controller="FeedbackCtrl">
-				   <h3 class="featurette-heading" align="center"><b>-Feedback Form-</b></h3>
-				   <h4 align="center"><span class="text-muted">We want to hear from you!</span></h4>
-				   <br>
-				  <div class="row">		    
-					<div class="form-group col-md-6">
-					  <!-- user email -->
-					  <label class="form-control-label">Your email (optional)</label>
-					  <input class="form-control input" ng-model="feedbackEmail" placeholder="Email" name="feedbackEmail"/>
-					  <!-- end of user email -->
+			<div class="col-md-8 col-md-offset-2">
+				<h3 class="featurette-heading" align="center"><b>-Feedback Form-</b></h3>
+				<h4 align="center"><span class="text-muted">We want to hear from you!</span></h4>
+				<div id="feedback_comment" ng-controller="FeedbackCtrl">
+					<div class="feedback_title">
+						Thank you so much :-)
+						<input ng-click="submitFeedback()" id="feedback-submit" type="submit" value="Send" />
+						<br><br>
 					</div>
-					
-					<div class="form-group col-md-5">
-					  <!-- user name -->
-					  <label class="form-control-label">Your name (optional)</label>
-					  <input type="text" class="form-control input" ng-model="feedbackName" placeholder="Name"/>
-					  <!-- end of user name -->
-					</div>
-
-				  
-				    <div class="form-group col-md-1"></div>
-					<div class="form-group col-md-11">
-						<!-- feedback content -->
-						<label class="form-control-label">Your Feedback</label>
-						<textarea id="content-input" type="text" class="form-control input" ng-model="feedbackContent" placeholder="Leave your comment" required ng-focus="focused()" rows="6"></textarea>
-						<!-- end of feedback content -->
-					</div>
-		  
-					<div class="form-group col-md-4">
-						<!-- error message -->	
-						<button class="btn btn-primary" type="submit" ng-click="submitFeedback()">Send</button>
-						<span id="error_message" ng-show="errorMessage">Error if all empty</span>
-						</div>	
-					</div>
-				  
-			</form>
-			
+					<br>
+					<form id="feedback_form" name="feedback_form">
+						<div class="row">
+							<div class="col-md-7">
+								<textarea rows="6" ng-model="feedbackContent" placeholder="Leave your comment.." required></textarea>
+							</div>
+							<div class="col-md-5">
+								<input type="text" ng-model="feedbackEmail" placeholder="Name (optional)"/>
+								<input type="text" ng-model="feedbackName" placeholder="Email (optional)"/>
+							</div>
+					</form>
+				</div>
+			</div>
 		 </div>
 		 <!-- End of feedback form -->
 
-          <br>
+
 
          <!-- /END THE FEATURETTES -->
       </div>
       <!-- /.container -->
-      <div style="margin-top:200px;" ng-include="'footer.html'"></div>
+      <div style="margin-top:400px;" ng-include="'footer.html'"></div>
 
 		<!-- JavaScript of this page -->
 
@@ -371,11 +427,8 @@
 		<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
 		<script src="lib/firebase.js"></script>     
 		<script src="lib/angularfire.min.js"></script>
-		
 		<script src="js/controller/index.js"></script>
 		<script src="js/controller/index-feedback.js"></script>
-		<script src="js/controller/index-transport.js"></script>
-
 
    </body>
 </html>
