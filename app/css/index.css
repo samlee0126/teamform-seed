@@ -42,9 +42,10 @@
 	height: 225px;
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: 100% 100%;
 }
 
-article.event_content .photo{}
+
 
 
 #event_box .overlay{
@@ -110,12 +111,12 @@ article.event_content .photo{}
 }
 
 #feedback_comment .feedback_title{
-	background: #fb87b4;
+	background: #000;
 	padding: 15px 20px;
 	letter-spacing: 1px;
-	font-size: 14px;
+	font-size: 15px;
 	margin: 0;
-	color: #000;
+	color: #FFF;
 }
 
 
@@ -153,7 +154,7 @@ article.event_content .photo{}
 }
 
 #feedback_form input[type=submit],#feedback-submit {
-	background: #fcd0e1;
+	background: #000;
 	padding: 5px 10px;
 	margin-bottom: 10px;
 	border: 2px #000 solid;
@@ -163,8 +164,4 @@ article.event_content .photo{}
 	float: right;
 }
 
-#feedback_form label{
-	font-size: 14px;
-	letter-spacing: 1px;
-}
 
