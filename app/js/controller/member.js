@@ -82,6 +82,7 @@ angular.module('teamform-member-app', ['firebase'])
 	  } else {
 		// No user is signed in.
 		console.log("YEAH - You did not login lol")
+		sessionStorage.setItem("urlAfterLogin","member.html?q=" + getURLParameter("q"));
 		window.location.href = "signIn.html"; // default redirect page is index
 	  }
 
