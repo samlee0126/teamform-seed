@@ -1,1 +1,5 @@
-{}
+{
+  "projects": {
+    "default": "comp3111king"
+  }
+}
