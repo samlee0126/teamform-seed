@@ -18,6 +18,14 @@
 		 max-height:100%; 
 		 margin-left:auto; 
 		 margin-right:auto;}
+	  
+	  .rolecard ul {
+		  margin-left:20px;
+		  line-height:180%;
+	  }
+	  .rolecard ul li{
+		 font-size:120%;
+	  }
 		 
 		 
 /* the event box */
