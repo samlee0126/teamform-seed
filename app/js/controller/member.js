@@ -57,15 +57,24 @@ angular.module('teamform-member-app', ['firebase'])
 				console.log("no this event")
 				return;
 			}
-				
-			var status = data.child("events").child(eid).child("status").val();
-			if (status == "waiting")
-				$("#waiting").removeClass("hide");
-			else if (status == "confirmed")
-				$("#confirmed").removeClass("hide");
-			else
-				$("#rejected").removeClass("hide");
 			
+			var status = data.child("events").child(eid).child("status").val();
+			
+			if (status != null ) {
+				
+				if (status == "waiting")
+					$("#waiting").removeClass("hide");
+				else if (status == "confirmed")
+					$("#confirmed").removeClass("hide");
+				else
+					$("#rejected").removeClass("hide");
+				
+			}else {
+				window.history.back();
+				console.log("no this event")
+				return;				
+			}
+				
 			// update $scope
 			$scope.$apply();
 		});		
