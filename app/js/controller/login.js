@@ -18,12 +18,13 @@ angular.module('teamform-login-app', ['firebase'])
 	
 			/* after login */
 			console.log(user);
-			if (sessionStorage.getItem("urlAfterLogin")) // e.g store the one event page user clicked 
+			if (sessionStorage.getItem("urlAfterLogin")) {// e.g store the one event page user clicked 
 				window.location.href = sessionStorage.getItem("urlAfterLogin");
 				sessionStorage.setItem("urlAfterLogin","");
-			else
+			}
+			else {
 				window.location.href = "index.html"; // default redirect page is index
-			
+			}
 			
 			
 		}, function(error) {

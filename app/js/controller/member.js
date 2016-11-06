@@ -66,11 +66,13 @@ angular.module('teamform-member-app', ['firebase'])
 					$("#waiting").removeClass("hide");
 				else if (status == "confirmed")
 					$("#confirmed").removeClass("hide");
-				else
+				else if (status == "rejected")
 					$("#rejected").removeClass("hide");
+				else
+					$("#no_status").removeClass("hide");
 				
 			}else {
-				window.history.back();
+				window.history.back();		// future: the case user type url directly
 				console.log("no this event")
 				return;				
 			}
