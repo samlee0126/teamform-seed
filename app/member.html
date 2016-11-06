@@ -28,9 +28,8 @@
       <!-- Customized libraries shared by pages -->
       <script src="js/site.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
-      
    </head>
-   <body>
+   <body ng-controller="MemberCtrl">
 	<div ng-include="'menu.html'"></div>
 	<div class="container">
 		<div id="fh5co-schedule-section">
@@ -164,18 +163,18 @@
 				<div class="col-sm-4">					
 					<h2 class="text-center">Status</h2>
 						<ul class="list-group">
-						 	<li class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-ok-sign"></span> 
+						 	<li id="confirmed" class="list-group-item list-group-item-success hide"><span class="glyphicon glyphicon-ok-sign"></span> 
 								Your request has been confirmed.</li>
-							 <li class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-info-sign"></span>
+							<li id="waiting" class="list-group-item list-group-item-info hide"><span class="glyphicon glyphicon-info-sign"></span>
 								Your request has been sent to the team leader.</li>
-						 	<li class="list-group-item list-group-item-danger"><span class="glyphicon glyphicon-remove-sign"></span>
+						 	<li id="rejected" class="list-group-item list-group-item-danger hide"><span class="glyphicon glyphicon-remove-sign"></span>
 								Your request was rejected. Please select another table.</li>
 						</ul>
 					<h2 class="text-center">My Account</h2>
 						<ul class="list-group">
-							<li class="list-group-item"><b>User name: </b>SampleName</li>
-							<li class="list-group-item"><b>Department: </b>XXXX</li>
-							<li class="list-group-item"><b>Graduation year: </b>XXXX</li>
+							<li class="list-group-item"><b>User name: </b><b ng-bind="name"></b></li>
+							<li class="list-group-item"><b>Department: </b><b ng-bind="major"></b></li>
+							<li class="list-group-item"><b>Graduation year: </b><b ng-bind="gradYear"></b></li>
 						</ul>
 				</div>
 		</div>

@@ -141,7 +141,7 @@
 
 #feedback_form textarea{
 	font: 14px "Comic Sans MS", cursive, sans-serif;
-	width: 30vw;
+	width: 350px;
 	color: #000;
 	border: 0;
 	border-bottom: 2px solid #000;
@@ -152,7 +152,7 @@
 
 #feedback_form input[type=text]{
 	font: 14px "Comic Sans MS", cursive, sans-serif;
-	width: 20vw;
+	width: 200px;
 	color: #000;
 	border: 0;
 	border-bottom: 2px solid #000;
