@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="teamform-index-app">
+<html lang="en" ng-app="teamform-login-app">
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +29,7 @@
 
 	  	  
    </head>
-   <body>
+   <body ng-controller="LoginCtrl">
 
       <!-- MENU -->
       <div class="navbar-wrapper" ng-include="'menu.html'"></div>
@@ -43,14 +43,14 @@
                      	<h1>Sign In</h1><br>
 			<form>
 				<div class="form-group">
-					<label for="LoginName">Username</label>
-					<input type="text" class="form-control" id="username" placeholder="User name">
+					<label for="LoginEmail">User email</label>
+					<input ng-model="email" type="email" class="form-control" id="email" placeholder="User email">
 				</div>
 				<div class="form-group">
 					<label for="Password">Password</label>
-					<input type="password" class="form-control" id="pawword" placeholder="Password">
+					<input ng-model="password" type="password" class="form-control" id="pawword" placeholder="Password">
 				</div>
-				<button type="submit" class="btn btn-warning">Sign in</button>				
+				<button ng-click="doLogin()" class="btn btn-warning">Sign in</button>				
 			</form>
 			<br>
 			<p>No account? <a href="register.html">Register</a> here.</p>
@@ -76,9 +76,8 @@
 		<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
 		<script src="lib/firebase.js"></script>     
 		<script src="lib/angularfire.min.js"></script>
+		<script src="js/controller/login.js"></script>
 		
-		<script src="js/controller/index.js"></script>
-		<script src="js/controller/index-feedback.js"></script>
 
    </body>
 </html>
