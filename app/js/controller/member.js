@@ -1,3 +1,4 @@
+/*
 $(document).ready(function(){
 
 	$('#member_page_controller').hide();
@@ -9,22 +10,84 @@ $(document).ready(function(){
 	}
 
 });
-
+*/
 angular.module('teamform-member-app', ['firebase'])
 .controller('MemberCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
 	
 	// TODO: implementation of MemberCtrl
 	
-	
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
+
+	firebase.auth().onAuthStateChanged(function(user) {
+	  if (user) {
+
+		//get member information from database by uid
+		var refPath = "members/" + user.uid;
+		retrieveOnceFirebase(firebase, refPath, function(data) {
+			// user name			
+			if ( data.child("name").val() != null ) {
+				$scope.name = data.child("name").val();
+			} else {
+				$scope.name = "N/A";
+			}
+			
+			// user major
+			if (data.child("major").val() != null ) {
+				$scope.major = data.child("major").val();
+			}
+			else {
+				$scope.major = "N/A";
+			}
+			
+			// user grad year
+			if (data.child("gradYear").val() != null ) {
+				$scope.gradYear = data.child("gradYear").val();
+			}
+			else {
+				$scope.gradYear = "N/A";
+			}
+			
+			// user request status
+			// Use jquery because angular hide/show in this project is very slow
+			// Need time to check why angularjs is too show now (may be too many request?)
+			var eid = getURLParameter("q");
+			if (eid == null || eid == "") {
+				window.history.back();
+				console.log("no this event")
+				return;
+			}
+				
+			var status = data.child("events").child(eid).child("status").val();
+			if (status == "waiting")
+				$("#waiting").removeClass("hide");
+			else if (status == "confirmed")
+				$("#confirmed").removeClass("hide");
+			else
+				$("#rejected").removeClass("hide");
+			
+			// update $scope
+			$scope.$apply();
+		});		
+		
+	  } else {
+		// No user is signed in.
+		console.log("YEAH - You did not login lol")
+		window.location.href = "signIn.html"; // default redirect page is index
+	  }
+
+	});	
 	
+
+
+	
+/*		
 	$scope.userID = "";
 	$scope.userName = "";	
 	$scope.teams = {};
 	
 	
-	
+
 	$scope.loadFunc = function() {
 		var userID = $scope.userID;
 		if ( userID !== '' ) {
@@ -114,5 +177,5 @@ angular.module('teamform-member-app', ['firebase'])
 	
 	
 	$scope.refreshTeams(); // call to refresh teams...
-		
+*/		
 }]);
