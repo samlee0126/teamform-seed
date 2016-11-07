@@ -14,7 +14,7 @@
 		Font-awesome: More icons for the web development (v4.6.3 is used)		
 		site.css: A customized css for our web application. Not from any web framework. 
 	  -->
-      <script src="lib/jquery.min.js"></script>      
+      <script src="lib/jquery.min.js"></script>
       <script src="lib/bootstrap.min.js"></script>      
       	  
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
@@ -113,12 +113,14 @@
 						<tr>
 						<th>Event ID</th>
 						<th>Event Name</th>
+						<th>Event Date</th>
 						<th>Number of Table</th>
 						<th>Deadline</th>
 						</tr>
-						<tr ng-repeat="event in paramEvent | orderBy:'deadline'" ng-click="goToEvent(events)">
+						<tr ng-repeat="event in paramEvent | orderBy:'$id'" ng-click="goToEvent(events)">
 						<td>{{event.$id}}</td>
 						<td>{{event.eventName}}</td>
+						<td>{{event.date}}</td>
 						<td>{{event.maxForTable}}</td>
 						<td>{{event.deadline}}</td>
 						</tr>
@@ -145,7 +147,7 @@
 						<td ng-if="!feedback.Email">Anonymous</td>
 						<td>{{feedback.Name}}</td>
 						<td>{{feedback.Content}}</td>
-						<td>{{feedback.CreateTime}}</td>
+						<td><label ng-bind="feedback.CreateTime | date:'medium'"></label></td>
 						</tr>
 						</table>
 				  </div>
