@@ -16,6 +16,7 @@ angular.module('teamform-member-app', ['firebase'])
 	
 	// TODO: implementation of MemberCtrl
 	
+
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
 
@@ -73,17 +74,30 @@ angular.module('teamform-member-app', ['firebase'])
 				
 			}else {
 				window.history.back();		// future: the case user type url directly
-				console.log("no this event")
+				console.log("no this event");
 				return;				
 			}
 				
 			// update $scope
 			$scope.$apply();
-		});		
+		});	
 		
+		//get table information from database by tid		
+		var eid = getURLParameter("q");
+		var refPath = "tables";
+		$scope.tableInfo = [];	
+		retrieveOnceFirebase(firebase, refPath, function(data) {
+			data.forEach(function(childData) {
+				if(childData.child("event").val() == eid) {
+					$scope.tableInfo.push(childData.val());
+				}
+			});
+
+			$scope.$apply();
+		});
 	  } else {
 		// No user is signed in.
-		console.log("YEAH - You did not login lol")
+		console.log("YEAH - You did not login lol");
 		sessionStorage.setItem("urlAfterLogin","member.html?q=" + getURLParameter("q"));
 		window.location.href = "signIn.html"; // default redirect page is index
 	  }

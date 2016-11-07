@@ -67,9 +67,9 @@
 					<div class="row text-center">
 						<div class="col-12 schedule-container">
 							<div class="schedule-content">
-								<div class="col-md-4 col-sm-6">
+								<div class="col-md-4 col-sm-6" ng-repeat="table in tableInfo">
 									<div class="program program-schedule">
-										<h3>TableName1
+										<h3>{{table.tableName}}
 											<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
 										</h3>
 										<p>TableDescription
@@ -82,79 +82,17 @@
 										<div class="progress">
 											<div class="progress-bar progress-bar-custom" role="progressbar"
 											     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-											     style="width: 50%;">
-												<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 6/ 12
+											     style="width: {{table.numberOfMembers*100/12}}%;">
 											</div>
+										</div>
+										<div class="progress-text-style">
+											<span class="glyphicon glyphicon-user " aria-hidden="true"></span> 
+											{{table.numberOfMembers}}/ 12
 										</div>
 										<div align="right"><a class="btn-join" href="#">Join Now</a></div>
 									</div>
 								</div>
-								<div class="col-md-4 col-sm-6">
-									<div class="program program-schedule">
-										<h3>TableName2
-											<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-										</h3>
-										<p>TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription</p>
-										<div class="progress">
-											<div class="progress-bar progress-bar-custom" role="progressbar"
-											     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-											     style="width: 25%;">
-												<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 3/ 12
-											</div>
-										</div>
-										<div align="right"><a class="btn-join" href="#">Join Now</a></div>
-									</div>
-								</div>
-								<div class="col-md-4 col-sm-6">
-									<div class="program program-schedule">
-										<h3>TableName3
-											<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-										</h3>
-										<p>TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription</p>
-										<div class="progress">
-											<div class="progress-bar progress-bar-custom" role="progressbar"
-											     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-											     style="width: 100%;">
-												<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 12/ 12
-											</div>
-										</div>
-										<div align="right"><a class="btn-join" href="#">Join Now</a></div>
-									</div>
-								</div>
-								<div class="col-md-4 col-sm-6">
-									<div class="program program-schedule">
-										<h3>TableName4
-											<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
-										</h3>
-										<p>TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription</p>
-										<div class="progress">
-											<div class="progress-bar progress-bar-custom" role="progressbar"
-											     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-											     style="width: 100%;">
-												<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 12/ 12
-											</div>
-										</div>
-										<div align="right"><a class="btn-join" href="#">Join Now</a></div>
-									</div>
-								</div>								
+												
 							</div>
 						</div>
 					</div>	
