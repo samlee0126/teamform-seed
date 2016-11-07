@@ -73,14 +73,19 @@
   background: #FFFFFF;
   border: none;
   border-radius: 0px;
-  height: 20px;
+  height: 10px;
+  margin-bottom: 3px;
 }
 .progress-bar-custom {
   background: #000000;
 }
-.progress-info {
-  color: #4C4C4C;
+.progress-bar-custom-full {
+  background: #CE0000;
+}
+.progress-text-style {
+  color: #000000;
   text-align: left;
+  margin-bottom: 10px;
 }
 .btn-join {
   background: #FFCD00;

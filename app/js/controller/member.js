@@ -16,12 +16,13 @@ angular.module('teamform-member-app', ['firebase'])
 	
 	// TODO: implementation of MemberCtrl
 	
+
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
 
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
-
+		var eid = getURLParameter("q");
 		//get member information from database by uid
 		var refPath = "members/" + user.uid;
 		retrieveOnceFirebase(firebase, refPath, function(data) {
@@ -51,7 +52,6 @@ angular.module('teamform-member-app', ['firebase'])
 			// user request status
 			// Use jquery because angular hide/show in this project is very slow
 			// Need time to check why angularjs is too show now (may be too many request?)
-			var eid = getURLParameter("q");
 			if (eid == null || eid == "") {
 				window.history.back();
 				console.log("no this event")
@@ -73,17 +73,29 @@ angular.module('teamform-member-app', ['firebase'])
 				
 			}else {
 				window.history.back();		// future: the case user type url directly
-				console.log("no this event")
+				console.log("no this event");
 				return;				
 			}
 				
 			// update $scope
 			$scope.$apply();
-		});		
+		});	
 		
+		//get table information from database by tid
+		$scope.tableInfo = [];		
+		var refPathTable = "tables";
+		retrieveOnceFirebase(firebase, refPathTable, function(data) {
+			data.forEach(function(childData) {
+				if(childData.child("event").val() == eid) {
+					$scope.tableInfo.push(childData.val());
+				}
+			});
+
+			$scope.$apply();
+		});
 	  } else {
 		// No user is signed in.
-		console.log("YEAH - You did not login lol")
+		console.log("YEAH - You did not login lol");
 		sessionStorage.setItem("urlAfterLogin","member.html?q=" + getURLParameter("q"));
 		window.location.href = "signIn.html"; // default redirect page is index
 	  }
