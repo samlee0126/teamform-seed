@@ -22,7 +22,7 @@ angular.module('teamform-member-app', ['firebase'])
 
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
-
+		var eid = getURLParameter("q");
 		//get member information from database by uid
 		var refPath = "members/" + user.uid;
 		retrieveOnceFirebase(firebase, refPath, function(data) {
@@ -52,7 +52,6 @@ angular.module('teamform-member-app', ['firebase'])
 			// user request status
 			// Use jquery because angular hide/show in this project is very slow
 			// Need time to check why angularjs is too show now (may be too many request?)
-			var eid = getURLParameter("q");
 			if (eid == null || eid == "") {
 				window.history.back();
 				console.log("no this event")
@@ -82,11 +81,10 @@ angular.module('teamform-member-app', ['firebase'])
 			$scope.$apply();
 		});	
 		
-		//get table information from database by tid		
-		var eid = getURLParameter("q");
-		var refPath = "tables";
-		$scope.tableInfo = [];	
-		retrieveOnceFirebase(firebase, refPath, function(data) {
+		//get table information from database by tid
+		$scope.tableInfo = [];		
+		var refPathTable = "tables";
+		retrieveOnceFirebase(firebase, refPathTable, function(data) {
 			data.forEach(function(childData) {
 				if(childData.child("event").val() == eid) {
 					$scope.tableInfo.push(childData.val());
