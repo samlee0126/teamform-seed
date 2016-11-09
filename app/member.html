@@ -46,14 +46,15 @@
 					<div class="col-12">
 						<div class="select-bar">
 							<select class="selectpicker select-bar-left" multiple data-actions-box="true"
-							        title="Filter by" data-style="btn-danger">
+							        title="Filter by" data-style="btn-danger" id="filter-select"
+								ng-change="filterTable()" ng-model="selectedFilter">
 								<optgroup label="Filter by">								
-									<option>With available seats</option>
-									<option>Department</option>
-									<option>Graduation year</option>
+									<option value="available">With available seats</option>
+									<option value="department">Department</option>
+									<option value="grad-year">Graduation year</option>
 								</optgroup>
 							</select>						
-							<select class="selectpicker" title="Sort by" data-style="btn-danger">
+							<select class="selectpicker" title="Sort by" data-style="btn-danger" id="sort-select">
 								<optgroup label="Sort by">
 									<option data-icon="glyphicon-sort-by-attributes-alt">Remaining seats</option>
 									<option data-icon="glyphicon-sort-by-attributes">Created time</option>
