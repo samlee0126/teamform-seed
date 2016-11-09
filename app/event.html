@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="teamform-event-app">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="teamform, team">
+		<!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+		<!-- libraries and CSS
+			JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)
+			Bootstrap: Library and CSS for bootstrap framework (v3.3.7 is used)
+			Font-awesome: More icons for the web development (v4.6.3 is used)
+			site.css: A customized css for our web application. Not from any web framework.
+		-->
+
+		<script src="lib/jquery.min.js"></script>
+		<script src="lib/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/site.css">
+
+		<!-- Customized libraries shared by pages -->
+		<script src="js/site.js"></script>
+   </head>
+   <body ng-controller="eventCtrl">
+		 <div ng-include="'menu.html'"></div>
+
+        <!-- Content of leader start from here-->
+		<div class="container" style="margin-bottom:100px;">
+			<div id="content">
+
+				<div id="application" class="col-12 col-sm-8">
+					<div class="tab-content">
+							
+							<h3 style="padding-top:20px"><b>Event Name</b></h3>
+
+							<p style="font-size:150%"">Event Detail</p>
+					</div>
+				</div>
+
+				<div id="Progress" class="col-12 col-sm-4">
+					<div class="text-center">
+						<h2>Status</h2>
+					</div>
+						<div class="list-group">
+						 <a href="#" class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-ok-sign"></span> Your team is confirmed.</a>
+						 <a data-toggle="tab" href="#memberRequest" class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-info-sign"></span> 7 new requests.</a>
+						 <a href="#" class="list-group-item list-group-item-danger"><span class="glyphicon glyphicon-remove-sign"></span> Your team is full. Fail to add other member.</a>
+						</div>
+
+						<ul class="list-group">
+							<li class="list-group-item"><b>Event name: </b><b ng-bind="eventName"></b></li>
+							<li class="list-group-item"><b>Table name: </b><b ng-bind="tableName"></b></li>
+						</ul>
+
+						<p>Current Members: 1/12</p>
+						<div class="progress">
+						<div class="progress-bar" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width: 8%;">
+						</div>
+					    </div>		
+				</div>
+			</div>
+		</div>
+        <div class="container" style="margin-bottom:100px;">
+			    
+			       <div class="col-sm-4">
+			            <div class="text-center">
+			              <a href="leader.html"><img src="img/leader.png"></a>
+			              <h5 style="color:grey"><b>Leader</b></h5>
+			            </div>
+			       </div>
+			       <div class="col-sm-4">
+			            <div class="text-center">
+			              <a href="member.html"><img src="img/member.png"></a>
+			              <h5 style="color:grey"><b>Member</b></h5>
+			            </div>
+			       </div>
+                
+		</div>
+
+        <!-- Content of leader -->
+		<div ng-include="'footer.html'"></div>
+
+
+				<!-- JavaScript of this page -->
+
+				<!-- Angular and Angular-route libraries (v1.5.7) -->
+				<script src="lib/angular.min.js"></script>
+				<script src="lib/angular-route.min.js"></script>
+
+				<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+				<script src="lib/firebase.js"></script>
+				<script src="lib/angularfire.min.js"></script>
+
+				<script src="js/controller/team.js"></script>
+
+   </body>
+</html>

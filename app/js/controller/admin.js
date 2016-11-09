@@ -147,8 +147,8 @@ angular.module('teamform-admin-app', ['firebase'])
 		window.location.href= "../../index.html";
 	};
 	
-	$scope.goToEvent = function(events) {
-	  $window.location.href = '../../index.html';
+	$scope.goToEvent = function(eID) {
+	  $window.location.href = '../../event.html?eventID='+ eID;
 	};
 	
 	

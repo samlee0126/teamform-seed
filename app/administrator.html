@@ -117,7 +117,7 @@
 						<th>Number of Table</th>
 						<th>Deadline</th>
 						</tr>
-						<tr ng-repeat="event in paramEvent | orderBy:'$id'" ng-click="goToEvent(events)">
+						<tr ng-repeat="event in paramEvent | orderBy:'$id'" ng-click="goToEvent(event.$id)">
 						<td>{{event.$id}}</td>
 						<td>{{event.eventName}}</td>
 						<td>{{event.date}}</td>
