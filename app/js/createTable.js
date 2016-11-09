@@ -6,7 +6,7 @@ $(document).ready(function() {
 			validating: 'glyphicon glyphicon-refresh'
 		},
 		fields: {
-			login_name: {
+			table_name: {
 				validators: {
 					stringLength: {
 						max: 20,
@@ -17,29 +17,15 @@ $(document).ready(function() {
 						message: 'Please use alphabets, digits or underscore only.'
 					},
 					notEmpty: {
-						message: 'Please provide a user name.'
-					}
-				}
-			},
-			major: {
-				validators: {
-					notEmpty: {
-						message: 'Please select your major.'
-					}
-				}
-			},
-			graduation_year: {
-				validators: {
-					notEmpty: {
-						message: 'Please select your graduation year.'
+						message: 'Please provide a table name.'
 					}
 				}
 			},
 			input_password: {
 				validators: {
 					stringLength: {
-						min: 6,
-						message: 'Minimum of 6 characters is required.'
+						min: 4,
+						message: 'Minimum of 4 characters is required.'
 					},
 					regexp: {
 						regexp: /^[A-z0-9_]+$/i,
@@ -67,7 +53,11 @@ $(document).ready(function() {
         // Yes Input
         $("#access_public").on("click", function () {
             $("#input_password").prop('disabled', true);
+						$("#input_password").val("");
+						$("#createTable_form").data('bootstrapValidator').updateStatus('input_password', 'NOT_VALIDATED', null);
             $("#confirm_password").prop('disabled', true);
+						$("#confirm_password").val("");
+						$("#createTable_form").data('bootstrapValidator').updateStatus('confirm_password', 'NOT_VALIDATED', null);
         });
 
         // No Input
