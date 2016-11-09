@@ -15,7 +15,11 @@ angular.module('teamform-member-app', ['firebase'])
 .controller('MemberCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
 	
 	// TODO: implementation of MemberCtrl
-	
+
+	$scope.tableInfo = [];
+	$scope.tableInfoTemp = [];
+	$scope.major = "";
+	$scope.gradYear = "";
 
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
@@ -23,7 +27,7 @@ angular.module('teamform-member-app', ['firebase'])
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
 		var eid = getURLParameter("q");
-		//get member information from database by uid
+		// get member information from database by uid
 		var refPath = "members/" + user.uid;
 		retrieveOnceFirebase(firebase, refPath, function(data) {
 			// user name			
@@ -81,16 +85,16 @@ angular.module('teamform-member-app', ['firebase'])
 			$scope.$apply();
 		});	
 		
-		//get table information from database by tid
-		$scope.tableInfo = [];		
+		// get table information from database by tid
 		var refPathTable = "tables";
 		retrieveOnceFirebase(firebase, refPathTable, function(data) {
 			data.forEach(function(childData) {
 				if(childData.child("event").val() == eid) {
 					$scope.tableInfo.push(childData.val());
+					// used for filtering and sorting, remains unchanged
+					$scope.tableInfoTemp.push(childData.val());
 				}
 			});
-
 			$scope.$apply();
 		});
 	  } else {
@@ -102,7 +106,70 @@ angular.module('teamform-member-app', ['firebase'])
 
 	});	
 	
+	// filter tables
+	$scope.filterTable = function() {
+		// get selected value(s)
+		var filterValue = $('#filter-select').val();
 
+		// update and acquire data from tableInfoTemp
+		$scope.tableInfo = JSON.parse(JSON.stringify($scope.tableInfoTemp));
+
+		// if no filter selected
+		if (filterValue == null) return;
+
+		// if one or more filter(s) is/are selected
+		for (var i = 0; i < filterValue.length; i++) {
+			switch(filterValue[i]) {
+				case "available":
+					// for each table, if it is full, then remove it
+					for (var j = 0; j < $scope.tableInfo.length; j++) {
+						if ($scope.tableInfo[j].full) {
+							$scope.tableInfo.splice(j, 1);
+							j--;
+						}
+					}
+					break;
+				case "department":
+					// for each table
+					for (var k = 0; k < $scope.tableInfo.length; k++) {
+						// if no tags, then remove the table
+						if ($scope.tableInfo[k].tags == null) {
+							$scope.tableInfo.splice(k, 1);
+						}
+						// check each tag
+						// if one of the tags meets myMajor, then do not remove the table
+						var toBeRemoved = true;
+						for (var key in $scope.tableInfo[k].tags) {
+							if ($scope.tableInfo[k].tags[key] == $scope.major) toBeRemoved = false;
+						}
+						if (toBeRemoved) {
+							$scope.tableInfo.splice(k, 1);
+							k--;
+						}
+					}
+					break;
+				case "grad-year":
+					// for each table
+					for (var g = 0; g < $scope.tableInfo.length; g++) {
+						// if no tags, then remove the table
+						if ($scope.tableInfo[g].tags == null) {
+							$scope.tableInfo.splice(g, 1);
+						}
+						// check each tag
+						// if one of the tags meets myGradYear, then do not remove the table
+						var toBeRemoved = true;
+						for (var key in $scope.tableInfo[g].tags) {
+							if ($scope.tableInfo[g].tags[key] == $scope.gradYear) toBeRemoved = false;
+						}
+						if (toBeRemoved) {
+							$scope.tableInfo.splice(g, 1);
+							g--;
+						}
+					}
+					break;
+			}
+		}
+	};
 
 	
 /*		
