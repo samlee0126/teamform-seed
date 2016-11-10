@@ -60,7 +60,8 @@
 
 			       <div ng-show="leaderIconShown" class="col-sm-4">
 			            <div class="text-center">
-			              <a href="leader.html?q={{eid}}"><img src="img/leader.png"></a>
+			              <a ng-show="!noRole" href="leader.html?q={{eid}}"><img src="img/leader.png"></a>
+							<a ng-show="noRole" href="createTable.html?q={{eid}}"><img src="img/leader.png"></a>
 			              <h5 style="color:grey"><b>Leader</b></h5>
 			            </div>
 			       </div>

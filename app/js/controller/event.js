@@ -74,6 +74,7 @@ angular.module('teamform-event-app', ['firebase'])
                         $scope.leaderIconShown = true;
                         $scope.adminIconShown = false;
                     } else {
+                        $scope.noRole = true;
                         $scope.memberIconShown = true;
                         $scope.leaderIconShown = true;
                         $scope.adminIconShown = false;

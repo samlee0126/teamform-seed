@@ -23,6 +23,7 @@ angular.module('teamform-createTable-app', ['firebase'])
 	firebase.auth().onAuthStateChanged(function(user) {
 		if (user) {
 			var eid = getURLParameter("q");
+			$scope.uid = user.uid;
 			$scope.eid = getURLParameter("q");
 
 			// check the url contains eid or not
@@ -39,10 +40,11 @@ angular.module('teamform-createTable-app', ['firebase'])
 				var status = data.child("events").child(eid).child("role").val();
 
 				// no role in event
-				if (status != "member" || status != "leader" ) {
+				if (status != "member" && status != "leader" ) {
 					// actions
 				}else {
-					//window.location.href = "index.html";	// future: the case user type url directly
+
+					window.location.href = "index.html";	// future: the case user type url directly
 					console.log("no this table");
 					return;
 				}
@@ -111,8 +113,17 @@ angular.module('teamform-createTable-app', ['firebase'])
 				window.location.href = "index.html";
 			});
 
+			var refPathMember = "members/" + $scope.uid + "/events/" + eid;
+			var refMember = firebase.database().ref(refPathMember);
+
+			refMember.update({ role : "leader"}, function(){
+				// Finally, go back to the front-end
+				window.location.href = "leader.html?q=" + eid;
+			});
+
 
 		});
+
 
 
 
