@@ -38,43 +38,36 @@
 							<h3 style="padding-top:20px"><b>Event Name</b></h3>
 
 							<p style="font-size:150%"">Event Detail</p>
-					</div>
+
+                            {{date}},
+                            {{deadline}},
+                            {{description}},
+                            {{eventName}},
+                            {{maxForEachTable}},
+                            {{numberOfCurrentTable}},
+                    </div>
 				</div>
 
-				<div id="Progress" class="col-12 col-sm-4">
-					<div class="text-center">
-						<h2>Status</h2>
-					</div>
-						<div class="list-group">
-						 <a href="#" class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-ok-sign"></span> Your team is confirmed.</a>
-						 <a data-toggle="tab" href="#memberRequest" class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-info-sign"></span> 7 new requests.</a>
-						 <a href="#" class="list-group-item list-group-item-danger"><span class="glyphicon glyphicon-remove-sign"></span> Your team is full. Fail to add other member.</a>
-						</div>
-
-						<ul class="list-group">
-							<li class="list-group-item"><b>Event name: </b><b ng-bind="eventName"></b></li>
-							<li class="list-group-item"><b>Table name: </b><b ng-bind="tableName"></b></li>
-						</ul>
-
-						<p>Current Members: 1/12</p>
-						<div class="progress">
-						<div class="progress-bar" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width: 8%;">
-						</div>
-					    </div>		
-				</div>
 			</div>
 		</div>
         <div class="container" style="margin-bottom:100px;">
-			    
-			       <div class="col-sm-4">
+					<div ng-show="adminIconShown" class="col-sm-4">
+						<div class="text-center">
+							<a href="adminDashboard.html?q={{eid}}"><img src="img/admin.png"></a>
+							<h5 style="color:grey"><b>Admin</b></h5>
+						</div>
+					</div>
+
+			       <div ng-show="leaderIconShown" class="col-sm-4">
 			            <div class="text-center">
-			              <a href="leader.html"><img src="img/leader.png"></a>
+			              <a ng-show="!noRole" href="leader.html?q={{eid}}"><img src="img/leader.png"></a>
+							<a ng-show="noRole" href="createTable.html?q={{eid}}"><img src="img/leader.png"></a>
 			              <h5 style="color:grey"><b>Leader</b></h5>
 			            </div>
 			       </div>
-			       <div class="col-sm-4">
+			       <div ng-show="memberIconShown" class="col-sm-4">
 			            <div class="text-center">
-			              <a href="member.html"><img src="img/member.png"></a>
+			              <a href="member.html?q={{eid}}"><img src="img/member.png"></a>
 			              <h5 style="color:grey"><b>Member</b></h5>
 			            </div>
 			       </div>
@@ -95,7 +88,7 @@
 				<script src="lib/firebase.js"></script>
 				<script src="lib/angularfire.min.js"></script>
 
-				<script src="js/controller/team.js"></script>
+				<script src="js/controller/event.js"></script>
 
    </body>
 </html>

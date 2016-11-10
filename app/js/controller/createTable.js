@@ -3,13 +3,75 @@ angular.module('teamform-createTable-app', ['firebase'])
     function($scope, $firebaseObject, $firebaseArray) {
 
 	// Call Firebase initialization code defined in site.js
+		console.log("it is register page!");
 	initalizeFirebase();
-	console.log("it is register page!")
-	$scope.name = ""
+	$scope.doLogout = function () {
+
+		firebase.auth().signOut().then(function() {
+			// Sign-out successful.
+			sessionStorage.setItem("urlAfterLogin","");
+			sessionStorage.setItem("logout","yes");
+			window.location.href= "index.html";
+		}, function(error) {
+			// An error happened.
+			console.log(error)
+		});
+
+
+	};
+
+	firebase.auth().onAuthStateChanged(function(user) {
+		if (user) {
+			var eid = getURLParameter("q");
+			$scope.uid = user.uid;
+			$scope.eid = getURLParameter("q");
+
+			// check the url contains eid or not
+			if (eid == null || eid == "") {
+				//window.location.href = "index.html";
+				console.log("no this event");
+				return;
+			}
+			// get member information from database by uid
+			var refPath = "members/" + user.uid;
+			retrieveOnceFirebase(firebase, refPath, function(data) {
+
+
+				var status = data.child("events").child(eid).child("role").val();
+
+				// no role in event
+				if (status != "member" && status != "leader" ) {
+					// actions
+				}else {
+
+					window.location.href = "index.html";	// future: the case user type url directly
+					console.log("no this table");
+					return;
+				}
+
+
+
+				// update $scope
+				$scope.$apply();
+			});
+
+		} else {
+			// No user is signed in.
+			console.log("YEAH - You did not login lol");
+			sessionStorage.setItem("urlAfterLogin","member.html?q=" + getURLParameter("q"));
+			window.location.href = "signIn.html"; // default redirect page is index
+		}
+
+	});
+
+
+	// Create a table and send it to firrebase
+	$scope.name = "";
 	$scope.email = "";
 	$scope.password = "";
-	$scope.doRegister = function () {
+	$scope.doCreateTable = function () {
 
+		/* To Sam : Please change this part to table information */
 		var email = $scope.email;
 		var password = $scope.password;
 		var name = $scope.name;
@@ -17,57 +79,48 @@ angular.module('teamform-createTable-app', ['firebase'])
 		var createTime = new Date().toUTCString();
 		var major = $scope.major;
 		var gradYear = $scope.gradYear;
-		var local = $scope.local;
+		//var local = $scope.local;
+		var eid = getURLParameter("q");
 
+		//generate tid key
+		var myRef = firebase.database().ref().push();
+		var tid = myRef.key;
 
-		firebase.auth().createUserWithEmailAndPassword(email, password).then(function(user) {
+		var newTableData = {
+			'name': name,
+			'gender': gender,
+			'email': email,
+			'major': major,
+			//'local': local,
+			'gradYear': gradYear,
+			'createTime': createTime,
+			'event': eid
 
-			/* update the datebase of members*/
-			user.updateProfile({
-			  displayName: name
-			}).then(function() {
+		};
+		// please change the correct path after testing
+		var refPathTable = "testtables/" + tid ;
 
+		var reftable = firebase.database().ref(refPathTable);
 
-				if (user != null) {
-				  console.log(user.displayName);
-				  console.log(user.email);
-				  console.log(user.uid);
-					var newData = {
-						'name': name,
-						'gender': gender,
-						'email': email,
-						'major': major,
-						'local': local,
-						'gradYear': gradYear,
-						'createTime': createTime,
-						'event': ""
+		reftable.set(newTableData, function(){
 
-					};
+			// update event json
+			var refPathEvent = "events/" + eid + "/tables/" + tid;
+			var refEvent = firebase.database().ref(refPathEvent);
 
-					var refPath = "members/" + user.uid;
-					var ref = firebase.database().ref(refPath);
-
-					ref.set(newData, function(){
-						// Finally, go back to the front-end
-						window.location.href= "index.html";
-					});
-				}
-
-			}, function(error) {
-			  // An error happened.
-
+			refEvent.set({ active : "true"}, function(){
+				// Finally, go back to the front-end
+				window.location.href = "index.html";
 			});
 
+			var refPathMember = "members/" + $scope.uid + "/events/" + eid;
+			var refMember = firebase.database().ref(refPathMember);
 
+			refMember.update({ role : "leader"}, function(){
+				// Finally, go back to the front-end
+				window.location.href = "leader.html?q=" + eid;
+			});
 
-
-		}, function(error) {
-
-		  // Handle Errors here.
-		  var errorCode = error.code;
-		  var errorMessage = error.message;
-		  console.log(errorCode + ": " + errorMessage)
-		  alert("The email is already used! please use another email to register")
 
 		});
 
@@ -77,8 +130,7 @@ angular.module('teamform-createTable-app', ['firebase'])
 
 
 
-
-	}
+	};
 
 
 
