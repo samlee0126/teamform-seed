@@ -29,538 +29,632 @@
 
 	  	  
    </head>
-   <body>
-         <div ng-include="'menu.html'"></div>
-         <!-- Design: JSSOR full-width slider-->
-         <script src="js/jssor.slider-21.1.6.mini.js" type="text/javascript"></script>
-         <script type="text/javascript">
-             jQuery(document).ready(function ($) {
-                 var jssor_1_SlideoTransitions = [
-                     [{b:-1,d:1,o:-1},{b:0,d:1000,o:1}],
-                     [{b:1900,d:2000,x:-379,e:{x:7}}],
-                     [{b:1900,d:2000,x:-379,e:{x:7}}],
-                     [{b:-1,d:1,o:-1,r:288,sX:9,sY:9},{b:1000,d:900,x:-1400,y:-660,o:1,r:-288,sX:-9,sY:-9,e:{r:6}},{b:1900,d:1600,x:-200,o:-1,e:{x:16}}]
-                ];
 
-                 var jssor_1_options = {
-                     $AutoPlay: true,
-                     $SlideDuration: 800,
-                     $SlideEasing: $Jease$.$OutQuint,
-                     $CaptionSliderOptions: {
-                         $Class: $JssorCaptionSlideo$,
-                         $Transitions: jssor_1_SlideoTransitions
-                    },
-                     $ArrowNavigatorOptions: {
-                         $Class: $JssorArrowNavigator$
-                    },
-                     $BulletNavigatorOptions: {
-                         $Class: $JssorBulletNavigator$
-                    }
-                 };
+   <!-- Design: JSSOR full-width slider-->
+   <script src="js/jssor.slider-21.1.6.mini.js" type="text/javascript"></script>
+   <script type="text/javascript">
+	   jQuery(document).ready(function ($) {
+		   var jssor_1_SlideoTransitions = [
+			   [{b: -1, d: 1, o: -1}, {b: 0, d: 1000, o: 1}],
+			   [{b: 1900, d: 2000, x: -379, e: {x: 7}}],
+			   [{b: 1900, d: 2000, x: -379, e: {x: 7}}],
+			   [{b: -1, d: 1, o: -1, r: 288, sX: 9, sY: 9}, {
+				   b: 1000,
+				   d: 900,
+				   x: -1400,
+				   y: -660,
+				   o: 1,
+				   r: -288,
+				   sX: -9,
+				   sY: -9,
+				   e: {r: 6}
+			   }, {b: 1900, d: 1600, x: -200, o: -1, e: {x: 16}}]
+		   ];
 
-                 var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+		   var jssor_1_options = {
+			   $AutoPlay: true,
+			   $SlideDuration: 800,
+			   $SlideEasing: $Jease$.$OutQuint,
+			   $CaptionSliderOptions: {
+				   $Class: $JssorCaptionSlideo$,
+				   $Transitions: jssor_1_SlideoTransitions
+			   },
+			   $ArrowNavigatorOptions: {
+				   $Class: $JssorArrowNavigator$
+			   },
+			   $BulletNavigatorOptions: {
+				   $Class: $JssorBulletNavigator$
+			   }
+		   };
 
-            /*responsive code begin*/
-             function ScaleSlider() {
-                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-                if (refSize) {
-                    refSize = Math.min(refSize, 1920);
-                    jssor_1_slider.$ScaleWidth(refSize);
-                }
-                else {
-                    window.setTimeout(ScaleSlider, 30);
-                }
-            }
-             ScaleSlider();
-             $(window).bind("load", ScaleSlider);
-             $(window).bind("resize", ScaleSlider);
-             $(window).bind("orientationchange", ScaleSlider);
-             /*responsive code end*/
-            });
-         </script>
-        <style>
-         /* bullet navigator skin*/
-         /*
-         .jssorb05 div           (normal)
-         .jssorb05 div:hover     (normal mouseover)
-         .jssorb05 .av           (active)
-         .jssorb05 .av:hover     (active mouseover)
-         .jssorb05 .dn           (mousedown)
-         */
-         .jssorb05 {
-            position: absolute;
-         }
-         .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
-            position: absolute;
-            /* size of bullet elment */
-            width: 16px;
-            height: 16px;
-            background: url('img/b05.png') no-repeat;
-            overflow: hidden;
-            cursor: pointer;
-         }
-         .jssorb05 div { background-position: -7px -7px; }
-         .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
-         .jssorb05 .av { background-position: -67px -7px; }
-         .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+		   var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
 
-         /* jssor slider arrow navigator skin 22 css */
-         /*
-         .jssora22l                  (normal)
-         .jssora22r                  (normal)
-         .jssora22l:hover            (normal mouseover)
-         .jssora22r:hover            (normal mouseover)
-         .jssora22l.jssora22ldn      (mousedown)
-         .jssora22r.jssora22rdn      (mousedown)
-         .jssora22l.jssora22lds      (disabled)
-         .jssora22r.jssora22rds      (disabled)
-         */
-         .jssora22l, .jssora22r {
-            display: block;
-            position: absolute;
-            /* size of arrow element */
-            width: 40px;
-            height: 58px;
-            cursor: pointer;
-            background: url('img/a22.png') center center no-repeat;
-            overflow: hidden;
-         }
-         .jssora22l { background-position: -10px -31px; }
-         .jssora22r { background-position: -70px -31px; }
-         .jssora22l:hover { background-position: -130px -31px; }
-         .jssora22r:hover { background-position: -190px -31px; }
-         .jssora22l.jssora22ldn { background-position: -250px -31px; }
-         .jssora22r.jssora22rdn { background-position: -310px -31px; }
-         .jssora22l.jssora22lds { background-position: -10px -31px; opacity: .3; pointer-events: none; }
-         .jssora22r.jssora22rds { background-position: -70px -31px; opacity: .3; pointer-events: none; }
-        </style>
-		
-     <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 400px; overflow: hidden; visibility: hidden;">
-	<div id="bktop"></div>
-        <!-- Loading Screen -->
-        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-           <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-           <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
-        </div>
-        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 400px; overflow: hidden;">
-            <a data-u="any" href="http://www.jssor.com" style="display:none">Full Width Slider</a>
-            
-            <div class="pic" data-p="225.00" data-po="80% 55%" style="display: none;">
-                <img data-u="image" src="img/hkust.jpg"/>
-				<div style="position: absolute; top: 125px; left: 390px; width: 750px; height: 120px; font-size: 36px; color: #ffffff; line-height: 60px;">"Enjoy Campus Life in HKUST"</div>
-            </div>
-            <div class="pic" data-p="225.00" data-po="80% 55%" style="display: none;">
-                <img data-u="image" src="img/gathering.png" />
-            </div>
-        </div>
-        <!-- Bullet Navigator -->
-        <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
-            <!-- bullet navigator item prototype -->
-            <div data-u="prototype" style="width:16px;height:16px;"></div>
-        </div>
-        <!-- Arrow Navigator -->
-        <span data-u="arrowleft" class="jssora22l" style="top:0px;left:8px;width:40px;height:58px;" data-autocenter="2"></span>
-        <span data-u="arrowright" class="jssora22r" style="top:0px;right:8px;width:40px;height:58px;" data-autocenter="2"></span>
-    </div>
-    <!-- #endregion Jssor Slider End -->
-	
-    <hr>  
-      
-     
-      <div class="container marketing">
-         <!-- Role Section -->
-         <div class="row featurette" id="page_about">
-			<br>
-			<br>
-			<div class=" text-center col-md-12">
-			     <p style="font-size:large" class="text-muted"><b>sitAround@UST facilitates the team forming of an event, especially for those require table allocation. 
-				        <br>The user-friendly UI provides users the best experience to engage in campus events </b> </h4>
-				 </p>
-				 <br>
-			</div>
-			<br>
-			<br>
-            <div class="col-md-12">
-               <div class="row">
-                  <div class="col-md-4">
-				     <div class="roundcard rolecard">
-                       <img src="img/admin.png">  
-                         <h4 align="center"><b>Administrator</b></h4> 
-						 <hr>
-                         <ul class="text-center" style="padding-bottom:10px">
-						     <li>&#10004; Create and start to manage your evenets</li>
-						     <li>&#10004; Facilitate the team-forming process</li>
-							 <li>&#10004; Deliver any updates to participants</li>
-						 </ul>       
-                     </div>
-                  </div>
+		   /*responsive code begin*/
+		   function ScaleSlider() {
+			   var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+			   if (refSize) {
+				   refSize = Math.min(refSize, 1920);
+				   jssor_1_slider.$ScaleWidth(refSize);
+			   }
+			   else {
+				   window.setTimeout(ScaleSlider, 30);
+			   }
+		   }
 
-                  <div class="col-md-4">
-                     <div class="roundcard rolecard">
-                       <img src="img/leader.png">  
-                         <h4 align="center"><b>Team Leader</b></h4> 
-						 <hr>
-                         <ul class="text-center" style="padding-bottom:10px">
-						     <li>&#10004; Create a table and invite friends to join</li>
-							 <li>&#10004;Confirm your table as soon as it is full <br><b>First come first serve!</b> </li>
-						 </ul> 
-                     </div>
-                  </div>
-                  <div class="col-md-4">
-                     <div class="roundcard rolecard">
-                       <img src="img/member.png">  
-                         <h4 align="center"><b>Member</b></h4> 
-						 <hr>
-                         <ul class="text-center" style="padding-bottom:10px">
-						     <li>&#10004; Participate and choose a table you'd like!</li>
-						     <li>&#10004; Filters available to help you picking </li>
-							 <li>&#10004; View your enrolment status </li>
-						 </ul> 
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-		 <!-- End of Role-->
-		 
-         <hr class="featurette-divider">
-		 
-		 
-		 <!-- Event List -->
-		 <div class="row featurette" id="events">
-			<br>
-			<br>
-		    <div class="col-md-12">
+		   ScaleSlider();
+		   $(window).bind("load", ScaleSlider);
+		   $(window).bind("resize", ScaleSlider);
+		   $(window).bind("orientationchange", ScaleSlider);
+		   /*responsive code end*/
+	   });
+   </script>
+   <style>
+	   /* bullet navigator skin*/
+	   /*
+       .jssorb05 div           (normal)
+       .jssorb05 div:hover     (normal mouseover)
+       .jssorb05 .av           (active)
+       .jssorb05 .av:hover     (active mouseover)
+       .jssorb05 .dn           (mousedown)
+       */
+	   .jssorb05 {
+		   position: absolute;
+	   }
+
+	   .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+		   position: absolute;
+		   /* size of bullet elment */
+		   width: 16px;
+		   height: 16px;
+		   background: url('img/b05.png') no-repeat;
+		   overflow: hidden;
+		   cursor: pointer;
+	   }
+
+	   .jssorb05 div {
+		   background-position: -7px -7px;
+	   }
+
+	   .jssorb05 div:hover, .jssorb05 .av:hover {
+		   background-position: -37px -7px;
+	   }
+
+	   .jssorb05 .av {
+		   background-position: -67px -7px;
+	   }
+
+	   .jssorb05 .dn, .jssorb05 .dn:hover {
+		   background-position: -97px -7px;
+	   }
+
+	   /* jssor slider arrow navigator skin 22 css */
+	   /*
+       .jssora22l                  (normal)
+       .jssora22r                  (normal)
+       .jssora22l:hover            (normal mouseover)
+       .jssora22r:hover            (normal mouseover)
+       .jssora22l.jssora22ldn      (mousedown)
+       .jssora22r.jssora22rdn      (mousedown)
+       .jssora22l.jssora22lds      (disabled)
+       .jssora22r.jssora22rds      (disabled)
+       */
+	   .jssora22l, .jssora22r {
+		   display: block;
+		   position: absolute;
+		   /* size of arrow element */
+		   width: 40px;
+		   height: 58px;
+		   cursor: pointer;
+		   background: url('img/a22.png') center center no-repeat;
+		   overflow: hidden;
+	   }
+
+	   .jssora22l {
+		   background-position: -10px -31px;
+	   }
+
+	   .jssora22r {
+		   background-position: -70px -31px;
+	   }
+
+	   .jssora22l:hover {
+		   background-position: -130px -31px;
+	   }
+
+	   .jssora22r:hover {
+		   background-position: -190px -31px;
+	   }
+
+	   .jssora22l.jssora22ldn {
+		   background-position: -250px -31px;
+	   }
+
+	   .jssora22r.jssora22rdn {
+		   background-position: -310px -31px;
+	   }
+
+	   .jssora22l.jssora22lds {
+		   background-position: -10px -31px;
+		   opacity: .3;
+		   pointer-events: none;
+	   }
+
+	   .jssora22r.jssora22rds {
+		   background-position: -70px -31px;
+		   opacity: .3;
+		   pointer-events: none;
+	   }
+   </style>
+   <body ng-controller='IndexPageCtrl'>
+   <div ng-include="'menu.html'"></div>
+   <div id="jssor_1"
+		style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height: 400px; overflow: hidden; visibility: hidden;">
+	   <div id="bktop"></div>
+	   <!-- Loading Screen -->
+	   <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+		   <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+		   <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+	   </div>
+	   <div data-u="slides"
+			style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 400px; overflow: hidden;">
+		   <a data-u="any" href="http://www.jssor.com" style="display:none">Full Width Slider</a>
+
+		   <div class="pic" data-p="225.00" data-po="80% 55%" style="display: none;">
+			   <img data-u="image" src="img/hkust.jpg"/>
+			   <div style="position: absolute; top: 125px; left: 390px; width: 750px; height: 120px; font-size: 36px; color: #ffffff; line-height: 60px;">
+				   "Enjoy Campus Life in HKUST"
+			   </div>
+		   </div>
+		   <div class="pic" data-p="225.00" data-po="80% 55%" style="display: none;">
+			   <img data-u="image" src="img/gathering.png"/>
+		   </div>
+	   </div>
+	   <!-- Bullet Navigator -->
+	   <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
+		   <!-- bullet navigator item prototype -->
+		   <div data-u="prototype" style="width:16px;height:16px;"></div>
+	   </div>
+	   <!-- Arrow Navigator -->
+	   <span data-u="arrowleft" class="jssora22l" style="top:0px;left:8px;width:40px;height:58px;"
+			 data-autocenter="2"></span>
+	   <span data-u="arrowright" class="jssora22r" style="top:0px;right:8px;width:40px;height:58px;"
+			 data-autocenter="2"></span>
+   </div>
+   <!-- #endregion Jssor Slider End -->
+
+   <hr>
+
+
+   <div class="container marketing">
+	   <!-- Role Section -->
+	   <div class="row featurette" id="page_about">
+		   <br>
+		   <br>
+		   <div class=" text-center col-md-12">
+			   <p style="font-size:large" class="text-muted"><b>sitAround@UST facilitates the team forming of an event,
+				   especially for those require table allocation.
+				   <br>The user-friendly UI provides users the best experience to engage in campus events </b> </h4>
+			   </p>
+			   <br>
+		   </div>
+		   <br>
+		   <br>
+		   <div class="col-md-12">
+			   <div class="row">
+				   <div class="col-md-4">
+					   <div class="roundcard rolecard">
+						   <img src="img/admin.png">
+						   <h4 align="center"><b>Administrator</b></h4>
+						   <hr>
+						   <ul class="text-center" style="padding-bottom:10px">
+							   <li>&#10004; Create and start to manage your evenets</li>
+							   <li>&#10004; Facilitate the team-forming process</li>
+							   <li>&#10004; Deliver any updates to participants</li>
+						   </ul>
+					   </div>
+				   </div>
+
+				   <div class="col-md-4">
+					   <div class="roundcard rolecard">
+						   <img src="img/leader.png">
+						   <h4 align="center"><b>Team Leader</b></h4>
+						   <hr>
+						   <ul class="text-center" style="padding-bottom:10px">
+							   <li>&#10004; Create a table and invite friends to join</li>
+							   <li>&#10004;Confirm your table as soon as it is full <br><b>First come first serve!</b>
+							   </li>
+						   </ul>
+					   </div>
+				   </div>
+				   <div class="col-md-4">
+					   <div class="roundcard rolecard">
+						   <img src="img/member.png">
+						   <h4 align="center"><b>Member</b></h4>
+						   <hr>
+						   <ul class="text-center" style="padding-bottom:10px">
+							   <li>&#10004; Participate and choose a table you'd like!</li>
+							   <li>&#10004; Filters available to help you picking</li>
+							   <li>&#10004; View your enrolment status</li>
+						   </ul>
+					   </div>
+				   </div>
+			   </div>
+		   </div>
+	   </div>
+	   <!-- End of Role-->
+
+	   <hr class="featurette-divider">
+
+
+	   <!-- Event List -->
+	   <div class="row featurette" id="events">
+		   <br>
+		   <br>
+		   <div class="col-md-12">
 			   <h3 class="featurette-heading" align="center"><b>-Popular Events-</b></h3>
-               <h4 align="center"><span class="text-muted">Discover the latest and hottest events in campus</span></h4><br>
-				<div class="row">
-					 <div class="col-md-6">
-						 <input type="text" id="inputSearch" onkeyup="" placeholder="Search for events" style="width:100%; padding-top:8px">
-						 
-					 </div>
-					 <div class="col-md-4">
-						 <div class="btn-group">
-						  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						   Sort by <span class="caret"></span>
-						  </button>
-						 <ul class="dropdown-menu">
-						 <li><a href="#">Department</a></li>
-						 <li><a href="#">Event Type</a></li>
-						 <li><a href="#">Time</a></li>
-						 </ul>
-						 </div>
-					 </div>				 
-				</div>
-				<br>
+			   <h4 align="center"><span class="text-muted">Discover the latest and hottest events in campus</span></h4>
+			   <br>
+			   <div class="row">
+				   <div class="col-md-6">
+					   <input type="text" id="inputSearch" onkeyup="" placeholder="Search for events"
+							  style="width:100%; padding-top:8px">
 
-				<section id="event_box">
+				   </div>
+				   <div class="col-md-4">
+					   <div class="btn-group">
+						   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+								   aria-haspopup="true" aria-expanded="false">
+							   Sort by <span class="caret"></span>
+						   </button>
+						   <ul class="dropdown-menu">
+							   <li><a href="#">Department</a></li>
+							   <li><a href="#">Event Type</a></li>
+							   <li><a href="#">Time</a></li>
+						   </ul>
+					   </div>
+				   </div>
+			   </div>
+			   <br>
 
-					<article class="event_content roundcard">
-						<a>
-							<div style="background: url('../img/event-2016-annual-dinner.jpg');
+			   <section id="event_box">
+
+				   <article class="event_content roundcard">
+					   <a>
+						   <div style="background: url('../img/event-2016-annual-dinner.jpg');
 							width: 250px; 
 							height: 225px; background-repeat: 
 							no-repeat; background-position: center; 
 							background-size: 100% 100%; 
 							">
-							</div>
-						</a>
-						
-						<div class="overlay">
-							<ul class="stat_bar">
-								<li class="love"><span>20</span></li>
-								<li class="star"><span>0</span></li>
-								<li class="say"><span>5</span></li>
-							</ul>
-						</div>
-						<div class="content">
-							<div class="em"><div>by CSE Department, UST</div>17 Dec 2016</div>
-							<div class="p" data-bind="html: body">範例內容範例內容。</div>
-						</div>
-					</article>
+						   </div>
+					   </a>
 
-					<article class="event_content roundcard">
-						<a>
-							<div style="background: url('../img/event-2016-annual-dinner.jpg');
+					   <div class="overlay">
+						   <ul class="stat_bar">
+							   <li class="love"><span>20</span></li>
+							   <li class="star"><span>0</span></li>
+							   <li class="say"><span>5</span></li>
+						   </ul>
+					   </div>
+					   <div class="content">
+						   <div class="em">
+							   <div>by CSE Department, UST</div>
+							   17 Dec 2016
+						   </div>
+						   <div class="p" data-bind="html: body">範例內容範例內容。</div>
+					   </div>
+				   </article>
+
+				   <article class="event_content roundcard">
+					   <a>
+						   <div style="background: url('../img/event-2016-annual-dinner.jpg');
 							width: 250px; 
 							height: 225px; background-repeat: 
 							no-repeat; background-position: center; 
 							background-size: 100% 100%; 
 							">
-							</div>
-						</a>
-						<div class="overlay">
-							<ul class="stat_bar">
-								<li class="love"><span>20</span></li>
-								<li class="star"><span>0</span></li>
-								<li class="say"><span>5</span></li>
-							</ul>
-						</div>
-						<div class="content">
-							<div class="em"><div>by CSE Department, UST</div>17 Dec 2016</div>
-							<div class="p" data-bind="html: body">範例內容範例內容。</div>
-						</div>
-					</article>
-					
-					<article class="event_content roundcard">
-						<a>
-							<div style="background: url('../img/AnnualDinner2015Poster.jpg');
+						   </div>
+					   </a>
+					   <div class="overlay">
+						   <ul class="stat_bar">
+							   <li class="love"><span>20</span></li>
+							   <li class="star"><span>0</span></li>
+							   <li class="say"><span>5</span></li>
+						   </ul>
+					   </div>
+					   <div class="content">
+						   <div class="em">
+							   <div>by CSE Department, UST</div>
+							   17 Dec 2016
+						   </div>
+						   <div class="p" data-bind="html: body">範例內容範例內容。</div>
+					   </div>
+				   </article>
+
+				   <article class="event_content roundcard">
+					   <a>
+						   <div style="background: url('../img/AnnualDinner2015Poster.jpg');
 							width: 250px; 
 							height: 225px; background-repeat: 
 							no-repeat; background-position: center; 
 							background-size: 100% 100%; 
 							">
-							</div>
-						</a>
-						<div class="overlay">
-							<ul class="stat_bar">
-								<li class="love"><span>20</span></li>
-								<li class="star"><span>0</span></li>
-								<li class="say"><span>5</span></li>
-							</ul>
-						</div>
-						<div class="content">
-							<div class="em"><div>by Civil Department, UST</div>17 Dec 2016</div>
-							<div class="p" data-bind="html: body">範例內容範例內容。</div>
-						</div>
-					</article>
-					
-					
-				</section>
-			</div>
-		 </div>
-		 <!--End of Event List-->
-		 
-         <hr>
-		 
-          <!-- Development Team -->
-		 
-		 
-         <div class="row featurette" id="page_team">
-			<br>
-			<h3 class="featurette-heading" align="center"><b>-Development Team-</b></h3>
-			<h4 align="center"><span class="text-muted">Team IT Dog</span></h4><br>
-			<div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                    <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                     Cheung, Kin Yu King</a></p>
-                    </h4>
-                  </div>
-                  <div id="collapse1" class="panel-collapse collapse">
-                     <div class="panel-body"> 
-					   <div class="col-md-12">
-					    <div class="row">
-						   <div class="col-md-2">
-						     <img src="img/king_profile.PNG" width="150" height="150">
 						   </div>
-						   <div class="col-md-10">
-						     <p><h6 style="display:inline">Email:</h6>&#32; <a href="mailto:kycheungat@ust.hk"><span style="font-size:120%">kycheungat@ust.hk</span></a></p>
-							 <p><h6>Development role:</p>
-							 <ul style="padding-left:30px">
-							     <li>&bull;Developer for admin pages</li>
-								 <li>&bull;JavaScript developer for adminstrator dashboard and functionalities</li>
-								 <li>&bull;Maintain team Firebase database</li>
-								 <li></li>
-							 </ul>
-						   </div>
-						</div>
+					   </a>
+					   <div class="overlay">
+						   <ul class="stat_bar">
+							   <li class="love"><span>20</span></li>
+							   <li class="star"><span>0</span></li>
+							   <li class="say"><span>5</span></li>
+						   </ul>
 					   </div>
-					 </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                    <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                     Ko, Kin Man David</a></p>
-                    </h4>
-                  </div>
-                  <div id="collapse2" class="panel-collapse collapse">
-                     <div class="panel-body"> 
-					   <div class="col-md-12">
-					    <div class="row">
-						   <div class="col-md-2">
-						     <img src="img/david_profile.PNG" width="150" height="150" style="border-radius:20px">
+					   <div class="content">
+						   <div class="em">
+							   <div>by Civil Department, UST</div>
+							   17 Dec 2016
 						   </div>
-						   <div class="col-md-10">
-						     <p><h6 style="display:inline">Email:</h6>&#32; <a href="mailto:kmko@ust.hk"><span style="font-size:120%">kmko@ust.hk</span></a></p>
-							 <p><h6>Development role:</p>
-							 <ul style="padding-left:30px">
-							     <li>&bull;Developer for member pages</li>
-							     <li>&bull;Manage git workflow and team Github</li>
-								 <li>&bull;JavaScript developer and layout designer for the system authenication</li>
-								 <li></li>
-							 </ul>
-						   </div>
-						</div>
+						   <div class="p" data-bind="html: body">範例內容範例內容。</div>
 					   </div>
-					 </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                    <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                     Lau, Chi Fung Jacky</a></p>
-                    </h4>
-                  </div>
-                  <div id="collapse3" class="panel-collapse collapse">
-                     <div class="panel-body"> 
-					   <div class="col-md-12">
-					    <div class="row">
-						   <div class="col-md-2">
-						     <img src="img/jacky_profile.jpg" width="150" height="150" style="border-radius:20px">
-						   </div>
-						   <div class="col-md-10">
-						     <p><h6 style="display:inline">Email:</h6>&#32; <a href="mailto:cflauae@ust.hk"><span style="font-size:120%">cflauae@ust.hk</span></a></p>
-							 <p><h6>Development role:</p>
-							 <ul style="padding-left:30px">
-							     <li>&bull;Developer for index and events pages</li>
-							     <li>&bull;JavaScript developer and layout designer for the event description pages</li>
-								 <li></li>
-							 </ul>
-						   </div>
-						</div>
-					   </div>
-					 </div>
-                  </div>
-                </div>
-				<div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                    <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-                     Lee, Chun Wai Matthew</a></p>
-                    </h4>
-                  </div>
-                  <div id="collapse4" class="panel-collapse collapse">
-                     <div class="panel-body"> 
-					   <div class="col-md-12">
-					    <div class="row">
-						   <div class="col-md-2">
-						     <img src="img/matthew_profile.PNG" width="150" height="150" style="border-radius:20px">
-						   </div>
-						   <div class="col-md-10">
-						     <p><h6 style="display:inline">Email:</h6>&#32; <a href="mailto:cwleeah@ust.hk"><span style="font-size:120%">cwleeah@ust.hk</span></a></p>
-							 <p><h6>Development role:</p>
-							 <ul style="padding-left:30px">
-							     <li>&bull;Developer for member pages</li>
-							     <li>&bull;Layout designer for the member status pages</li>
-								 <li></li>
-							 </ul>
-						   </div>
-						</div>
-					   </div>
-					 </div>
-                  </div>
-                </div>
-				<div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                    <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-                     Lee, Ka Yue Sam</a></p>
-                    </h4>
-                  </div>
-                  <div id="collapse5" class="panel-collapse collapse">
-                     <div class="panel-body"> 
-					   <div class="col-md-12">
-					    <div class="row">
-						   <div class="col-md-2">
-						     <img src="img/sam_profile.jpg" width="150" height="150" style="border-radius:20px">
-						   </div>
-						   <div class="col-md-10">
-						     <p><h6 style="display:inline">Email:</h6>&#32; <a href="mailto:kyleeak@ust.hk"><span style="font-size:120%">kyleeak@ust.hk</span></a></p>
-							 <p><h6>Development role:</p>
-							 <ul style="padding-left:30px">
-							     <li>&bull;Developer for leader pages</li>
-							     <li>&bull;JavaScript developer and layout designer for the webpage menu and leaders' functionalities</li>
-								 <li></li>
-							 </ul>
-						   </div>
-						</div>
-					   </div>
-					 </div>
-                  </div>
-                </div>
-				<div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                    <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-                      Wong, Suet Yan Kathy</a></p>
-                    </h4>
-                  </div>
-                  <div id="collapse6" class="panel-collapse collapse">
-                     <div class="panel-body"> 
-					   <div class="col-md-12">
-					    <div class="row">
-						   <div class="col-md-2">
-						     <img src="img/kathy_profile.jpg" width="150" height="150" style="border-radius:20px">
-						   </div>
-						   <div class="col-md-10">
-						     <p><h6 style="display:inline">Email:</h6>&#32; <a href="mailto:sywongan@ust.hk"><span style="font-size:120%">sywongan@ust.hk</span></a></p>
-							 <p><h6>Development role:</p>
-							 <ul style="padding-left:30px">
-							     <li>&bull;Developer for leader pages</li>
-							     <li>&bull;Graphical designers for webpage images</li>
-								 <li></li>
-							 </ul>
-						   </div>
-						</div>
-					   </div>
-					 </div>
-                  </div>
-                </div>
-         </div>
-     </div>
-		 <hr class="featurette-divider">
-		 <!--End of Development Team-->
-		 
-		 <!--Feedback form -->
-		 <div id="feedback"> 
-			<div class="col-md-8 col-md-offset-2">
-				<h3 class="featurette-heading" align="center"><b>-Feedback Form-</b></h3>
-				<h4 align="center"><span class="text-muted">We want to hear from you!</span></h4>
-				<div id="feedback_comment" ng-controller="FeedbackCtrl">
-					<div class="feedback_title">
-						Thank you so much :-)
-						<input ng-click="submitFeedback()" id="feedback-submit" type="submit" value="Send" />
-						<br><br>
-					</div>
-					<br>
-					<form id="feedback_form" name="feedback_form">
-						<div class="row">
-							<div class="col-md-7">
-								<textarea rows="6" ng-model="feedbackContent" placeholder="Leave your comment.." required></textarea>
-							</div>
-							<div class="col-md-5">
-								<input type="text" ng-model="feedbackEmail" placeholder="Name (optional)"/>
-								<input type="text" ng-model="feedbackName" placeholder="Email (optional)"/>
-							</div>
-					</form>
-				</div>
-			</div>
-		 </div>
-		 <!-- End of feedback form -->
+				   </article>
 
 
+			   </section>
+		   </div>
+	   </div>
+	   <!--End of Event List-->
 
-         <!-- /END THE FEATURETTES -->
-      </div>
-      <!-- /.container -->
-      <div style="margin-top:400px;" ng-include="'footer.html'"></div>
+	   <hr>
 
-		<!-- JavaScript of this page -->
+	   <!-- Development Team -->
 
-		<!-- Angular and Angular-route libraries (v1.5.7) -->
-		<script src="lib/angular.min.js"></script>
-		<script src="lib/angular-route.min.js"></script>        
 
-		<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
-		<script src="lib/firebase.js"></script>     
-		<script src="lib/angularfire.min.js"></script>
-		<script src="js/controller/index.js"></script>
-		<script src="js/controller/index-feedback.js"></script>
+	   <div class="row featurette" id="page_team">
+		   <br>
+		   <h3 class="featurette-heading" align="center"><b>-Development Team-</b></h3>
+		   <h4 align="center"><span class="text-muted">Team IT Dog</span></h4><br>
+		   <div class="panel-group" id="accordion">
+			   <div class="panel panel-default">
+				   <div class="panel-heading">
+					   <h4 class="panel-title">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+							   Cheung, Kin Yu King</a></p>
+					   </h4>
+				   </div>
+				   <div id="collapse1" class="panel-collapse collapse">
+					   <div class="panel-body">
+						   <div class="col-md-12">
+							   <div class="row">
+								   <div class="col-md-2">
+									   <img src="img/king_profile.PNG" width="150" height="150">
+								   </div>
+								   <div class="col-md-10">
+									   <p><h6 style="display:inline">Email:</h6>&#32; <a
+										   href="mailto:kycheungat@ust.hk"><span style="font-size:120%">kycheungat@ust.hk</span></a></p>
+									   <p><h6>Development role:</p>
+									   <ul style="padding-left:30px">
+										   <li>&bull;Developer for admin pages</li>
+										   <li>&bull;JavaScript developer for adminstrator dashboard and
+											   functionalities
+										   </li>
+										   <li>&bull;Maintain team Firebase database</li>
+										   <li></li>
+									   </ul>
+								   </div>
+							   </div>
+						   </div>
+					   </div>
+				   </div>
+			   </div>
+			   <div class="panel panel-default">
+				   <div class="panel-heading">
+					   <h4 class="panel-title">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+							   Ko, Kin Man David</a></p>
+					   </h4>
+				   </div>
+				   <div id="collapse2" class="panel-collapse collapse">
+					   <div class="panel-body">
+						   <div class="col-md-12">
+							   <div class="row">
+								   <div class="col-md-2">
+									   <img src="img/david_profile.PNG" width="150" height="150"
+											style="border-radius:20px">
+								   </div>
+								   <div class="col-md-10">
+									   <p><h6 style="display:inline">Email:</h6>&#32; <a href="mailto:kmko@ust.hk"><span
+										   style="font-size:120%">kmko@ust.hk</span></a></p>
+									   <p><h6>Development role:</p>
+									   <ul style="padding-left:30px">
+										   <li>&bull;Developer for member pages</li>
+										   <li>&bull;Manage git workflow and team Github</li>
+										   <li>&bull;JavaScript developer and layout designer for the system
+											   authenication
+										   </li>
+										   <li></li>
+									   </ul>
+								   </div>
+							   </div>
+						   </div>
+					   </div>
+				   </div>
+			   </div>
+			   <div class="panel panel-default">
+				   <div class="panel-heading">
+					   <h4 class="panel-title">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+							   Lau, Chi Fung Jacky</a></p>
+					   </h4>
+				   </div>
+				   <div id="collapse3" class="panel-collapse collapse">
+					   <div class="panel-body">
+						   <div class="col-md-12">
+							   <div class="row">
+								   <div class="col-md-2">
+									   <img src="img/jacky_profile.jpg" width="150" height="150"
+											style="border-radius:20px">
+								   </div>
+								   <div class="col-md-10">
+									   <p><h6 style="display:inline">Email:</h6>&#32; <a
+										   href="mailto:cflauae@ust.hk"><span
+										   style="font-size:120%">cflauae@ust.hk</span></a></p>
+									   <p><h6>Development role:</p>
+									   <ul style="padding-left:30px">
+										   <li>&bull;Developer for index and events pages</li>
+										   <li>&bull;JavaScript developer and layout designer for the event description
+											   pages
+										   </li>
+										   <li></li>
+									   </ul>
+								   </div>
+							   </div>
+						   </div>
+					   </div>
+				   </div>
+			   </div>
+			   <div class="panel panel-default">
+				   <div class="panel-heading">
+					   <h4 class="panel-title">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+							   Lee, Chun Wai Matthew</a></p>
+					   </h4>
+				   </div>
+				   <div id="collapse4" class="panel-collapse collapse">
+					   <div class="panel-body">
+						   <div class="col-md-12">
+							   <div class="row">
+								   <div class="col-md-2">
+									   <img src="img/matthew_profile.PNG" width="150" height="150"
+											style="border-radius:20px">
+								   </div>
+								   <div class="col-md-10">
+									   <p><h6 style="display:inline">Email:</h6>&#32; <a
+										   href="mailto:cwleeah@ust.hk"><span
+										   style="font-size:120%">cwleeah@ust.hk</span></a></p>
+									   <p><h6>Development role:</p>
+									   <ul style="padding-left:30px">
+										   <li>&bull;Developer for member pages</li>
+										   <li>&bull;Layout designer for the member status pages</li>
+										   <li></li>
+									   </ul>
+								   </div>
+							   </div>
+						   </div>
+					   </div>
+				   </div>
+			   </div>
+			   <div class="panel panel-default">
+				   <div class="panel-heading">
+					   <h4 class="panel-title">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+							   Lee, Ka Yue Sam</a></p>
+					   </h4>
+				   </div>
+				   <div id="collapse5" class="panel-collapse collapse">
+					   <div class="panel-body">
+						   <div class="col-md-12">
+							   <div class="row">
+								   <div class="col-md-2">
+									   <img src="img/sam_profile.jpg" width="150" height="150"
+											style="border-radius:20px">
+								   </div>
+								   <div class="col-md-10">
+									   <p><h6 style="display:inline">Email:</h6>&#32; <a
+										   href="mailto:kyleeak@ust.hk"><span
+										   style="font-size:120%">kyleeak@ust.hk</span></a></p>
+									   <p><h6>Development role:</p>
+									   <ul style="padding-left:30px">
+										   <li>&bull;Developer for leader pages</li>
+										   <li>&bull;JavaScript developer and layout designer for the webpage menu and
+											   leaders' functionalities
+										   </li>
+										   <li></li>
+									   </ul>
+								   </div>
+							   </div>
+						   </div>
+					   </div>
+				   </div>
+			   </div>
+			   <div class="panel panel-default">
+				   <div class="panel-heading">
+					   <h4 class="panel-title">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+							   Wong, Suet Yan Kathy</a></p>
+					   </h4>
+				   </div>
+				   <div id="collapse6" class="panel-collapse collapse">
+					   <div class="panel-body">
+						   <div class="col-md-12">
+							   <div class="row">
+								   <div class="col-md-2">
+									   <img src="img/kathy_profile.jpg" width="150" height="150"
+											style="border-radius:20px">
+								   </div>
+								   <div class="col-md-10">
+									   <p><h6 style="display:inline">Email:</h6>&#32; <a
+										   href="mailto:sywongan@ust.hk"><span
+										   style="font-size:120%">sywongan@ust.hk</span></a></p>
+									   <p><h6>Development role:</p>
+									   <ul style="padding-left:30px">
+										   <li>&bull;Developer for leader pages</li>
+										   <li>&bull;Graphical designers for webpage images</li>
+										   <li></li>
+									   </ul>
+								   </div>
+							   </div>
+						   </div>
+					   </div>
+				   </div>
+			   </div>
+		   </div>
+	   </div>
+	   <hr class="featurette-divider">
+	   <!--End of Development Team-->
+
+	   <!--Feedback form -->
+	   <div id="feedback">
+		   <div class="col-md-8 col-md-offset-2">
+			   <h3 class="featurette-heading" align="center"><b>-Feedback Form-</b></h3>
+			   <h4 align="center"><span class="text-muted">We want to hear from you!</span></h4>
+			   <div id="feedback_comment" ng-controller="FeedbackCtrl">
+				   <div class="feedback_title">
+					   Thank you so much :-)
+					   <input ng-click="submitFeedback()" id="feedback-submit" type="submit" value="Send"/>
+					   <br><br>
+				   </div>
+				   <br>
+				   <form id="feedback_form" name="feedback_form">
+					   <div class="row">
+						   <div class="col-md-7">
+							   <textarea rows="6" ng-model="feedbackContent" placeholder="Leave your comment.."
+										 required></textarea>
+						   </div>
+						   <div class="col-md-5">
+							   <input type="text" ng-model="feedbackEmail" placeholder="Name (optional)"/>
+							   <input type="text" ng-model="feedbackName" placeholder="Email (optional)"/>
+						   </div>
+				   </form>
+			   </div>
+		   </div>
+	   </div>
+	   <!-- End of feedback form -->
+
+
+	   <!-- /END THE FEATURETTES -->
+   </div>
+   <!-- /.container -->
+   <div style="margin-top:400px;" ng-include="'footer.html'"></div>
+
+   <!-- JavaScript of this page -->
+
+   <!-- Angular and Angular-route libraries (v1.5.7) -->
+   <script src="lib/angular.min.js"></script>
+   <script src="lib/angular-route.min.js"></script>
+
+   <!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+   <script src="lib/firebase.js"></script>
+   <script src="lib/angularfire.min.js"></script>
+   <script src="js/controller/index.js"></script>
 
    </body>
 </html>

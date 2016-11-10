@@ -23,6 +23,20 @@ angular.module('teamform-member-app', ['firebase'])
 
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
+	$scope.doLogout = function () {
+
+		firebase.auth().signOut().then(function() {
+			// Sign-out successful.
+			sessionStorage.setItem("urlAfterLogin","");
+			sessionStorage.setItem("logout","yes");
+			window.location.href= "index.html";
+		}, function(error) {
+			// An error happened.
+			console.log(error)
+		});
+
+
+	};
 
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
@@ -52,13 +66,13 @@ angular.module('teamform-member-app', ['firebase'])
 			else {
 				$scope.gradYear = "N/A";
 			}
-			
+
 			// user request status
 			// Use jquery because angular hide/show in this project is very slow
 			// Need time to check why angularjs is too show now (may be too many request?)
 			if (eid == null || eid == "") {
-				window.history.back();
-				console.log("no this event")
+				window.location.href = "index.html";
+				console.log("no this event");
 				return;
 			}
 			
@@ -76,7 +90,7 @@ angular.module('teamform-member-app', ['firebase'])
 					$("#no_status").removeClass("hide");
 				
 			}else {
-				window.history.back();		// future: the case user type url directly
+				window.location.href = "index.html";	// future: the case user type url directly
 				console.log("no this event");
 				return;				
 			}
@@ -104,8 +118,8 @@ angular.module('teamform-member-app', ['firebase'])
 		window.location.href = "signIn.html"; // default redirect page is index
 	  }
 
-	});	
-	
+	});
+
 	// filter tables
 	$scope.filterTable = function() {
 		// get selected value(s)

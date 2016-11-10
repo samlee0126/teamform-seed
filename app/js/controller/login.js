@@ -4,6 +4,20 @@ angular.module('teamform-login-app', ['firebase'])
 		
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
+	$scope.doLogout = function () {
+
+		firebase.auth().signOut().then(function() {
+			// Sign-out successful.
+			sessionStorage.setItem("urlAfterLogin","");
+			sessionStorage.setItem("logout","yes");
+			window.location.href= "index.html";
+		}, function(error) {
+			// An error happened.
+			console.log(error)
+		});
+
+
+	};
 	console.log("it is login page!")
 	$scope.email = "";
 	$scope.password = "";
