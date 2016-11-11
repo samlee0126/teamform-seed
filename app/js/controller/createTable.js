@@ -112,7 +112,7 @@
 
 								refEvent.set({ active : "true"}, function(){
 									// Finally, go back to the front-end
-									window.location.href = "index.html";
+									//window.location.href = "index.html";
 								});
 
 								var refPathMember = "members/" + $scope.uid + "/events/" + eid;
