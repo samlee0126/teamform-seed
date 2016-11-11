@@ -75,6 +75,17 @@ angular.module('teamform-member-app', ['firebase'])
 				console.log("no this event");
 				return;
 			}
+
+			var role = data.child("events").child(eid).child("role").val();
+
+			// if user is leader, cannot go to member page
+			if (role != "leader") {
+				// actions
+			}else {
+
+				window.location.href = "index.html";
+				return;
+			}
 			
 			var status = data.child("events").child(eid).child("status").val();
 			
