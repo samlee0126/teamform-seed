@@ -54,7 +54,7 @@
 				<div class="form-group">
 					<label for="table-name" class="col-sm-3 control-label">Table name</label>
 					<div class="col-sm-9">
-						<input ng-model="name" type="name" class="form-control" name="table_name" placeholder="Table name" required>
+						<input ng-model="tableName" type="name" class="form-control" name="table_name" placeholder="Table name" required>
 					</div>
 				</div>
 
@@ -75,7 +75,7 @@
   					<label for="password" class="col-sm-3 control-label">Password</label>
   					<div class = "col-sm-9">
   						<input ng-model="password" type="password" class="form-control" name="input_password" id="input_password" placeholder="Password" required disabled>
-  					</div>
+		  </div>
   				</div>
 
   				<div class="form-group">
@@ -88,7 +88,7 @@
           <div class="form-group">
             <label for="gender" class="col-sm-3 control-label">Prefered Gender</label>
             <div class="col-sm-9">
-              <select ng-model="gender" ng-init="" name="gender" class="form-control" required>
+              <select ng-model="tag1" ng-init="" name="gender" class="form-control" required>
                 <option value="">No Preference</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -99,7 +99,7 @@
           <div class="form-group">
             <label for="graduation_year" class="col-sm-3 control-label">Prefered Graduation year</label>
             <div class="col-sm-9">
-              <select ng-model="gradYear" ng-init="" name="graduation_year" class="form-control">
+              <select ng-model="tag2" ng-init="" name="graduation_year" class="form-control">
                 <option value="">No Preference</option>
                 <option value="2016">2016</option> <option value="2015">2015</option> <option value="2014">2014</option>
                 <option value="2013">2013</option> <option value="2012">2012</option> <option value="2011">2011</option>
@@ -116,7 +116,7 @@
           <div class="form-group">
   					<label for="major" class="col-sm-3 control-label">Prefered Major</label>
   					<div class="col-sm-9">
-  						<select ng-model="major" ng-init="" name="major" class="form-control">
+  						<select ng-model="tag3" ng-init="" name="major" class="form-control">
   							<option value="">No Preference</option>
   							<option value="ACCT">ACCT</option> <option value="AE">AE</option> <option value="BCB">BCB</option>
   						 	<option value="BIBU">BIBU</option> <option value="BIOT">BIOT</option> <option value="BISC">BISC</option>

@@ -49,8 +49,8 @@ angular.module('teamform-event-app', ['firebase'])
                     $scope.name = "N/A";
                 }
                 // check the eid is valid or not
-                var eventObj = data.child(eid);
-
+                var eventObj = data.child('events').child(eid);
+                console.log(eventObj.val());
                 if (eventObj){
 
                 } else {
@@ -61,7 +61,7 @@ angular.module('teamform-event-app', ['firebase'])
 
                 //check if the user is admin or non-admin
                 var userRole = data.child("userRole").val();
-                if (userRole == "nonadmin") {
+                if (!userRole) {
                     var status = data.child("events").child(eid).child("role").val();
                     // check if the non-admin user is member or leader in this event
 

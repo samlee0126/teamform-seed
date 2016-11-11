@@ -1,136 +1,139 @@
-angular.module('teamform-createTable-app', ['firebase'])
-.controller('CreateTableCtrl', ['$scope', '$firebaseObject', '$firebaseArray',
-    function($scope, $firebaseObject, $firebaseArray) {
+	angular.module('teamform-createTable-app', ['firebase'])
+				.controller('CreateTableCtrl', ['$scope', '$firebaseObject', '$firebaseArray',
+					function($scope, $firebaseObject, $firebaseArray) {
 
-	// Call Firebase initialization code defined in site.js
-		console.log("it is register page!");
-	initalizeFirebase();
-	$scope.doLogout = function () {
+						// Call Firebase initialization code defined in site.js
+						console.log("it is register page!");
+						initalizeFirebase();
+						$scope.doLogout = function () {
 
-		firebase.auth().signOut().then(function() {
-			// Sign-out successful.
-			sessionStorage.setItem("urlAfterLogin","");
-			sessionStorage.setItem("logout","yes");
-			window.location.href= "index.html";
-		}, function(error) {
-			// An error happened.
-			console.log(error)
-		});
-
-
-	};
-
-	firebase.auth().onAuthStateChanged(function(user) {
-		if (user) {
-			var eid = getURLParameter("q");
-			$scope.uid = user.uid;
-			$scope.eid = getURLParameter("q");
-
-			// check the url contains eid or not
-			if (eid == null || eid == "") {
-				//window.location.href = "index.html";
-				console.log("no this event");
-				return;
-			}
-			// get member information from database by uid
-			var refPath = "members/" + user.uid;
-			retrieveOnceFirebase(firebase, refPath, function(data) {
+							firebase.auth().signOut().then(function() {
+								// Sign-out successful.
+								sessionStorage.setItem("urlAfterLogin","");
+								sessionStorage.setItem("logout","yes");
+								window.location.href= "index.html";
+							}, function(error) {
+								// An error happened.
+								console.log(error)
+							});
 
 
-				var status = data.child("events").child(eid).child("role").val();
+						};
 
-				// no role in event
-				if (status != "member" && status != "leader" ) {
-					// actions
-				}else {
+						firebase.auth().onAuthStateChanged(function(user) {
+							if (user) {
+								var eid = getURLParameter("q");
+								$scope.uid = user.uid;
+								$scope.eid = getURLParameter("q");
 
-					window.location.href = "index.html";	// future: the case user type url directly
-					console.log("no this table");
-					return;
-				}
-
-
-
-				// update $scope
-				$scope.$apply();
-			});
-
-		} else {
-			// No user is signed in.
-			console.log("YEAH - You did not login lol");
-			sessionStorage.setItem("urlAfterLogin","member.html?q=" + getURLParameter("q"));
-			window.location.href = "signIn.html"; // default redirect page is index
-		}
-
-	});
+								// check the url contains eid or not
+								if (eid == null || eid == "") {
+									window.location.href = "index.html";
+									console.log("no this event");
+									return;
+								}
+								// get member information from database by uid
+								var refPath = "members/" + user.uid;
+								retrieveOnceFirebase(firebase, refPath, function(data) {
 
 
-	// Create a table and send it to firrebase
-	$scope.name = "";
-	$scope.email = "";
-	$scope.password = "";
-	$scope.doCreateTable = function () {
+									var role = data.child("events").child(eid).child("role").val();
 
-		/* To Sam : Please change this part to table information */
-		var email = $scope.email;
-		var password = $scope.password;
-		var name = $scope.name;
-		var gender = $scope.gender;
-		var createTime = new Date().toUTCString();
-		var major = $scope.major;
-		var gradYear = $scope.gradYear;
-		//var local = $scope.local;
-		var eid = getURLParameter("q");
+									// no role in event
+									if (role != "member" && role != "leader" ) {
+										// actions
+									}else {
 
-		//generate tid key
-		var myRef = firebase.database().ref().push();
-		var tid = myRef.key;
-
-		var newTableData = {
-			'name': name,
-			'gender': gender,
-			'email': email,
-			'major': major,
-			//'local': local,
-			'gradYear': gradYear,
-			'createTime': createTime,
-			'event': eid
-
-		};
-		// please change the correct path after testing
-		var refPathTable = "testtables/" + tid ;
-
-		var reftable = firebase.database().ref(refPathTable);
-
-		reftable.set(newTableData, function(){
-
-			// update event json
-			var refPathEvent = "events/" + eid + "/tables/" + tid;
-			var refEvent = firebase.database().ref(refPathEvent);
-
-			refEvent.set({ active : "true"}, function(){
-				// Finally, go back to the front-end
-				window.location.href = "index.html";
-			});
-
-			var refPathMember = "members/" + $scope.uid + "/events/" + eid;
-			var refMember = firebase.database().ref(refPathMember);
-
-			refMember.update({ role : "leader"}, function(){
-				// Finally, go back to the front-end
-				window.location.href = "leader.html?q=" + eid;
-			});
-
-
-		});
+										window.location.href = "index.html";
+										return;
+									}
 
 
 
+									// update $scope
+									$scope.$apply();
+								});
+
+							} else {
+								// No user is signed in.
+								console.log("YEAH - You did not login lol");
+								sessionStorage.setItem("urlAfterLogin","member.html?q=" + getURLParameter("q"));
+								window.location.href = "signIn.html"; // default redirect page is index
+							}
+
+						});
+
+
+						// Create a table and send it to firrebase
+						$scope.name = "";
+						$scope.email = "";
+						$scope.password = "";
+						$scope.doCreateTable = function () {
+
+							/* To Sam : Please change this part to table information */
+							var tableName = $scope.tableName;
+							var password = $scope.password;
+							var createTime = new Date().toUTCString();
+							var tag1 = $scope.tag1;
+							var tag2 = $scope.tag2;
+							var tag3 = $scope.tag3;
+							var eid = $scope.eid;
+							var uid = $scope.uid;
+
+							//generate tid key
+							var myRef = firebase.database().ref().push();
+							var tid = myRef.key;
+
+							var newTableData = {
+								'tags': {
+									'tag1': tag1,
+									'tag2': tag2,
+									'tag3': tag3
+								},
+								'tableName': tableName,
+								'password': password,
+								'numberOfMembers': 1,
+								//'local': local,
+								'leader': uid,
+								'createTime': createTime,
+								'event': eid
+
+							};
+							// please change the correct path after testing
+							var refPathTable = "tables/" + tid ;
+
+							var reftable = firebase.database().ref(refPathTable);
+
+							reftable.set(newTableData, function(){
+
+								// update event json
+								var refPathEvent = "events/" + eid + "/tables/" + tid;
+								var refEvent = firebase.database().ref(refPathEvent);
+
+								refEvent.set({ active : "true"}, function(){
+									// Finally, go back to the front-end
+									//window.location.href = "index.html";
+								});
+
+								var refPathMember = "members/" + $scope.uid + "/events/" + eid;
+								var refMember = firebase.database().ref(refPathMember);
+
+								// save the role and tid in this event for member
+								refMember.update({ role : "leader", tid : tid}, function(){
+									// Finally, go back to the front-end
+									window.location.href = "leader.html?q=" + eid;
+								});
+
+
+							});
 
 
 
 
-	};
+
+
+
+						};
 
 
 
