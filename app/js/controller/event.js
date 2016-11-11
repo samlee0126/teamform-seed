@@ -49,8 +49,8 @@ angular.module('teamform-event-app', ['firebase'])
                     $scope.name = "N/A";
                 }
                 // check the eid is valid or not
-                var eventObj = data.child(eid);
-
+                var eventObj = data.child('events').child(eid);
+                console.log(eventObj.val());
                 if (eventObj){
 
                 } else {
