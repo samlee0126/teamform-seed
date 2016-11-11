@@ -20,6 +20,13 @@
 
 						};
 
+						// var refPathEvent = "events/e1";
+						// retrieveOnceFirebase(firebase, refPathEvent, function(data) {
+						// 	$scope.eventName = data.child("eventName").val();
+						// 	$scope.$apply();
+						// 	console.log($scope.eventName)
+						// });
+
 						firebase.auth().onAuthStateChanged(function(user) {
 							if (user) {
 								var eid = getURLParameter("q");
@@ -47,11 +54,15 @@
 										window.location.href = "index.html";
 										return;
 									}
-
-
-
 									// update $scope
 									$scope.$apply();
+								});
+								// Get Event Name to Display in the form
+								var refPathEvent = "events/" + eid;
+								retrieveOnceFirebase(firebase, refPathEvent, function(data) {
+									$scope.eventName = data.child("eventName").val();
+									$scope.$apply();
+									console.log($scope.eventName)
 								});
 
 							} else {
@@ -62,6 +73,9 @@
 							}
 
 						});
+
+
+
 
 
 						// Create a table and send it to firrebase
@@ -110,7 +124,7 @@
 								var refPathEvent = "events/" + eid + "/tables/" + tid;
 								var refEvent = firebase.database().ref(refPathEvent);
 
-								refEvent.set({ active : "true"}, function(){
+								refEvent.set({ active : true}, function(){
 									// Finally, go back to the front-end
 									//window.location.href = "index.html";
 								});

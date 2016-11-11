@@ -45,7 +45,14 @@ angular.module('teamform-index-app', ['firebase'])
 				if (user) {
 					// show logout button
 
-					console.log("HI")
+					// Get Event Name to Display in the form
+					var refPathEvent = "events/";
+					retrieveOnceFirebase(firebase, refPathEvent, function(data) {
+						$scope.events = data.val();
+						//alert(Object.keys($scope.events['e1'].tables).length);
+						$scope.$apply();
+						console.log($scope.events)
+					});
 
 
 				} else {
@@ -56,6 +63,13 @@ angular.module('teamform-index-app', ['firebase'])
 				// update $scope
 				$scope.$apply();
 			});
+
+			$scope.countTables = function(tables) {
+				if(!angular.isObject(tables)){
+					return 0;
+				}
+				return Object.keys(tables).length;
+			};
 
 			$scope.doLogout = function () {
 

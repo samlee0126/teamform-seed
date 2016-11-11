@@ -101,7 +101,7 @@ angular.module('teamform-member-app', ['firebase'])
 					$("#no_status").removeClass("hide");
 				
 			}else {
-				window.location.href = "index.html";	// future: the case user type url directly
+				//window.location.href = "index.html";	// future: the case user type url directly
 				console.log("no this event");
 				return;				
 			}
