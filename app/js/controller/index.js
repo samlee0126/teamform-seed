@@ -40,28 +40,13 @@ angular.module('teamform-index-app', ['firebase'])
 			// Call Firebase initialization code defined in site.js
 			initalizeFirebase();
 
-			//Check User Exist
-			firebase.auth().onAuthStateChanged(function(user) {
-				if (user) {
-					// show logout button
-
-					// Get Event Name to Display in the form
-					var refPathEvent = "events/";
-					retrieveOnceFirebase(firebase, refPathEvent, function(data) {
-						$scope.events = data.val();
-						//alert(Object.keys($scope.events['e1'].tables).length);
-						$scope.$apply();
-						console.log($scope.events)
-					});
-
-
-				} else {
-					// No user is signed in.
-					console.log("YEAH - You did not login lol");
-
-				}
-				// update $scope
+			// list all events
+			var refPathEvent = "events/";
+			retrieveOnceFirebase(firebase, refPathEvent, function(data) {
+				$scope.events = data.val();
+				//alert(Object.keys($scope.events['e1'].tables).length);
 				$scope.$apply();
+				console.log($scope.events)
 			});
 
 			$scope.countTables = function(tables) {
