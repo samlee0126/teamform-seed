@@ -43,11 +43,9 @@
 							<p>Person that waiting to approval:</p>
 							<table class="table table-bordered">
 							<tr><td>
-								<button type="button" class="btn btn-default">Name: CHAN Tai Ming<br>Grad. Year: 2018<br>Major: COMP</button>
-								<button type="button" class="btn btn-default">Name: TSOI Ka Yee<br>Grad. Year: 2020<br>Major: COMP</button>
-								<button type="button" class="btn btn-default">Name: LEE Man Ho<br>Grad. Year: 2016<br>Major: MATH</button>
-								<button type="button" class="btn btn-default">Name: LAI Tai Fung<br>Grad. Year: 2019<br>Major: ISOM</button>
-								<button type="button" class="btn btn-default">Name: HO Ka Ka<br>Grad. Year: 2013<br>Major: MATH</button>
+								<button type="button" class="btn btn-default" ng-repeat="requestedMember in requestedMembers">
+									Name: {{requestedMember.name}}<br>Grad. Year: {{requestedMember.gradYear}}<br>Major: {{requestedMember.major}}
+								</button>
 								</td>
 							</tr>
 							</table>
@@ -63,10 +61,9 @@
 							<p>Person that having approval:</p>
 							<table class="table table-bordered">
 							<tr><td>
-								<button type="button" class="btn btn-primary">Name: CHAN Tai Man<br>Grad. Year: 2019<br>Major: COMP</button>
-								<button type="button" class="btn btn-primary">Name: CEUNG Tai Wai<br>Grad. Year: 2019<br>Major: COMP</button>
-								<button type="button" class="btn btn-primary">Name: LEE Shiu Wai<br>Grad. Year: 2019<br>Major: CPENG</button>
-								<button type="button" class="btn btn-primary">Name: WONG Shiu Ming<br>Grad. Year: 2019<br>Major: MATH</button>
+								<button type="button" class="btn btn-default" ng-repeat="member in members">
+									Name: {{member.name}}<br>Grad. Year: {{member.gradYear}}<br>Major: {{member.major}}
+								</button>
 								</td>
 							</tr>
 							</table>
@@ -126,19 +123,21 @@
 						<h2>Status</h2>
 					</div>
 						<div class="list-group">
-						 <a href="#" class="list-group-item list-group-item-success"><span class="glyphicon glyphicon-ok-sign"></span> Your team is confirmed.</a>
-						 <a data-toggle="tab" href="#memberRequest" class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-info-sign"></span> 7 new requests.</a>
-						 <a href="#" class="list-group-item list-group-item-danger"><span class="glyphicon glyphicon-remove-sign"></span> Your team is full. Fail to add other member.</a>
+							<ul class="list-group">
+						 <li id="confirmed" class="list-group-item list-group-item-success hide"><span class="glyphicon glyphicon-ok-sign"></span> Your team is confirmed.</li>
+						 <li id="newRequest" class="list-group-item list-group-item-info hide"><span class="glyphicon glyphicon-info-sign"></span> You have new request(s).</li>
+						 <li id="full" class="list-group-item list-group-item-danger hide"><span class="glyphicon glyphicon-remove-sign"></span> Your team is full. Fail to add other member.</li>
+					 </ul>
 						</div>
 
 						<ul class="list-group">
-							<li class="list-group-item"><b>Event name: </b><b ng-bind="eventName"></b></li>
-							<li class="list-group-item"><b>Table name: </b><b ng-bind="tableName"></b></li>
+							<li class="list-group-item"><b>Event name: </b><b>{{eventName}}</b></li>
+							<li class="list-group-item"><b>Table name: </b><b>{{tableName}}</b></li>
 						</ul>
 
-						<p>Current Members: 1/12</p>
+						<p>Current Members: {{numberOfMembers}}/{{maxForTable}}</p>
 						<div class="progress">
-						<div class="progress-bar" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width: 8%;">
+						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{numberOfMembers/maxForTable*100}}%;">
 						</div>
 						</div>
 
@@ -171,7 +170,40 @@
 				<script src="lib/firebase.js"></script>
 				<script src="lib/angularfire.min.js"></script>
 
-				<script src="js/controller/team.js"></script>
+				<script src="js/controller/leader.js"></script>
 
    </body>
 </html>
+
+<!--
+<p>Person that waiting to approval:</p>
+<table class="table table-bordered">
+<tr><td>
+	<button type="button" class="btn btn-default">Name: CHAN Tai Ming<br>Grad. Year: 2018<br>Major: COMP</button>
+	<button type="button" class="btn btn-default">Name: TSOI Ka Yee<br>Grad. Year: 2020<br>Major: COMP</button>
+	<button type="button" class="btn btn-default">Name: LEE Man Ho<br>Grad. Year: 2016<br>Major: MATH</button>
+	<button type="button" class="btn btn-default">Name: LAI Tai Fung<br>Grad. Year: 2019<br>Major: ISOM</button>
+	<button type="button" class="btn btn-default">Name: HO Ka Ka<br>Grad. Year: 2013<br>Major: MATH</button>
+	</td>
+</tr>
+</table>
+<div class="text-center">
+	<br>
+	<button type="button" class="btn btn-info">Same Major</button>
+	<button type="button" class="btn btn-info">Same Graduation Year</button>
+	<button type="button" class="btn btn-info">Same Gender</button>
+	<button type="button" class="btn btn-info">Another Gender</button>
+	<button type="button" class="btn btn-info">Random</button>
+	<br><br><br><br>
+</div>
+<p>Person that having approval:</p>
+<table class="table table-bordered">
+<tr><td>
+	<button type="button" class="btn btn-primary">Name: CHAN Tai Man<br>Grad. Year: 2019<br>Major: COMP</button>
+	<button type="button" class="btn btn-primary">Name: CEUNG Tai Wai<br>Grad. Year: 2019<br>Major: COMP</button>
+	<button type="button" class="btn btn-primary">Name: LEE Shiu Wai<br>Grad. Year: 2019<br>Major: CPENG</button>
+	<button type="button" class="btn btn-primary">Name: WONG Shiu Ming<br>Grad. Year: 2019<br>Major: MATH</button>
+	</td>
+</tr>
+</table>
+-->
