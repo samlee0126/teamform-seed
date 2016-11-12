@@ -79,21 +79,28 @@
 							<h2>Table Setting</h2>
 						</div>
 					<div class="form-group">
-					<form>
+					<form id="changeTable_form">
 						<div class="form-group">
 							<label for="TableName">Table Name</label>
-							<input type="text" class="form-control" id="InputTableName" placeholder="Text"  class="col-xs-4">
+							<input type="text" class="form-control" id="InputTableName" placeholder="{{tableName}}"  class="col-xs-4" ng-model="newTableName">
 						</div>
 						<div class="input-group">
 							<label for="TablePassword">Password</label>
 						</div>
 						<div class="input-group">
 							<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-							<input type="password" class="form-control" id="inpputPassword" placeholder="Password">
+							<input type="password" class="form-control" id="inpputPassword" placeholder="Password" ng-model="newTablePassword">
 						 </div>
+						 <div class="input-group">
+						 	<label for="PasswordOff">Password Off &nbsp;&nbsp;</label>
+						 	<input type="checkbox" id="passwordOff"  ng-model="tablePasswordOff" value="tablePasswordOff">
+						 </div>
+						 <div class="input-group">
+						 </div>
+
 						 <br>
 						 <div class="form-group">
-						<button type="submit" class="btn btn-primary">Save Changes</button>
+						<button type="submit" class="btn btn-primary" ng-click="changeTable()">Save Changes</button>
 						</div>
 					</form>
 					</div>
