@@ -116,6 +116,30 @@ angular.module('teamform-team-app', ['firebase'])
                         $scope.$apply();
                     });
 
+                    //change table password & name
+                    $scope.newTableName="";
+                    $scope.newTablePassword="";
+                    $scope.tablePasswordOff="";
+                    $scope.changeTable = function () {
+                        var newTableName = $scope.newTableName;
+                        var newTablePassword = $scope.newTablePassword;
+                        //check whether the input is empty
+                        if($scope.newTableName.length<=0)
+                            newTableName = data.child("tableName").val();
+                        if($scope.newTablePassword.length<=0)
+                            newTablePassword = data.child("password").val();
+                        //check whether the leader turn off password
+                        if($scope.tablePasswordOff==true)
+                            newTablePassword = "";
+                        var refPathTable = "tables/" + tid;
+                        console.log(refPathTable);
+                        var refTable = firebase.database().ref(refPathTable);
+                        refTable.update({ "tableName" : newTableName, "password" : newTablePassword}, function(){
+                            // refresh page
+                            window.location.href = "leader.html?q=" + eid;
+                        });  
+                    };    
+
 
                 });
             });
@@ -130,12 +154,6 @@ angular.module('teamform-team-app', ['firebase'])
         }
 
     });
-
-
-
-
-
-
-
+    
 
 }]);
