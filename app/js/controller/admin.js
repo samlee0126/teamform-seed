@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+	/*
     var today = new Date();
 
     var month = today.getMonth() + 1;
@@ -40,7 +40,7 @@ $(document).ready(function(){
 	if (eventName != null && eventName !== '' ) {
 		$('#text_event_name').text("Event name: " + eventName);
 		
-	}
+	}*/
 
 });
 
@@ -92,6 +92,7 @@ angular.module('teamform-admin-app', ['firebase'])
 	$scope.paramFeedback = $firebaseArray(refFeedback);
 		
 	
+	/*
 	var number = [];
 	var max = 0;
 	
@@ -227,6 +228,7 @@ angular.module('teamform-admin-app', ['firebase'])
 		// Finally, go back to the front-end
 		window.location.href= "index.html";
 	}
+	*/
 	
 		
 }]);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="teamform-admin-app">
+<html lang="en" ng-app="teamform-createEvent-app">
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,11 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">  
 
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.4.5/css/bootstrapvalidator.min.css"/> 
+      <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.4.5/css/bootstrapvalidator.min.css"/>-->
+	  
+      <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+      <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+	  
 	  <link rel="stylesheet" href="css/site.css">
       <!-- Customized libraries shared by pages -->
       <script src="js/site.js"></script>
@@ -37,7 +41,7 @@
    </head>
    <body>
       <!-- Register page -->
-      <div class="container" id="page_home"  ng-controller="AdminCtrl">
+      <div class="container" id="page_home"  ng-controller="CreateEventCtrl">
 	  
       <!-- MENU -->
       <div ng-include="'menu.html'"></div>
@@ -47,7 +51,7 @@
                <div class="row">
                   <div class="col-md-6">
                      	<h1>Create Event</h1><br>
-			<form id="register_form" class="form-horizontal" data-toggle="validator" role="form">
+			<form id="create_event_form" class="form-horizontal" data-toggle="validator" role="form">
 			
 				<div class="form-group">
 					<label for="event_name" class="col-sm-3 control-label">Event Name</label>
@@ -130,7 +134,7 @@
 		<script src="lib/firebase.js"></script>     
 		<script src="lib/angularfire.min.js"></script>
 		
-		<script src="js/controller/admin.js"></script>
+		<script src="js/controller/createEvent.js"></script>
 
    </body>
 </html>

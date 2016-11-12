@@ -117,6 +117,7 @@
 						<th>Event Date</th>
 						<th>Number of Table</th>
 						<th>Deadline</th>
+						<th>Hide Event</th>
 						</tr>
 						<tr ng-repeat="event in paramEvent | orderBy:'$id'" ng-click="goToEvent(event.$id)">
 						<td>{{event.$id}}</td>
@@ -124,6 +125,7 @@
 						<td>{{event.date}}</td>
 						<td>{{event.maxForTable}}</td>
 						<td>{{event.deadline}}</td>
+						<td>Hide</td>
 						</tr>
 						</table>
 				  </div>
