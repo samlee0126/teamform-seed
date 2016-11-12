@@ -35,27 +35,39 @@ angular.module('teamform-index-app', ['firebase'])
 	.controller('IndexPageCtrl', ['$scope', '$firebaseObject', '$firebaseArray',
 		function($scope, $firebaseObject, $firebaseArray) {
 
-
+            $scope.isLogout = false;
 
 			// Call Firebase initialization code defined in site.js
 			initalizeFirebase();
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                        $scope.isLogin = true;
+                        $scope.isLogout = false;
+                        // update $scope
+                } else {
+                    // No user is signed in.
+                    $scope.isLogin = false;
+                    $scope.isLogout = true;
+                    console.log("YEAH - You did not login lol");
+                }
+                $scope.$apply();
+            });
 
-			//Check User Exist
-			firebase.auth().onAuthStateChanged(function(user) {
-				if (user) {
-					// show logout button
-
-					console.log("HI")
-
-
-				} else {
-					// No user is signed in.
-					console.log("YEAH - You did not login lol");
-
-				}
-				// update $scope
+			// list all events
+			var refPathEvent = "events/";
+			retrieveOnceFirebase(firebase, refPathEvent, function(data) {
+				$scope.events = data.val();
+				//alert(Object.keys($scope.events['e1'].tables).length);
 				$scope.$apply();
+				console.log($scope.events)
 			});
+
+			$scope.countTables = function(tables) {
+				if(!angular.isObject(tables)){
+					return 0;
+				}
+				return Object.keys(tables).length;
+			};
 
 			$scope.doLogout = function () {
 

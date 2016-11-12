@@ -35,9 +35,9 @@
         </li>
       </ul>
       <ul style="padding-right: 20px;"  class="nav navbar-right">
-        <a id="logout" class="btn btn-primary navbar-btn" ng-click="doLogout()">Sign out</a>
-        <a id="signin" class="btn btn-primary navbar-btn" href="signIn.html">Sign in</a>
-        <a id="register" class="btn btn-primary navbar-btn" href="register.html">Register</a>
+        <a ng-show="isLogin" id="logout" class="btn btn-primary navbar-btn" ng-click="doLogout()">Sign out</a>
+        <a ng-show="isLogout" id="signin" class="btn btn-primary navbar-btn" href="signIn.html">Sign in</a>
+        <a ng-show="isLogout" id="register" class="btn btn-primary navbar-btn" href="register.html">Register</a>
       </ul>
   </div>
   </nav>

@@ -18,7 +18,7 @@
       <script src="lib/bootstrap.min.js"></script>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.4.5/css/bootstrapvalidator.min.css">
+      <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.4.5/css/bootstrapvalidator.min.css">-->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -32,136 +32,185 @@
 
    </head>
    <body ng-controller="CreateTableCtrl">
-      <!-- MENU -->
-      <div class="navbar-wrapper" ng-include="'menu.html'"></div>
+   <!-- MENU -->
+   <div class="navbar-wrapper" ng-include="'menu.html'"></div>
 
-      <!-- Register page -->
-      <div class="container" style="margin-bottom:100px;" id="page_home">
-         <div class="row">
-            <div class="col-md-12">
-               <div class="row">
-                  <div class="col-md-6">
-                     	<h1>Create Table</h1><br>
-			<form id="createTable_form" class="form-horizontal" data-toggle="validator" role="form">
+   <!-- Register page -->
+   <div class="container" id="page_home">
+	   <div class="row">
+		   <div class="col-md-12">
+			   <div class="row">
+				   <div class="col-md-6">
+					   <h1>Create Table</h1><br>
+					   <form id="createTable_form" class="form-horizontal" data-toggle="validator" role="form">
 
-        <div class="form-group">
-					<label for="event_name" class="col-sm-3 control-label">Event name</label>
-					<div class="col-sm-9">
-						<p class="form-control-static">{{evnetName}}</p>
-					</div>
-				</div>
+						   <div class="form-group">
+							   <label for="event_name" class="col-sm-3 control-label">Event name</label>
+							   <div class="col-sm-9">
+								   <p class="form-control-static" ng-bind="eventName"></p>
+							   </div>
+						   </div>
 
-				<div class="form-group">
-					<label for="table-name" class="col-sm-3 control-label">Table name</label>
-					<div class="col-sm-9">
-						<input ng-model="tableName" type="name" class="form-control" name="table_name" placeholder="Table name" required>
-					</div>
-				</div>
+						   <div class="form-group">
+							   <label for="table-name" class="col-sm-3 control-label">Table name</label>
+							   <div class="col-sm-9">
+								   <input ng-model="tableName" type="name" class="form-control" name="table_name"
+										  placeholder="Table name" required>
+							   </div>
+						   </div>
 
-				<div class="form-group">
-					<label for="access" class="col-sm-3 control-label">Access</label>
-					<div class="radio col-sm-3" ng-init="access='public'">
-						<label>
-							<input type="radio" ng-model="access" name="access" id="access_public" value="public">Public
-						</label>
-					</div>
-					<div class="radio col-sm-6">
-						<label>
-							<input type="radio" ng-model="access" name="access" id="access_private" value="private">Private
-						</label>
-					</div>
-        </div>
-          <div class="form-group has-feedback">
-  					<label for="password" class="col-sm-3 control-label">Password</label>
-  					<div class = "col-sm-9">
-  						<input ng-model="password" type="password" class="form-control" name="input_password" id="input_password" placeholder="Password" required disabled>
-		  </div>
-  				</div>
+						   <div class="form-group">
+							   <label for="access" class="col-sm-3 control-label">Access</label>
+							   <div class="radio col-sm-3" ng-init="access='public'">
+								   <label>
+									   <input type="radio" ng-model="access" name="access" id="access_public"
+											  value="public">Public
+								   </label>
+							   </div>
+							   <div class="radio col-sm-6">
+								   <label>
+									   <input type="radio" ng-model="access" name="access" id="access_private"
+											  value="private">Private
+								   </label>
+							   </div>
+						   </div>
+						   <div class="form-group has-feedback">
+							   <label for="password" class="col-sm-3 control-label">Password</label>
+							   <div class="col-sm-9">
+								   <input ng-model="password" type="password" class="form-control" name="input_password"
+										  id="input_password" placeholder="Password" required disabled>
+							   </div>
+						   </div>
 
-  				<div class="form-group">
-  					<label for="password" class="col-sm-3 control-label">Confirm password</label>
-  					<div class = "col-sm-9">
-  						<input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm password" required disabled>
-  					</div>
-  				</div>
+						   <div class="form-group">
+							   <label for="password" class="col-sm-3 control-label">Confirm password</label>
+							   <div class="col-sm-9">
+								   <input type="password" class="form-control" name="confirm_password"
+										  id="confirm_password" placeholder="Confirm password" required disabled>
+							   </div>
+						   </div>
 
-          <div class="form-group">
-            <label for="gender" class="col-sm-3 control-label">Prefered Gender</label>
-            <div class="col-sm-9">
-              <select ng-model="tag1" ng-init="" name="gender" class="form-control" required>
-                <option value="">No Preference</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-              </select>
-            </div>
-          </div>
+						   <div class="form-group">
+							   <label for="gender" class="col-sm-3 control-label">Prefered Gender</label>
+							   <div class="col-sm-9">
+								   <select ng-model="tag1" ng-init="" name="gender" class="form-control" required>
+									   <option value="">No Preference</option>
+									   <option value="male">Male</option>
+									   <option value="female">Female</option>
+								   </select>
+							   </div>
+						   </div>
 
-          <div class="form-group">
-            <label for="graduation_year" class="col-sm-3 control-label">Prefered Graduation year</label>
-            <div class="col-sm-9">
-              <select ng-model="tag2" ng-init="" name="graduation_year" class="form-control">
-                <option value="">No Preference</option>
-                <option value="2016">2016</option> <option value="2015">2015</option> <option value="2014">2014</option>
-                <option value="2013">2013</option> <option value="2012">2012</option> <option value="2011">2011</option>
-                <option value="2010">2010</option> <option value="2009">2009</option> <option value="2008">2008</option>
-                <option value="2007">2007</option> <option value="2006">2006</option> <option value="2005">2005</option>
-                <option value="2004">2004</option> <option value="2003">2003</option> <option value="2002">2002</option>
-                <option value="2001">2001</option> <option value="2000">2000</option> <option value="1999">1999</option>
-                <option value="1998">1998</option> <option value="1997">1997</option> <option value="1996">1996</option>
-                <option value="1995">1995</option>
-              </select>
-            </div>
-          </div>
+						   <div class="form-group">
+							   <label for="graduation_year" class="col-sm-3 control-label">Prefered Graduation
+								   year</label>
+							   <div class="col-sm-9">
+								   <select ng-model="tag2" ng-init="" name="graduation_year" class="form-control">
+									   <option value="">No Preference</option>
+									   <option value="2016">2016</option>
+									   <option value="2015">2015</option>
+									   <option value="2014">2014</option>
+									   <option value="2013">2013</option>
+									   <option value="2012">2012</option>
+									   <option value="2011">2011</option>
+									   <option value="2010">2010</option>
+									   <option value="2009">2009</option>
+									   <option value="2008">2008</option>
+									   <option value="2007">2007</option>
+									   <option value="2006">2006</option>
+									   <option value="2005">2005</option>
+									   <option value="2004">2004</option>
+									   <option value="2003">2003</option>
+									   <option value="2002">2002</option>
+									   <option value="2001">2001</option>
+									   <option value="2000">2000</option>
+									   <option value="1999">1999</option>
+									   <option value="1998">1998</option>
+									   <option value="1997">1997</option>
+									   <option value="1996">1996</option>
+									   <option value="1995">1995</option>
+								   </select>
+							   </div>
+						   </div>
 
-          <div class="form-group">
-  					<label for="major" class="col-sm-3 control-label">Prefered Major</label>
-  					<div class="col-sm-9">
-  						<select ng-model="tag3" ng-init="" name="major" class="form-control">
-  							<option value="">No Preference</option>
-  							<option value="ACCT">ACCT</option> <option value="AE">AE</option> <option value="BCB">BCB</option>
-  						 	<option value="BIBU">BIBU</option> <option value="BIOT">BIOT</option> <option value="BISC">BISC</option>
-  							<option value="CBME">CBME</option> <option value="CEEV">CEEV</option> <option value="CENG">CENG</option>
-  							<option value="CHEM">CHEM</option> <option value="CIEV">CIEV</option> <option value="CIVL">CIVL</option>
-  							<option value="COMP">COMP</option> <option value="COSC">COSC</option> <option value="CPEG">CPEG</option>
-  							<option value="ECOF">ECOF</option> <option value="ECON">ECON</option> <option value="ELEC">ELEC</option>
-  							<option value="ENVS">ENVS</option> <option value="EVMT">EVMT</option> <option value="FINA">FINA</option>
-  							<option value="GBM">GBM</option> <option value="GBUS">GBUS</option> <option value="GCS">GCS</option>
-  							<option value="IEEM">IEEM</option> <option value="IELM">IELM</option> <option value="IIM">IIM</option>
-  							<option value="IS">IS</option> <option value="MAEC">MAEC</option> <option value="MARK">MARK</option>
-  							<option value="MATH">MATH</option> <option value="MECH">MECH</option> <option value="MGMT">MGMT</option>
-  							<option value="OM">OM</option> <option value="PHYS">PHYS</option> <option value="QFIN">QFIN</option>
-  							<option value="RMBI">RMBI</option> <option value="WBB">WBB</option>
-  						</select>
-  					</div>
-  				</div>
+						   <div class="form-group">
+							   <label for="major" class="col-sm-3 control-label">Prefered Major</label>
+							   <div class="col-sm-9">
+								   <select ng-model="tag3" ng-init="" name="major" class="form-control">
+									   <option value="">No Preference</option>
+									   <option value="ACCT">ACCT</option>
+									   <option value="AE">AE</option>
+									   <option value="BCB">BCB</option>
+									   <option value="BIBU">BIBU</option>
+									   <option value="BIOT">BIOT</option>
+									   <option value="BISC">BISC</option>
+									   <option value="CBME">CBME</option>
+									   <option value="CEEV">CEEV</option>
+									   <option value="CENG">CENG</option>
+									   <option value="CHEM">CHEM</option>
+									   <option value="CIEV">CIEV</option>
+									   <option value="CIVL">CIVL</option>
+									   <option value="COMP">COMP</option>
+									   <option value="COSC">COSC</option>
+									   <option value="CPEG">CPEG</option>
+									   <option value="ECOF">ECOF</option>
+									   <option value="ECON">ECON</option>
+									   <option value="ELEC">ELEC</option>
+									   <option value="ENVS">ENVS</option>
+									   <option value="EVMT">EVMT</option>
+									   <option value="FINA">FINA</option>
+									   <option value="GBM">GBM</option>
+									   <option value="GBUS">GBUS</option>
+									   <option value="GCS">GCS</option>
+									   <option value="IEEM">IEEM</option>
+									   <option value="IELM">IELM</option>
+									   <option value="IIM">IIM</option>
+									   <option value="IS">IS</option>
+									   <option value="MAEC">MAEC</option>
+									   <option value="MARK">MARK</option>
+									   <option value="MATH">MATH</option>
+									   <option value="MECH">MECH</option>
+									   <option value="MGMT">MGMT</option>
+									   <option value="OM">OM</option>
+									   <option value="PHYS">PHYS</option>
+									   <option value="QFIN">QFIN</option>
+									   <option value="RMBI">RMBI</option>
+									   <option value="WBB">WBB</option>
+								   </select>
+							   </div>
+						   </div>
 
-				<br>
-				<button ng-click="doCreateTable()" class="btn btn-info" style="float: right;">Create</button>
-			</form>
-			<br><br><br>
-		  </div>
-	       </div>
-            </div>
-         </div>
+						   <br>
+						   <button ng-click="doCreateTable()" class="btn btn-info" style="float: right;">Create</button>
+					   </form>
+					   <br><br><br><br><br><br>
+				   </div>
+				   <div style="margin-top: 200px" class="col-md-4 col-md-offset-1">
 
-       <!-- /END THE FEATURETTES -->
-         <!-- FOOTER -->
-         <hr>
-         <div ng-include="'footer.html'"></div>
-      </div>
-      <!-- /.container -->
+					   <img src="img/dogsTableLarge.png" class="img-responsive" alt="Cinque Terre">
+				   </div>
+			   </div>
 
-		<!-- JavaScript of this page -->
+		   </div>
+	   </div>
 
-		<!-- Angular and Angular-route libraries (v1.5.7) -->
-		<script src="lib/angular.min.js"></script>
-		<script src="lib/angular-route.min.js"></script>
+	   <!-- /END THE FEATURETTES -->
+	   <!-- FOOTER -->
+	   <hr>
+	   <div ng-include="'footer.html'"></div>
+   </div>
+   <!-- /.container -->
 
-		<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
-		<script src="lib/firebase.js"></script>
-		<script src="lib/angularfire.min.js"></script>
-		<script src="js/controller/createTable.js"></script>
+   <!-- JavaScript of this page -->
 
+   <!-- Angular and Angular-route libraries (v1.5.7) -->
+   <script src="lib/angular.min.js"></script>
+   <script src="lib/angular-route.min.js"></script>
+
+   <!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+   <script src="lib/firebase.js"></script>
+   <script src="lib/angularfire.min.js"></script>
+   <script src="js/controller/createTable.js"></script>
 
 
    </body>

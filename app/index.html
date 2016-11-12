@@ -318,8 +318,8 @@
 
 			   <section id="event_box">
 
-				   <article class="event_content roundcard">
-					   <a>
+				   <article class="event_content roundcard" ng-repeat="(key, value) in events">
+					   <a href="event.html?q={{key}}">
 						   <div style="background: url('../img/event-2016-annual-dinner.jpg');
 							width: 250px; 
 							height: 225px; background-repeat: 
@@ -332,70 +332,20 @@
 					   <div class="overlay">
 						   <ul class="stat_bar">
 							   <li class="love"><span>20</span></li>
-							   <li class="star"><span>0</span></li>
-							   <li class="say"><span>5</span></li>
+							   <!--<li class="star"><span>0</span></li>-->
+							   <li class="say"><span ng-bind="countTables(events[key].tables)"></span></li>
 						   </ul>
 					   </div>
 					   <div class="content">
 						   <div class="em">
-							   <div>by CSE Department, UST</div>
-							   17 Dec 2016
+							   <div>by {{events[key].organizer}}</div>
+							   {{events[key].date}}
 						   </div>
-						   <div class="p" data-bind="html: body">範例內容範例內容。</div>
+						   <div class="p" ng-bind="events[key].eventName"></div>
+						   <div class="p" ng-bind="events[key].description"></div>
 					   </div>
 				   </article>
 
-				   <article class="event_content roundcard">
-					   <a>
-						   <div style="background: url('../img/event-2016-annual-dinner.jpg');
-							width: 250px; 
-							height: 225px; background-repeat: 
-							no-repeat; background-position: center; 
-							background-size: 100% 100%; 
-							">
-						   </div>
-					   </a>
-					   <div class="overlay">
-						   <ul class="stat_bar">
-							   <li class="love"><span>20</span></li>
-							   <li class="star"><span>0</span></li>
-							   <li class="say"><span>5</span></li>
-						   </ul>
-					   </div>
-					   <div class="content">
-						   <div class="em">
-							   <div>by CSE Department, UST</div>
-							   17 Dec 2016
-						   </div>
-						   <div class="p" data-bind="html: body">範例內容範例內容。</div>
-					   </div>
-				   </article>
-
-				   <article class="event_content roundcard">
-					   <a>
-						   <div style="background: url('../img/AnnualDinner2015Poster.jpg');
-							width: 250px; 
-							height: 225px; background-repeat: 
-							no-repeat; background-position: center; 
-							background-size: 100% 100%; 
-							">
-						   </div>
-					   </a>
-					   <div class="overlay">
-						   <ul class="stat_bar">
-							   <li class="love"><span>20</span></li>
-							   <li class="star"><span>0</span></li>
-							   <li class="say"><span>5</span></li>
-						   </ul>
-					   </div>
-					   <div class="content">
-						   <div class="em">
-							   <div>by Civil Department, UST</div>
-							   17 Dec 2016
-						   </div>
-						   <div class="p" data-bind="html: body">範例內容範例內容。</div>
-					   </div>
-				   </article>
 
 
 			   </section>

@@ -18,7 +18,7 @@ angular.module('teamform-register-app', ['firebase'])
 
 
 	};
-	console.log("it is register page!")
+	console.log("it is register page!");
 	$scope.name = ""
 	$scope.email = "";
 	$scope.password = "";
@@ -53,8 +53,7 @@ angular.module('teamform-register-app', ['firebase'])
 						'major': major,
 						'local': local,
 						'gradYear': gradYear,
-						'createTime': createTime,
-						'event': ""
+						'createTime': createTime
 						
 					};
 
@@ -80,7 +79,7 @@ angular.module('teamform-register-app', ['firebase'])
 		  // Handle Errors here.
 		  var errorCode = error.code;
 		  var errorMessage = error.message;
-		  console.log(errorCode + ": " + errorMessage)
+		  console.log(errorCode + ": " + errorMessage);
 		  alert("The email is already used! please use another email to register")
 		  
 		});
@@ -92,7 +91,7 @@ angular.module('teamform-register-app', ['firebase'])
 		
 			
 			
-	}
+	};
 
 
 	
