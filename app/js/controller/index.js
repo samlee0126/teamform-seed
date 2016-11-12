@@ -35,10 +35,23 @@ angular.module('teamform-index-app', ['firebase'])
 	.controller('IndexPageCtrl', ['$scope', '$firebaseObject', '$firebaseArray',
 		function($scope, $firebaseObject, $firebaseArray) {
 
-
+            $scope.isLogout = false;
 
 			// Call Firebase initialization code defined in site.js
 			initalizeFirebase();
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                        $scope.isLogin = true;
+                        $scope.isLogout = false;
+                        // update $scope
+                } else {
+                    // No user is signed in.
+                    $scope.isLogin = false;
+                    $scope.isLogout = true;
+                    console.log("YEAH - You did not login lol");
+                }
+                $scope.$apply();
+            });
 
 			// list all events
 			var refPathEvent = "events/";
