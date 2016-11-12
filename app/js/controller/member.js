@@ -148,7 +148,7 @@ angular.module('teamform-member-app', ['firebase'])
 				case "available":
 					// for each table, if it is full, then remove it
 					for (var j = 0; j < $scope.tableInfo.length; j++) {
-						if ($scope.tableInfo[j].full) {
+						if ($scope.countMembers($scope.tableInfo[j]) == 12) {
 							$scope.tableInfo.splice(j, 1);
 							j--;
 						}
@@ -195,7 +195,43 @@ angular.module('teamform-member-app', ['firebase'])
 			}
 		}
 	};
+	
+	// sort tables
+	$scope.sortTable = function() {
+		// get selected value
+		var sortValue = $('#sort-select').val();
+		$scope.sorter;
+		$scope.isReversed = false;
+		switch (sortValue) {
+			// from more seats to less
+			case "seat":
+				$scope.sorter = $scope.countMembers;
+				break;
+			// from newest from oldest
+			case "time":
+				$scope.sorter = $scope.orderByDate;
+				$scope.isReversed = true;
+				break;
+			// by alphabetic order
+			case "table-name":
+				$scope.sorter = "tableName";
+				break;
+			
+		}
+	};
 
+	// for counting number of members
+	$scope.countMembers = function(member) {
+		if (!angular.isObject(member.members)) {
+			return 0;
+		}
+		return Object.keys(member.members).length;
+	};
+
+	// for sorting time and date
+	$scope.orderByDate = function(dateString) {
+		return Date.parse(dateString.createTime);
+	};
 	
 /*		
 	$scope.userID = "";

@@ -54,24 +54,25 @@
 									<option value="grad-year">Graduation year</option>
 								</optgroup>
 							</select>						
-							<select class="selectpicker" title="Sort by" data-style="btn-danger" id="sort-select">
-								<optgroup label="Sort by">
-									<option data-icon="glyphicon-sort-by-attributes-alt">Remaining seats</option>
-									<option data-icon="glyphicon-sort-by-attributes">Created time</option>
-									<option data-icon="glyphicon-sort-by-alphabet">Table name</option>
-									<option data-icon="glyphicon-sort-by-attributes-alt">Number of boys</option>
-									<option data-icon="glyphicon-sort-by-attributes-alt">Number of girls</option>
-								</optgroup>
+							<select class="selectpicker" data-style="btn-danger" id="sort-select"
+								ng-change="sortTable()" ng-model="selectedSorting">
+									<option value="" disabled>Sort by</option>
+									<option value="seat" data-icon="glyphicon-sort-by-attributes-alt">Remaining seats</option>
+									<option value="time" data-icon="glyphicon-sort-by-attributes">Created time</option>
+									<option value="table-name" data-icon="glyphicon-sort-by-alphabet">Table name</option>
+									<option value="boy" data-icon="glyphicon-sort-by-attributes-alt">Number of boys</option>
+									<option value="girl" data-icon="glyphicon-sort-by-attributes-alt">Number of girls</option>
 							</select>
 						</div>
 					</div>
 					<div class="row text-center">
 						<div class="col-12 schedule-container">
 							<div class="schedule-content">
-								<div class="col-md-4 col-sm-6" ng-repeat="table in tableInfo">
+								<div class="col-md-4 col-sm-6" ng-repeat="table in tableInfo | orderBy:sorter:isReversed">
 									<div class="program program-schedule">
 										<h3>{{table.tableName}}
-											<span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+											<span class="glyphicon glyphicon-lock" aria-hidden="true"
+											      ng-hide="table.password == ''"></span>
 										</h3>
 										<p>TableDescription
 										   TableDescription
@@ -83,12 +84,12 @@
 										<div class="progress">
 											<div class="progress-bar progress-bar-custom" role="progressbar"
 											     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-											     style="width: {{table.numberOfMembers*100/12}}%;">
+											     style="width: {{countMembers(table)*100/12}}%;">
 											</div>
 										</div>
 										<div class="progress-text-style">
 											<span class="glyphicon glyphicon-user " aria-hidden="true"></span> 
-											{{table.numberOfMembers}}/ 12
+											{{countMembers(table)}}/ 12
 										</div>
 										<div align="right"><a class="btn-join" href="#">Join Now</a></div>
 									</div>
