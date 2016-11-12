@@ -72,11 +72,11 @@ angular.module('teamform-team-app', ['firebase'])
                       var refPathRequest = "tables/" + tid +"/requestedMembers";
                       retrieveOnceFirebase(firebase, refPathRequest, function(data) {
                         data.forEach(function(childData) {
-                          console.log(childData.val());
+                          console.log(childData.key);
                           refPathMem = "members/";
                           retrieveOnceFirebase(firebase, refPathMem, function(data) {
                       			data.forEach(function(memData) {
-                      				if(memData.key == childData.val()) {
+                      				if(memData.key == childData.key) {
                       					$scope.requestedMembers.push(memData.val());
                       				}
                       			});
@@ -85,15 +85,14 @@ angular.module('teamform-team-app', ['firebase'])
                         });
                       });
 
-                    //extract the information of members in the member list 
+                    //extract the information of members in the member list
                     var refPathRequest = "tables/" + tid +"/members";
                     retrieveOnceFirebase(firebase, refPathRequest, function(data) {
                       data.forEach(function(childData) {
-                        console.log(childData.val());
                         refPathMem = "members/";
                         retrieveOnceFirebase(firebase, refPathMem, function(data) {
                     			data.forEach(function(memData) {
-                    				if(memData.key == childData.val()) {
+                    				if(memData.key == childData.key) {
                     					$scope.members.push(memData.val());
                     				}
                     			});
