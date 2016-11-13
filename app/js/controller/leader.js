@@ -3,6 +3,7 @@ angular.module('teamform-team-app', ['firebase'])
     // Call Firebase initialization code defined in site.js
     console.log("it is team controller!");
 
+    $scope.isLogin = true;
     $scope.requestedMembers = [];
     $scope.members = [];
 
@@ -58,11 +59,20 @@ angular.module('teamform-team-app', ['firebase'])
                 tid = data.child("events").child(eid).child("tid").val();
 
                 var refPathTable = "tables/" + tid;
+                var noOfMembers;
                 console.log(refPathTable);
                 retrieveOnceFirebase(firebase, refPathTable, function(data) {
                     //get one table information
                     $scope.tableName = data.child("tableName").val();
-                    $scope.numberOfMembers = data.child("numberOfMembers").val();
+                    $scope.table = data.val();
+                    // for counting number of members
+                  	$scope.numberOfMembers = function(table) {
+                  		if (!angular.isObject(table.members)) {
+                  			return 0;
+                  		}
+                      noOfMembers = Object.keys(table.members).length;
+                  		return noOfMembers;
+                  	};
                     //check whether there is any request
                     var requestExist = data.child("requestedMembers").val()
                     if(requestExist != null)
@@ -72,11 +82,10 @@ angular.module('teamform-team-app', ['firebase'])
                       var refPathRequest = "tables/" + tid +"/requestedMembers";
                       retrieveOnceFirebase(firebase, refPathRequest, function(data) {
                         data.forEach(function(childData) {
-                          console.log(childData.val());
                           refPathMem = "members/";
                           retrieveOnceFirebase(firebase, refPathMem, function(data) {
                       			data.forEach(function(memData) {
-                      				if(memData.key == childData.val()) {
+                      				if(memData.key == childData.key) {
                       					$scope.requestedMembers.push(memData.val());
                       				}
                       			});
@@ -85,15 +94,14 @@ angular.module('teamform-team-app', ['firebase'])
                         });
                       });
 
-                    //extract the information of members in the member list 
+                    //extract the information of members in the member list
                     var refPathRequest = "tables/" + tid +"/members";
                     retrieveOnceFirebase(firebase, refPathRequest, function(data) {
                       data.forEach(function(childData) {
-                        console.log(childData.val());
                         refPathMem = "members/";
                         retrieveOnceFirebase(firebase, refPathMem, function(data) {
                     			data.forEach(function(memData) {
-                    				if(memData.key == childData.val()) {
+                    				if(childData.val() != "leader" && memData.key == childData.key) {
                     					$scope.members.push(memData.val());
                     				}
                     			});
@@ -101,6 +109,8 @@ angular.module('teamform-team-app', ['firebase'])
                         });
                       });
                     });
+
+
                     // update $scope
                     $scope.$apply();
 
@@ -110,7 +120,7 @@ angular.module('teamform-team-app', ['firebase'])
                         $scope.eventName = data.child("eventName").val();
                         $scope.maxForTable = data.child("maxForEachTable").val();
                         //check whether the table is fulled
-                        if($scope.numberOfMembers == $scope.maxForTable)
+                        if(noOfMembers == $scope.maxForTable)
                           $("#full").removeClass("hide");
                        // update $scope
                         $scope.$apply();
@@ -137,9 +147,43 @@ angular.module('teamform-team-app', ['firebase'])
                         refTable.update({ "tableName" : newTableName, "password" : newTablePassword}, function(){
                             // refresh page
                             window.location.href = "leader.html?q=" + eid;
-                        });  
-                    };    
+                        });
+                    };
 
+                    $scope.newLeader="";
+                    $scope.changeLeader = function () {
+                        var newLeaderName = $scope.newLeader;
+                        var newLeaderId;
+                        //check whether the selection is empty
+                        if($scope.newLeader!="") {
+                          var refPathRequest = "members/";
+                          retrieveOnceFirebase(firebase, refPathRequest, function(data) {
+                            data.forEach(function(childData) {
+                              if(childData.child("name").val() == newLeaderName) {
+                                newLeaderId = childData.key;
+                                var updates = {};
+                                updates[uid + '/events/' + eid +'/role'] = "member";
+                                updates[uid + '/events/' + eid +'/status'] = "confirmed";
+                                updates[newLeaderId + '/events/' + eid +'/role'] = "leader";
+                                updates[newLeaderId + '/events/' + eid +'/status'] = "nostatus";
+                                var refPathMem = "members/";
+                                firebase.database().ref(refPathMem).update(updates);
+                                var refPathTable = "tables/" + tid;
+                                var refTable = firebase.database().ref(refPathTable);
+                                updates= {};
+                                updates['/members/' + newLeaderId] = "leader"
+                                updates['/members/' + uid] = true
+                                refTable.update(updates,function(){
+                                  window.location.href = "event.html?q=" + eid;
+                                });
+                              }
+                              });
+                            });
+                      }
+                      else {
+                        window.location.href = "leader.html?q=" + eid;
+                      }
+                    };
 
                 });
             });
@@ -154,6 +198,6 @@ angular.module('teamform-team-app', ['firebase'])
         }
 
     });
-    
+
 
 }]);

@@ -105,21 +105,20 @@
 					</form>
 					</div>
 					</div>
+
 					<div id="reassignLeader" class="tab-pane fade">
 						<div class="text-center">
 							<h2>Leader Reassignment</h2>
 						</div>
-						<br>
-						<p>Please select the member you want to assign</p>
-						<select class="form-control">
-						<option>CHAN Tai Man</option>
-						<option>CHEUNG Tai Wai</option>
-						<option>LEE Shiu Wai</option>
-						<option>WONG Shiu Ming</option>
-						</select>
-						<p></p>
-						<button type="submit" class="btn btn-primary">Confirm</button>
-						<button type="reset" class="btn btn-default">Cancel</button>
+						<form id="changeLeader_form">
+						<div class="form-group">
+							<label for="newLeader">Please select the member you want to assign</label>
+							<select class="form-control" id="newLeader" ng-model="newLeader">
+								<option ng-repeat="member in members">{{member.name}}</option>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary" ng-click="changeLeader()">Confirm</button>
+						<p><br>* After the reassignment, you <b style="text-transform: uppercase">will become a member</b> of the table and no administration can be performed anymore.</p>
 					</div>
 
 					</div>
@@ -142,7 +141,7 @@
 							<li class="list-group-item"><b>Table name: </b><b>{{tableName}}</b></li>
 						</ul>
 
-						<p>Current Members: {{numberOfMembers}}/{{maxForTable}}</p>
+						<p>Current Members: {{numberOfMembers(table)}}/{{maxForTable}}</p>
 						<div class="progress">
 						<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: {{numberOfMembers/maxForTable*100}}%;">
 						</div>
@@ -181,36 +180,3 @@
 
    </body>
 </html>
-
-<!--
-<p>Person that waiting to approval:</p>
-<table class="table table-bordered">
-<tr><td>
-	<button type="button" class="btn btn-default">Name: CHAN Tai Ming<br>Grad. Year: 2018<br>Major: COMP</button>
-	<button type="button" class="btn btn-default">Name: TSOI Ka Yee<br>Grad. Year: 2020<br>Major: COMP</button>
-	<button type="button" class="btn btn-default">Name: LEE Man Ho<br>Grad. Year: 2016<br>Major: MATH</button>
-	<button type="button" class="btn btn-default">Name: LAI Tai Fung<br>Grad. Year: 2019<br>Major: ISOM</button>
-	<button type="button" class="btn btn-default">Name: HO Ka Ka<br>Grad. Year: 2013<br>Major: MATH</button>
-	</td>
-</tr>
-</table>
-<div class="text-center">
-	<br>
-	<button type="button" class="btn btn-info">Same Major</button>
-	<button type="button" class="btn btn-info">Same Graduation Year</button>
-	<button type="button" class="btn btn-info">Same Gender</button>
-	<button type="button" class="btn btn-info">Another Gender</button>
-	<button type="button" class="btn btn-info">Random</button>
-	<br><br><br><br>
-</div>
-<p>Person that having approval:</p>
-<table class="table table-bordered">
-<tr><td>
-	<button type="button" class="btn btn-primary">Name: CHAN Tai Man<br>Grad. Year: 2019<br>Major: COMP</button>
-	<button type="button" class="btn btn-primary">Name: CEUNG Tai Wai<br>Grad. Year: 2019<br>Major: COMP</button>
-	<button type="button" class="btn btn-primary">Name: LEE Shiu Wai<br>Grad. Year: 2019<br>Major: CPENG</button>
-	<button type="button" class="btn btn-primary">Name: WONG Shiu Ming<br>Grad. Year: 2019<br>Major: MATH</button>
-	</td>
-</tr>
-</table>
--->
