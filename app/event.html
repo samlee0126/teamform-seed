@@ -21,74 +21,112 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/site.css">
+		<link rel="stylesheet" href="css/event-page.css">
+
 
 		<!-- Customized libraries shared by pages -->
 		<script src="js/site.js"></script>
    </head>
    <body ng-controller="eventCtrl">
 		 <div ng-include="'menu.html'"></div>
+       
+		 <div class="container" style="margin-bottom:100px;">
+			
+              <div class="row">
+				<div id="application" class="col-md-8 col-sm-12">
+						<h2><b>{{eventName}}</b></h2>
+                            <hr>
+                            <img class="img-responsive" src="/img/event-banner.jpg" style= "width:900px; height: 300px">
+                            <hr>
+                            <ul class="nav nav-tabs">
+                               <li class="active"><a data-toggle="tab" href="#eventDetail"><b>Event Details</b></a></li>
+                               <li><a data-toggle="tab" href="#role"><b>Role Selection</b></a></li>
+                            </ul>
 
-        <!-- Content of leader start from here-->
-		<div class="container" style="margin-bottom:100px;">
-			<div id="content">
+                            <div class="tab-content">
+                              <div id="eventDetail" class="tab-pane fade in active">
+                                <div class="contatiner detail">
+                                  <h6>Time:</h6> 
+                                   <span id="firebase">{{date}} &nbsp; {{time}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>      
+                                  <h6>Venue:</h6>
+                                   <span id="firebase">{{venue}}</span>
+                                  <br>
+                                  <h6>Organizer:</h6>
+                                   <span id="firebase">{{organizer}}</span>
+                                  <br>
+                                  <h6>Application Deadline:</h6>
+                                   <span id="firebase">{{deadline}} &nbsp; 23:59  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                  <h6>Group size:</h6>
+                                   <span id="firebase">{{maxForEachTable}} people</span>
+                                  <br>
+                                  <h6>Description:</h6>
+                                  <br>
+                                   <span id="firebase">{{description}}</span>
+                               </div>
+                              </div>
+                            <div id="role" class="tab-pane fade">
+                              <div class="container">
+                               <div ng-show="adminIconShown" class="col-sm-4" style="padding-top:10px">
+						          <div class="text-center">
+							        <a href="adminDashboard.html?q={{eid}}"><img src="img/admin.png"></a>
+							        <h5 style="color:grey"><b>Admin</b></h5>
+						          </div>
+					           </div>
 
-				<div id="application" class="col-12 col-sm-8">
-					<div class="tab-content">
-							
-							<h3 style="padding-top:20px"><b>Event Name</b></h3>
-
-							<p style="font-size:150%"">Event Detail</p>
-
-                            {{date}},
-                            {{deadline}},
-                            {{description}},
-                            {{eventName}},
-                            {{maxForEachTable}},
-                            {{numberOfCurrentTable}},
-                    </div>
-				</div>
-
-			</div>
+			                   <div ng-show="leaderIconShown" class="col-sm-4" style="padding-top:10px">
+			                      <div class="text-center">
+			                         <a ng-show="!noRole" href="leader.html?q={{eid}}"><img src="img/leader.png"></a>
+						           	 <a ng-show="noRole" href="createTable.html?q={{eid}}"><img src="img/leader.png"></a>
+			                         <h5 style="color:grey"><b>Leader</b></h5>
+			                      </div>
+			                   </div>
+			                   <div ng-show="memberIconShown" class="col-sm-4" style="padding-top:10px">
+			                      <div class="text-center">
+			                        <a href="member.html?q={{eid}}"><img src="img/member.png"></a>
+			                        <h5 style="color:grey"><b>Member</b></h5>
+			                      </div>
+			                   </div>
+			                   </div>
+                            </div> 
+                            </div>                
+                </div>
+   			
+                <div id="application" class="col-md-4 col-sm-12">
+                    <!--Reference https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/-->    
+							<div id="clockdiv">
+                                <div>
+                                  <span class="days"></span>
+                                  <div class="smalltext">Days</div>
+                                </div>
+                                <div>
+                                   <span class="hours"></span>
+                                   <div class="smalltext">Hours</div>
+                                </div>
+                                <div>
+                                   <span class="minutes"></span>
+                                   <div class="smalltext">Minutes</div>
+                                </div>
+                                <div>
+                                   <span class="seconds"></span>
+                                   <div class="smalltext">Seconds</div>
+                                </div>
+                            </div>
+                </div>
+            </div>   			
 		</div>
-        <div class="container" style="margin-bottom:100px;">
-					<div ng-show="adminIconShown" class="col-sm-4">
-						<div class="text-center">
-							<a href="adminDashboard.html?q={{eid}}"><img src="img/admin.png"></a>
-							<h5 style="color:grey"><b>Admin</b></h5>
-						</div>
-					</div>
 
-			       <div ng-show="leaderIconShown" class="col-sm-4">
-			            <div class="text-center">
-			              <a ng-show="!noRole" href="leader.html?q={{eid}}"><img src="img/leader.png"></a>
-							<a ng-show="noRole" href="createTable.html?q={{eid}}"><img src="img/leader.png"></a>
-			              <h5 style="color:grey"><b>Leader</b></h5>
-			            </div>
-			       </div>
-			       <div ng-show="memberIconShown" class="col-sm-4">
-			            <div class="text-center">
-			              <a href="member.html?q={{eid}}"><img src="img/member.png"></a>
-			              <h5 style="color:grey"><b>Member</b></h5>
-			            </div>
-			       </div>
-                
-		</div>
-
-        <!-- Content of leader -->
+        <!-- Footer -->
 		<div ng-include="'footer.html'"></div>
 
+		<!-- JavaScript of this page -->
+		<!-- Angular and Angular-route libraries (v1.5.7) -->
+		<script src="lib/angular.min.js"></script>
+		<script src="lib/angular-route.min.js"></script>
 
-				<!-- JavaScript of this page -->
+		<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+		<script src="lib/firebase.js"></script>
+		<script src="lib/angularfire.min.js"></script>
 
-				<!-- Angular and Angular-route libraries (v1.5.7) -->
-				<script src="lib/angular.min.js"></script>
-				<script src="lib/angular-route.min.js"></script>
-
-				<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
-				<script src="lib/firebase.js"></script>
-				<script src="lib/angularfire.min.js"></script>
-
-				<script src="js/controller/event.js"></script>
-
+		<script src="js/controller/event.js"></script>
    </body>
 </html>

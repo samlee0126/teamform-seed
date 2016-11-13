@@ -1,0 +1,79 @@
+/*RoundCard CSS*/
+.roundcard {
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+	 transition: 0.3s;
+	 border-radius: 5px;
+	 background-color: rgba(0,91,102,0.4);
+	 opacity: 0.4;}
+		 
+.roundcard:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+	 
+.roundcard img {
+	display:block; 
+	max-width:100%; 
+	max-height:100%; 
+	margin-left:auto; 
+	margin-right:auto;}
+/*End of RoundCard CSS*/
+
+
+/*Clock CSS*/
+/*Reference: https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/*/
+#clockdiv{
+    padding-top: 60px;
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size:30px;
+    
+}
+
+#clockdiv > div{
+    padding: 10px;
+    border-radius: 3px;
+    background: #4f5b66;
+    display: inline-block;
+}
+
+#clockdiv div > span{
+    padding:10px;
+    border-radius: 3px;
+    background: rgba(161,173,186,0.4);
+    display: inline-block;
+}
+
+.smalltext{
+    padding-top: 5px;
+    font-size: 10px;
+}
+/*End of Clock CSS*/
+
+/*Event Detail CSS*/
+.detail{
+    padding-left:10px;
+}
+
+.detail h6{
+    font-size: 14px;
+    display:inline;
+    font-weight:bold;
+    line-height:250%;
+}
+
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+#firebase{
+    font-size:14px;
+    
+}
+
+
+/*End of Event Detail CSS*/
