@@ -119,6 +119,16 @@ angular.module('teamform-team-app', ['firebase'])
                         //get one event information
                         $scope.eventName = data.child("eventName").val();
                         $scope.maxForTable = data.child("maxForEachTable").val();
+                        //check whether the table is confirmed
+                        refPathConfirmTables = refPathEvent + "/confirmTables";
+                        retrieveOnceFirebase(firebase, refPathConfirmTables, function(data) {
+                    			data.forEach(function(confirmTableData) {
+                    				if(confirmTableData.key == tid && confirmTableData.val() == true) {
+                    					$("#confirmed").removeClass("hide");
+                    				}
+                    			});
+                          $scope.$apply();
+                        });
                         //check whether the table is fulled
                         if(noOfMembers == $scope.maxForTable)
                           $("#full").removeClass("hide");
@@ -149,12 +159,12 @@ angular.module('teamform-team-app', ['firebase'])
                             window.location.href = "leader.html?q=" + eid;
                         });
                     };
-
+                    //change leader of the table
                     $scope.newLeader="";
                     $scope.changeLeader = function () {
                         var newLeaderName = $scope.newLeader;
                         var newLeaderId;
-                        //check whether the selection is empty
+                        //check whether the selection is not empty
                         if($scope.newLeader!="") {
                           var refPathRequest = "members/";
                           retrieveOnceFirebase(firebase, refPathRequest, function(data) {
@@ -162,27 +172,32 @@ angular.module('teamform-team-app', ['firebase'])
                               if(childData.child("name").val() == newLeaderName) {
                                 newLeaderId = childData.key;
                                 var updates = {};
+                                //update the role and status of the current leader in members/
                                 updates[uid + '/events/' + eid +'/role'] = "member";
                                 updates[uid + '/events/' + eid +'/status'] = "confirmed";
+                                //update the role and status of the new leader in members/
                                 updates[newLeaderId + '/events/' + eid +'/role'] = "leader";
                                 updates[newLeaderId + '/events/' + eid +'/status'] = "nostatus";
                                 var refPathMem = "members/";
                                 firebase.database().ref(refPathMem).update(updates);
+
                                 var refPathTable = "tables/" + tid;
                                 var refTable = firebase.database().ref(refPathTable);
                                 updates= {};
+                                //update the role of the new leader in tables/
                                 updates['/members/' + newLeaderId] = "leader"
+                                //update the role of the previous leader in tables/
                                 updates['/members/' + uid] = true
                                 refTable.update(updates,function(){
                                   window.location.href = "event.html?q=" + eid;
                                 });
                               }
-                              });
                             });
-                      }
-                      else {
-                        window.location.href = "leader.html?q=" + eid;
-                      }
+                          });
+                        }
+                        else {
+                          window.location.href = "leader.html?q=" + eid;
+                        }
                     };
 
                 });
