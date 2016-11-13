@@ -81,8 +81,8 @@ angular.module('teamform-admin-app', ['firebase'])
 	var refPath, ref, eventName;
 
 	//eventName = getURLParameter("q");
-	refEventPath = "events";	
-	refFeedbackPath = "Feedback";	
+	var refEventPath = "events";	
+	var refFeedbackPath = "Feedback";	
 	
 	refEvent = firebase.database().ref(refEventPath);
 	refFeedback = firebase.database().ref(refFeedbackPath);
@@ -108,7 +108,7 @@ angular.module('teamform-admin-app', ['firebase'])
 		max = max + 1
 	});
 	
-	refEventCreate = "events/";
+	var refEventCreate = "events/";
 	
 	$scope.createEvent = function(){
 				
@@ -145,7 +145,7 @@ angular.module('teamform-admin-app', ['firebase'])
 		}
 		
 		
-		createRef = firebase.database().ref(refEventCreate);
+		var createRef = firebase.database().ref(refEventCreate);
 		createRef.child("e" + max).set({
 			eventName: $scope.events.event_name,
 			description: $scope.events.description,
