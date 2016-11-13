@@ -54,7 +54,7 @@ angular.module('teamform-admin-app', ['firebase'])
 		
 		var createRef = firebase.database().ref("event/" + eID);
 		createRef.set({
-			visible: 0
+			visible: false
 		});
 		
 	};
@@ -63,7 +63,7 @@ angular.module('teamform-admin-app', ['firebase'])
 		
 		var createRef = firebase.database().ref("event/" + eID);
 		createRef.set({
-			visible: 1
+			visible: true
 		});
 		
 	};

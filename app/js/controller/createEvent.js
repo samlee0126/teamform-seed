@@ -145,7 +145,7 @@ angular.module('teamform-createEvent-app', ['firebase'])
 			deadline: deadlineMonth + "-" + deadlineDate + "-" + deadlineYear,
 			numberOfCurrentTable: 0,
 			numberOfCurrentUser: 0,
-			show: 1
+			visible: true
 		});
 		//console.log("success");
 		window.location.href= "../../event.html?event=e"+ max;
