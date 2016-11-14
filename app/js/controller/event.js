@@ -1,5 +1,3 @@
-
-
 angular.module('teamform-event-app', ['firebase'])
 .controller('eventCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$window', function($scope, $firebaseObject, $firebaseArray, $window) {
     // Call Firebase initialization code defined in site.js
@@ -16,12 +14,7 @@ angular.module('teamform-event-app', ['firebase'])
             // An error happened.
             console.log(error)
         });
-
-
     };
-
-
-
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -35,9 +28,6 @@ angular.module('teamform-event-app', ['firebase'])
                 console.log("no this event");
                 return;
             }
-
-
-
 
             // get member information from database by uid
             var refPathMem = "members/" + user.uid;
@@ -98,18 +88,44 @@ angular.module('teamform-event-app', ['firebase'])
                 $scope.description = data.child("description").val();
                 $scope.eventName = data.child("eventName").val();
                 $scope.maxForEachTable = data.child("maxForEachTable").val();
-                $scope.numberOfCurrentTable = data.child("numberOfCurrentTable").val();
                 $scope.time = data.child("time").val();
                 $scope.venue = data.child("venue").val();
                 $scope.organizer = data.child("organizer").val();
-                $scope.maxForEachTable = data.child("maxForEachTable").val();
-
+                
+                //setup for the clock
+                var deadline = new Date(Date.parse($scope.deadline)+86340000);
+                initializeClock('clockdiv1', deadline);
+                var eventTime = new Date(Date.parse($scope.date + " " + $scope.time));
+                initializeClock('clockdiv2', eventTime);
+                //setup for vacancy-bar
+                var tab = data.child("confirmTables").val();
+                var confirmedTab = tableCount(tab);
+                var maxTab = data.child("maxForTable").val();
+                $scope.confirmed = confirmedTab;
+                $scope.maxTab = maxTab;
+                var floatToFixed = +((confirmedTab / maxTab) * 100).toFixed(2);
+                var bindString = floatToFixed + "%";
+                $scope.occupancy = bindString;
+                
+                if(confirmedTab==0){
+                    $scope.zero=true;
+                    $scope.betweenZeroFull=false;
+                    $scope.fullBar=false;
+                }
+                else if(confirmedTab==maxTab){
+                    $scope.zero=false;
+                    $scope.betweenZeroFull=false;
+                    $scope.fullBar=true;
+                }
+                else{
+                    $scope.zero=false;
+                    $scope.betweenZeroFull=true;
+                    $scope.fullBar=false;
+                }
                 // update $scope
                 $scope.$apply();
             });
-
-
-
+            
         //did not login successfully
         } else {
             // No user is signed in.
@@ -119,10 +135,9 @@ angular.module('teamform-event-app', ['firebase'])
         }
 
     });
+ 
 
-
-
-
+//sidebar - Countdown Clock   
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
   var seconds = Math.floor((t / 1000) % 60);
@@ -138,6 +153,7 @@ function getTimeRemaining(endtime) {
   };
 }
 
+
 function initializeClock(id, endtime) {
   var clock = document.getElementById(id);
   var daysSpan = clock.querySelector('.days');
@@ -147,11 +163,24 @@ function initializeClock(id, endtime) {
 
   function updateClock() {
     var t = getTimeRemaining(endtime);
-
-    daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    if(t.days<0){
+        daysSpan.innerHTML = ('00').slice(-2);
+        hoursSpan.innerHTML = ('00').slice(-2);
+        minutesSpan.innerHTML = ('00').slice(-2);
+        secondsSpan.innerHTML = ('00').slice(-2);
+    }
+    else{
+        if(t.days<100){
+         daysSpan.innerHTML = ('0' + t.days).slice(-2);
+        }
+        else{
+         daysSpan.innerHTML = t.days;
+        }
+        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+    }
+    
 
     if (t.total <= 0) {
       clearInterval(timeinterval);
@@ -162,10 +191,14 @@ function initializeClock(id, endtime) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
-initializeClock('clockdiv', deadline);
-
-
-
+//sidebar - vacancy status
+function tableCount(obj){
+    var num=0;
+    for(var table in obj){
+        num++;
+    }
+    return num;
+}
 }]);
+
 

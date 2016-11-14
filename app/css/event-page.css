@@ -20,28 +20,49 @@
 
 /*Clock CSS*/
 /*Reference: https://www.sitepoint.com/build-javascript-countdown-timer-no-dependencies/*/
-#clockdiv{
-    padding-top: 60px;
+#clockdiv1{
     font-family: sans-serif;
     color: #fff;
     display: inline-block;
     font-weight: 100;
     text-align: center;
-    font-size:30px;
-    
+    font-size:30px;   
 }
 
-#clockdiv > div{
+#clockdiv1 > div{
     padding: 10px;
     border-radius: 3px;
-    background: #4f5b66;
+    background: rgb(161,173,186);
     display: inline-block;
 }
 
-#clockdiv div > span{
+#clockdiv1 div > span{
     padding:10px;
     border-radius: 3px;
-    background: rgba(161,173,186,0.4);
+    background: rgb(161,173,186);
+    display: inline-block;
+}
+
+#clockdiv2{
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size:30px;   
+}
+
+#clockdiv2 > div{
+    padding: 10px;
+    border-radius: 3px;
+    background: #00bf96;
+    display: inline-block;
+}
+
+#clockdiv2 div > span{
+    padding:10px;
+    border-radius: 3px;
+    background: #00bf96;
     display: inline-block;
 }
 
@@ -77,3 +98,7 @@
 
 
 /*End of Event Detail CSS*/
+
+.progress{
+    height:30px !important;
+}
