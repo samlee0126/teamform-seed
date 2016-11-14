@@ -32,63 +32,7 @@
 	  	  
    </head>
    <body>
-    
-		<!--
-      <div class="navbar-wrapper">
-	  
-         <div class="container">
-            <nav class="navbar navbar-static-top navbar-default">
-               <div class="container">
-                  <div class="navbar-header">
-                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                     <span class="sr-only">Toggle navigation</span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                     <span class="icon-bar"></span>
-                     </button>
-                     <a class="navbar-brand" href="#">teamform</a>
-                  </div>
-                  <div id="navbar" class="navbar-collapse collapse">
-                     <ul class="nav navbar-nav">
-                        
-                        <li class="dropdown">
-                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
-                           <ul class="dropdown-menu">
-                              <li><a href="#page_about">About teamform</a></li>
-                              <li>
-                              <a href="#page_team">Development team</a>
-                              </li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#">TODO: Add menu items here... </a></li>
-                           </ul>
-                        </li>
-						
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Coverage <span class="caret"></span></a>
-							
-							<ul class="dropdown-menu">
-								<li>
-									<a href="coverage/index.html" target="_blank">Report</a>
-								</li>
-								<li role="separator" class="divider"></li>
-								
-								<li>
-									<a href="unit_tests/test_site.js" target="_blank">test_site.js (sample)</a>
-								</li>
-								
-								<li><a href="#">TODO: Add more test cases here... </a></li>
-							</ul>
-						</li>
-						<li><a href="#feedback">Feedback</a></li>
-						                        
-                     </ul>		
-                  </div>
-               </div>
-            </nav>
-         </div>
-      </div>
-	  -->
-	  
+    	  
       <!-- Admin page -->
       <div class="container" id="page_home" ng-controller="AdminCtrl">
 	  
@@ -117,15 +61,16 @@
 						<th>Event Date</th>
 						<th>Number of Table</th>
 						<th>Deadline</th>
-						<th>Hide Event</th>
+						<th>Show or Hide</th>
 						</tr>
-						<tr ng-repeat="event in paramEvent | orderBy:'$id'" ng-click="goToEvent(event.$id)">
-						<td>{{event.$id}}</td>
-						<td>{{event.eventName}}</td>
-						<td>{{event.date}}</td>
-						<td>{{event.maxForTable}}</td>
-						<td>{{event.deadline}}</td>
-						<td>Hide</td>
+						<tr ng-repeat="event in paramEvent | orderBy:'$id'">
+						<td ng-click="goToEvent(event.$id)"><span ng-bind="event.$id"></span></td>
+						<td ng-click="goToEvent(event.$id)"><span ng-bind="event.eventName"></span></td>
+						<td ng-click="goToEvent(event.$id)"><span ng-bind="event.date"></span></td>
+						<td ng-click="goToEvent(event.$id)"><span ng-bind="event.maxForTable"></span></td>
+						<td ng-click="goToEvent(event.$id)"><span ng-bind="event.deadline"></span></td>
+						<td ng-if="event.visible"><button class="btn" ng-click="hideEvent(event.$id)">Hide</button></td>
+						<td ng-if="!event.visible"><button class="btn" ng-click="showEvent(event.$id)">Show</button></td>
 						</tr>
 						</table>
 				  </div>
@@ -145,12 +90,12 @@
 						<th>Content</th>
 						<th>Date</th>
 						</tr>
-						<tr ng-repeat="feedback in paramFeedback | orderBy:'CreateTime'">
-						<td ng-if="feedback.Email">{{feedback.Email}}</td>
+						<tr ng-repeat="feedback in paramFeedback | orderBy:feedback.CreateTime:true">
+						<td ng-if="feedback.Email"><span ng-bind="feedback.Email"></span></td>
 						<td ng-if="!feedback.Email">Anonymous</td>
-						<td>{{feedback.Name}}</td>
-						<td>{{feedback.Content}}</td>
-						<td><label ng-bind="feedback.CreateTime | date:'medium'"></label></td>
+						<td><span ng-bind="feedback.Name"></span></td>
+						<td><span ng-bind="feedback.Content"></span></td>
+						<td><span ng-bind="feedback.CreateTime | date:'medium'"></span></td>
 						</tr>
 						</table>
 				  </div>
@@ -166,14 +111,6 @@
          <!-- /END THE FEATURETTES -->
          <!-- FOOTER -->
 		<div ng-include="'footer.html'"></div>
-		<!--
-         <hr>
-         <footer>
-            <p class="pull-right"><a href="#">Back to top</a></p>
-            <p>&copy; 2017 COMP3111/H teaching team & IT dog team </p>
-            <p>Powered by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a></p>
-         </footer>
-      </div>-->
       <!-- /.container -->
 
 		<!-- JavaScript of this page -->
