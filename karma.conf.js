@@ -12,16 +12,21 @@ module.exports = function(config) {
 	  'lib/firebase.js',
 	  'lib/angularfire.min.js',	  
 	  'js/*.js',
+	  'js/controller/*.js',
       'unit_tests/*.js'	  
     ],
 	exclude: [
 	],
-	preprocessors: {	 	
-		 'js/site.js' : ['coverage'],		
-		 'js/index.js' : ['coverage'],
-		 'js/admin.js' : ['coverage'],
-		 'js/team.js' : ['coverage'],
-		 'js/member.js' : ['coverage']
+	preprocessors: {
+		'js/controller/index.js' : ['coverage'],
+		'js/controller/admin.js' : ['coverage'],
+		'js/controller/leader.js' : ['coverage'],
+		'js/controller/member.js' : ['coverage'],
+		 'js/site.js' : ['coverage']
+		 //'js/index.js' : ['coverage'],
+		 //'js/admin.js' : ['coverage'],
+		 //'js/team.js' : ['coverage'],
+		 //'js/member.js' : ['coverage']
 	},
 	reporters: ['progress', 'coverage'],
 	coverageReporter: {
