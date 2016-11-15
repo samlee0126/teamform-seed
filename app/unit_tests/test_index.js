@@ -7,21 +7,37 @@ describe('Test feedback', function() {
     beforeEach(module('teamform-index-app','firebase'));
     var $controller;
 
-    beforeEach(inject(function(_$controller_){
-        // The injector unwraps the underscores (_) from around the parameter names when matching
+
+    beforeEach(inject(function(_$controller_,_$firebaseObject_,_$firebaseArray_){
         $controller = _$controller_;
+        $firebaseObject = _$firebaseObject_;
+        $firebaseArray = _$firebaseArray_;
     }));
 
 
     describe('submitFeedback Coverage Test', function() {
 
-
-
-        it('logout button shown if user login', function() {
+        it('normal flow of user', function() {
 
             var $scope = {};
-            var controller = $controller('IndexPageCtrl', { $scope: $scope });
+            var controller = $controller('IndexPageCtrl',{$scope: $scope, $firebaseObject: $firebaseObject, $firebaseArray: $firebaseArray});
+            var user = true;
+            //logout
+            $scope.showLogButton(user);
             expect($scope.isLogin).toEqual(true);
+            expect($scope.isLogout).toEqual(false);
+            firebase.app().delete().then(function() {
+                console.log("[DEFAULT] App is Gone Now");
+            });
+            // without login
+            user = false;
+            $scope.showLogButton(user);
+            expect($scope.isLogin).toEqual(false);
+            expect($scope.isLogout).toEqual(true);
+
+            // table count in the event list for one event
+            expect($scope.countTables({"table":"321"})).toEqual(1);
+            expect($scope.countTables("null")).toEqual(0);
 
             firebase.app().delete().then(function() {
                 console.log("[DEFAULT] App is Gone Now");
@@ -29,8 +45,10 @@ describe('Test feedback', function() {
 
         });
 
-        it('successfully sent feedback', function() {
-            initalizeFirebase();
+
+
+        it('normal flow of sending feedback form', function() {
+            /*initalizeFirebase();*/
             var $scope = {};
             var controller = $controller('FeedbackCtrl', { $scope: $scope });
             $scope.feedbackEmail = "mary@gmail.com";
@@ -49,7 +67,9 @@ describe('Test feedback', function() {
 
             expect($scope.submitFeedback.newFeedback).toEqual(newFeedback);
 
-
+            firebase.app().delete().then(function() {
+                console.log("[DEFAULT] App is Gone Now");
+            });
 
         });
     });
@@ -58,34 +78,41 @@ describe('Test feedback', function() {
 });
 
 
-/*
- $scope.submitFeedback = function() {
+// it('user login, logout button show', function() {
+//
+//     var $scope = {};
+//     var controller = $controller('IndexPageCtrl',{$scope: $scope, $firebaseObject: $firebaseObject, $firebaseArray: $firebaseArray});
+//
+//     firebase.app().delete().then(function() {
+//         console.log("[DEFAULT] App is Gone Now");
+//     });
+//
+// });
 
 
- var feedbackEmail = $.trim( $scope.feedbackEmail );
- var feedbackName = $.trim( $scope.feedbackName );
- var feedbackContent = $.trim( $scope.feedbackContent );
- var feedbackTime = new Date().toUTCString();
-
- if ( feedbackContent !== '') {
-
- var newFeedback = {
- 'Name': feedbackName,
- 'Email': feedbackEmail,
- 'Content': feedbackContent,
- 'CreateTime': feedbackTime
- };
- console.log(newFeedback)
- var refPath = "Feedback";
- var ref = firebase.database().ref(refPath);
-
- ref.push(newFeedback, function(){
- window.location.href= "index.html";
- });
-
- }
- }
-
-
- }]);
- */
+// it('only one table', function() {
+//
+//     var $scope = {};
+//     var controller = $controller('IndexPageCtrl',{$scope: $scope, $firebaseObject: $firebaseObject, $firebaseArray: $firebaseArray});
+//
+//
+//     expect($scope.countTables({"table":"321"})).toEqual(1);
+//
+//     firebase.app().delete().then(function() {
+//         console.log("[DEFAULT] App is Gone Now");
+//     });
+//
+// });
+//
+// it('no table', function() {
+//
+//     var $scope = {};
+//     var controller = $controller('IndexPageCtrl',{$scope: $scope, $firebaseObject: $firebaseObject, $firebaseArray: $firebaseArray});
+//
+//     expect($scope.countTables("null")).toEqual(0);
+//
+//     firebase.app().delete().then(function() {
+//         console.log("[DEFAULT] App is Gone Now");
+//     });
+//
+// });

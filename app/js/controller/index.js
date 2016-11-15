@@ -33,6 +33,7 @@ $(document).ready(function(){
 
 });
 */
+
 angular.module('teamform-index-app', ['firebase'])
 	.controller('IndexPageCtrl', ['$scope', '$firebaseObject', '$firebaseArray',
 		function($scope, $firebaseObject, $firebaseArray) {
@@ -42,16 +43,7 @@ angular.module('teamform-index-app', ['firebase'])
 			// Call Firebase initialization code defined in site.js
 			initalizeFirebase();
             firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
-                        $scope.isLogin = true;
-                        $scope.isLogout = false;
-                        // update $scope
-                } else {
-                    // No user is signed in.
-                    $scope.isLogin = false;
-                    $scope.isLogout = true;
-                    console.log("YEAH - You did not login lol");
-                }
+				$scope.showLogButton(user);
                 $scope.$apply();
             });
 
@@ -86,6 +78,19 @@ angular.module('teamform-index-app', ['firebase'])
 
 			};
 
+			$scope.showLogButton = function (user) {
+				if (user) {
+					$scope.isLogin = true;
+					$scope.isLogout = false;
+					// update $scope
+				} else {
+					// No user is signed in.
+					$scope.isLogin = false;
+					$scope.isLogout = true;
+					console.log("YEAH - You did not login lol");
+				}
+			}
+
 	}])
 	.controller('FeedbackCtrl', ['$scope', '$firebaseObject', '$firebaseArray',
 		function($scope, $firebaseObject, $firebaseArray) {
@@ -116,7 +121,7 @@ angular.module('teamform-index-app', ['firebase'])
 						'Content': feedbackContent,
 						'CreateTime': feedbackTime
 					};
-					console.log(newFeedback)
+					console.log(newFeedback);
 					var refPath = "Feedback";
 					var ref = firebase.database().ref(refPath);
 
