@@ -1,3 +1,5 @@
+/*
+
 $(document).ready(function(){
 
 
@@ -30,7 +32,7 @@ $(document).ready(function(){
 
 
 });
-
+*/
 angular.module('teamform-index-app', ['firebase'])
 	.controller('IndexPageCtrl', ['$scope', '$firebaseObject', '$firebaseArray',
 		function($scope, $firebaseObject, $firebaseArray) {
