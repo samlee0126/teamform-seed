@@ -1,4 +1,76 @@
 $(document).ready(function(){
+	//Not allow enter in Map Fields
+	$("#googlemapByAddr").on("keypress",function(e) {
+		var key = e.keyCode;
+		// If the user has pressed enter
+		if (key == 13) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	});
+
+	$("#googlemapByGPS").on("keypress",function(e) {
+		var key = e.keyCode;
+		// If the user has pressed enter
+		if (key == 13) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	});
+
+	//map modal
+	$('#mapModal').on('show.bs.modal', function () {
+
+		//empty the previous search words
+		$('#googlemapByGPS').val('');
+		$('#googlemapByAddr').val('');
+
+		setTimeout(function () {
+			google.maps.event.trigger(map, 'resize');
+			google.maps.event.addListener(map, 'click', function(event) {
+				marker.setPosition(event.latLng);
+				var yeri = event.latLng;
+				saveCoordinate(yeri.lat(), yeri.lng());
+				infowindow.setContent("(" + position[0] + "," + position[1] + ")");
+			});
+			google.maps.event.addListener(map, 'mousemove', function(event) {
+				var yeri = event.latLng;
+				document.getElementById("mlat").innerHTML = "(" + yeri.lat().toFixed(6) + "," +yeri.lng().toFixed(6)+ ")";
+			});
+		}, 2000); //wait for modal pop up
+	});
+
+	//click this button to search map by address
+	$('#searchByAddr').click(function(e){
+		e.preventDefault();
+		var address = document.getElementById("googlemapByAddr").value;
+		if(address == "")
+			return false;
+		codeAddress(address);
+	});
+
+	//click this button to search map by GPS
+	$('#searchByGPS').click(function(e){
+		e.preventDefault();
+		var gps = document.getElementById("googlemapByGPS").value;
+		if(gps == "")
+			return false;
+		codeCoordinate(gps);
+	});
+
+
+
+
+
+});
+
+$(document).ready(function(){
+
+
 	
     var today = new Date();
 
@@ -47,14 +119,21 @@ angular.module('teamform-createEvent-app', ['firebase'])
 		table_num: '',
 		people_num: '',
 		organizer: '',
-		deadline: ''
-	}
+		deadline: '',
+		gps: '22.336130,114.263942'
+	};
 	
 	// Initialize $scope.param as an empty JSON object
 	$scope.param = {};
 			
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
+
+
+	$scope.saveGoogleMap = function () {
+		var gps = $('#latlngspan').text().substr(1, $('#latlngspan').text().length-2); // (123,123) --> 123,123
+		$scope.events.gps = gps;
+	};
 	$scope.doLogout = function () {
 
 		firebase.auth().signOut().then(function() {
@@ -69,6 +148,29 @@ angular.module('teamform-createEvent-app', ['firebase'])
 
 
 	};
+
+	$scope.showLogButton = function (user) {
+		if (user) {
+			$scope.isLogin = true;
+			$scope.isLogout = false;
+			// update $scope
+		} else {
+			// No user is signed in.
+			$scope.isLogin = false;
+			$scope.isLogout = true;
+			console.log("YEAH - You did not login lol");
+		}
+	};
+
+	firebase.auth().onAuthStateChanged(function(user) {
+		if (user) {
+			$scope.showLogButton(user);
+		}else{
+			console.log("YEAH - You did not login lol");
+			sessionStorage.setItem("urlAfterLogin","createEvent.html");
+			window.location.href = "signIn.html"; // default redirect page is index
+		}
+	});
 	
 	var refPath, ref;
 
@@ -142,9 +244,10 @@ angular.module('teamform-createEvent-app', ['firebase'])
 			maxForTable: $scope.events.table_num,
 			maxForEachTable: $scope.events.people_num,
 			organizer: $scope.events.organizer,
+			gps: $scope.events.gps,
 			deadline: deadlineMonth + "-" + deadlineDate + "-" + deadlineYear,
-			numberOfCurrentTable: 0,
-			numberOfCurrentUser: 0,
+			// numberOfCurrentTable: 0,
+			// numberOfCurrentUser: 0,
 			visible: true
 		});
 		//console.log("success");

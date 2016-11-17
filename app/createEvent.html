@@ -7,31 +7,31 @@
       <meta name="keywords" content="teamform, team">
       <!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	  
-      <!-- libraries and CSS 	  
-			JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)		
+
+      <!-- libraries and CSS
+			JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)
 			Bootstrap: Library and CSS for bootstrap framework (v3.3.7 is used)
-			Font-awesome: More icons for the web development (v4.6.3 is used)		
-			site.css: A customized css for our web application. Not from any web framework. 
+			Font-awesome: More icons for the web development (v4.6.3 is used)
+			site.css: A customized css for our web application. Not from any web framework.
       -->
-      <script src="lib/jquery.min.js"></script>      
+      <script src="lib/jquery.min.js"></script>
       <script src="lib/bootstrap.min.js"></script>
-		
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
 
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">  
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
       <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.4.5/css/bootstrapvalidator.min.css"/>-->
-	  
+
       <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
       <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-	  
+
 	  <link rel="stylesheet" href="css/site.css">
       <!-- Customized libraries shared by pages -->
       <script src="js/site.js"></script>
-	  
+
 	  <style>
 		.form-horizontal .control-label {
 			text-align: left;
@@ -42,81 +42,139 @@
    <body>
       <!-- Register page -->
       <div class="container" id="page_home"  ng-controller="CreateEventCtrl">
-	  
+
       <!-- MENU -->
       <div ng-include="'menu.html'"></div>
-	  
+
          <div class="row">
             <div class="col-md-12">
                <div class="row">
                   <div class="col-md-6">
                      	<h1>Create Event</h1><br>
 			<form id="create_event_form" class="form-horizontal" data-toggle="validator" role="form">
-			
+
 				<div class="form-group">
 					<label for="event_name" class="col-sm-3 control-label">Event Name</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" ng-model="events.event_name" name="event_name" placeholder="Event Name" required>
-					</div>				
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="description" class="col-sm-3 control-label">Description</label>
 					<div class="col-sm-9">
 						<textarea class="form-control" style="resize:none;" ng-model="events.description" name="description" placeholder="Event Description"></textarea>
-					</div>				
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="date" class="col-sm-3 control-label">Date</label>
 					<div class="col-sm-9">
 						<input type="date" id="date" class="form-control" ng-model="events.date" name="date" placeholder="Date" required>
-					</div>				
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="time" class="col-sm-3 control-label">Time</label>
 					<div class="col-sm-9">
 						<input type="time" class="form-control" ng-model="events.time" name="time" placeholder="Time" required>
-					</div>				
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="venue" class="col-sm-3 control-label">Venue</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" ng-model="events.venue" name="venue" placeholder="Venue" required>
-					</div>				
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="table_num" class="col-sm-3 control-label">Number of Table</label>
 					<div class="col-sm-9">
 						<input type="number" class="form-control" ng-model="events.table_num" name="table_num" min="0" max="200" placeholder="Table Number" required>
-					</div>				
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="people_num" class="col-sm-3 control-label">Number of People per Table</label>
 					<div class="col-sm-9">
 						<input type="number" class="form-control" ng-model="events.people_num" name="people_num" min="0" max="99" placeholder="People Number" required>
-					</div>				
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="organizer" class="col-sm-3 control-label">Organizer</label>
 					<div class="col-sm-9">
 						<input type="text" class="form-control" ng-model="events.organizer" name="organizer" placeholder="Organizer" required>
-					</div>				
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="deadline" class="col-sm-3 control-label">Deadline</label>
 					<div class="col-sm-9">
 						<input type="date" id="deadline" class="form-control" ng-model="events.deadline" name="deadline" placeholder="Deadline" required>
-					</div>				
+					</div>
 				</div>
-					
+
+				<div class="form-group">
+					<label for="gps" class="col-sm-3 control-label">Map Location</label>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<input type="text" id="gps" ng-model="events.gps" class="form-control" name="gps"
+								   placeholder="Google Map">
+							<span class="input-group-addon" data-toggle="modal" data-target="#mapModal"><div
+									class="glyphicon glyphicon glyphicon-map-marker"></div></span>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- Map Modal -->
+				<div class="modal fade" id="mapModal" tabindex="-1" role="dialog"
+					 aria-labelledby="mapModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="mapModalLabel">Google Map - Find your location</h4>
+							</div>
+							<div class="modal-body">
+								<div>
+									<label for="googlemapByAddr">Search By Place Name</label>
+									<div class="input-group">
+										<input id="googlemapByAddr" class="form-control" type="text"
+											   placeholder="Type a place name" required="">
+										<span class="input-group-addon" id="searchByAddr"><i
+												class="glyphicon glyphicon-search"></i></span>
+									</div>
+								</div>
+								<div>
+									<label for="googlemapByGPS">Search By Latitude,Longitude</label>
+									<div class="input-group">
+										<input id="googlemapByGPS" class="form-control" type="text"
+											   placeholder="Type a coordinate" required="">
+										<span class="input-group-addon" id="searchByGPS"><i
+												class="glyphicon glyphicon-search"></i></span>
+									</div>
+								</div>
+								<br>
+								<div id="latlongmap" style="width: 565px; height: 300px;"></div>
+								<div>Current location: <span id="mlat">(0,0)</span></div>
+								<div>Marked location: <span id="latlngspan">(0,0)</span></div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" id="modal_save" ng-click="saveGoogleMap()" class="btn btn-default"
+										data-dismiss="modal">Save
+								</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<br>
-				<button type="submit" class="btn btn-info" ng-click="createEvent()">Create</button>		
+				<button type="submit" class="btn btn-info" ng-click="createEvent()">Create</button>
 			</form>
 			<br><br><br>
 		  </div>
 	       </div>
             </div>
          </div>
-                    
+
        <!-- /END THE FEATURETTES -->
          <!-- FOOTER -->
          <hr>
@@ -128,12 +186,12 @@
 
 		<!-- Angular and Angular-route libraries (v1.5.7) -->
 		<script src="lib/angular.min.js"></script>
-		<script src="lib/angular-route.min.js"></script>        
+		<script src="lib/angular-route.min.js"></script>
 
 		<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
-		<script src="lib/firebase.js"></script>     
+		<script src="lib/firebase.js"></script>
 		<script src="lib/angularfire.min.js"></script>
-		
+
 		<script src="js/controller/createEvent.js"></script>
 
    </body>

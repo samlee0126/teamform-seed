@@ -1,4 +1,115 @@
+/* Google Map */
+var map;
+var geocoder;
+var marker;
+var infowindow;
+var position = [22.336130,114.263942]; //default location
 
+function initialize() {
+  var latlng = new google.maps.LatLng(position[0], position[1]);
+  var myOptions = {
+    zoom: 16,
+    center: latlng,
+    panControl: true,
+    scrollwheel: false,
+    scaleControl: true,
+    overviewMapControl: true,
+    overviewMapControlOptions: { opened: true }
+    //mapTypeId: google.maps.MapTypeId.HYBRID
+  };
+  map = new google.maps.Map(document.getElementById("latlongmap"),  //div to display map
+      myOptions);
+  geocoder = new google.maps.Geocoder();
+  marker = new google.maps.Marker({
+    position: latlng,
+    map: map
+  });
+
+  map.streetViewControl = false;
+  infowindow = new google.maps.InfoWindow({
+    content: "(" + position[0] + "," + position[1] + ")"
+  });
+
+}
+
+function codeAddress(addressInput) {
+  var address = addressInput; //input value
+  if (address == '') {
+    alert("Address can not be empty!");
+    return;
+  }
+  geocoder.geocode({'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      if (results[0]) {
+        map.setZoom(16);
+        map.setCenter(results[0].geometry.location);
+        marker.setPosition(results[0].geometry.location);
+
+        saveCoordinate(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+
+        infowindow.setContent("(" + position[0] + "," + position[1] + ")");
+
+        if (infowindow) {
+          infowindow.close();
+        }
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map, marker);
+        });
+        infowindow.open(map, marker);
+      } else
+        window.alert('No results found');
+    } else
+    //window.alert('Geocoder failed due to: ' + status);
+      window.alert('Please try again!');
+  });
+}
+
+function codeCoordinate(coordinateInput) {
+  var input = coordinateInput; //input value
+  var latlngStr = input.split(',', 2);
+  var coordinate = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+  geocoder.geocode({'location': coordinate}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+        map.setZoom(16);
+        map.setCenter(coordinate);
+        marker.setPosition(coordinate);
+
+        saveCoordinate(parseFloat(latlngStr[0]), parseFloat(latlngStr[1]));
+
+        infowindow.setContent(results[1].formatted_address);
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map, marker);
+        });
+        infowindow.open(map, marker);
+      } else
+        window.alert('No results found');
+    } else
+    //window.alert('Geocoder failed due to: ' + status);
+      window.alert('Please try again!');
+  });
+}
+
+function saveCoordinate(lat, lng) {
+  position[0] = lat.toFixed(6);
+  position[1] = lng.toFixed(6);
+  var latlong = "(" + position[0] + "," + position[1] + ")";
+  document.getElementById('latlngspan').innerHTML =  latlong;
+  console.log(latlong);
+}
+
+function loadScript() {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCxZrqOPeHCj40_QJ_7g1SQdJJux4hd0hY&sensor=false&callback=initialize';
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+
+/* End of Google Map */
 //
 // How to parse parameters from URL string
 // Reference: http://stackoverflow.com/questions/11582512/how-to-get-url-parameters-with-javascript/11582513#11582513
