@@ -23,12 +23,24 @@ angular.module('teamform-team-app', ['firebase'])
 
     };
 
+    $scope.showLogButton = function (user) {
+        if (user) {
+            $scope.isLogin = true;
+            $scope.isLogout = false;
+            // update $scope
+        } else {
+            // No user is signed in.
+            $scope.isLogin = false;
+            $scope.isLogout = true;
+            console.log("YEAH - You did not login lol");
+        }
+    };
 
     var tid;
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-
+            $scope.showLogButton(user);
             var eid = getURLParameter("q");
             var uid = user.uid;
 

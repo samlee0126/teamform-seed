@@ -88,9 +88,9 @@
 							var tableName = $scope.tableName;
 							var password = $scope.password;
 							var createTime = new Date().toUTCString();
-							var tag1 = $scope.tag1;
-							var tag2 = $scope.tag2;
-							var tag3 = $scope.tag3;
+							var tag1 = ($scope.tag1) ? tag1 = $scope.tag1 : tag1 = "" ;
+							var tag2 = ($scope.tag2) ? tag2 = $scope.tag2 : tag2 = "" ;
+							var tag3 = ($scope.tag3) ? tag3 = $scope.tag3 : tag3 = "" ;
 							var eid = $scope.eid;
 							var uid = $scope.uid;
 
@@ -121,13 +121,20 @@
 							reftable.set(newTableData, function(){
 
 								// update event json
-								var refPathEvent = "events/" + eid + "/tables/" + tid;
-								var refEvent = firebase.database().ref(refPathEvent);
+								var refPathEventTable = "events/" + eid + "/tables/" + tid;
+								var refEvent = firebase.database().ref(refPathEventTable);
 
 								refEvent.set({ active : true}, function(){
 									// Finally, go back to the front-end
 									//window.location.href = "index.html";
 								});
+
+								//update events/members/uid
+								var refPathEventTable = "events/" + eid + "/members/" + uid;
+								var refEventMem = firebase.database().ref(refPathEventTable);
+
+								refEventMem.set(true, function(){});
+
 
 								var refPathMember = "members/" + $scope.uid + "/events/" + eid;
 								var refMember = firebase.database().ref(refPathMember);

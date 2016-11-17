@@ -112,3 +112,14 @@ body::-webkit-scrollbar-thumb{
 	background-color:#848484;
 	border-radius:4px
 }
+
+
+
+/* Modal CSS */
+.modal-open {
+	max-height: calc(100vh - 212px);
+	overflow-y: auto;
+}
+.glyphicon-search, .glyphicon-map-marker{
+	cursor: pointer;
+}

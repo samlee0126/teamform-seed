@@ -16,9 +16,22 @@ angular.module('teamform-event-app', ['firebase'])
         });
     };
 
+    $scope.showLogButton = function (user) {
+        if (user) {
+            $scope.isLogin = true;
+            $scope.isLogout = false;
+            // update $scope
+        } else {
+            // No user is signed in.
+            $scope.isLogin = false;
+            $scope.isLogout = true;
+            console.log("YEAH - You did not login lol");
+        }
+    };
+
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-
+            $scope.showLogButton(user);
             var eid = getURLParameter("q");
             $scope.eid = getURLParameter("q");
 
@@ -91,7 +104,14 @@ angular.module('teamform-event-app', ['firebase'])
                 $scope.time = data.child("time").val();
                 $scope.venue = data.child("venue").val();
                 $scope.organizer = data.child("organizer").val();
-                
+                $scope.gps = data.child("gps").val();
+
+                // Google map
+                if ($scope.gps){
+                    google.maps.event.trigger(map, 'resize');
+                    codeCoordinate($scope.gps);
+                }
+
                 //setup for the clock
                 var deadline = new Date(Date.parse($scope.deadline)+86340000);
                 initializeClock('clockdiv1', deadline);
