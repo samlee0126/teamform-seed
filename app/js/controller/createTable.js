@@ -140,7 +140,7 @@
 								var refMember = firebase.database().ref(refPathMember);
 
 								// save the role and tid in this event for member
-								refMember.update({ role : "leader", tid : tid}, function(){
+								refMember.update({ role : "leader", tid : tid , status: "confirmed"}, function(){
 									// Finally, go back to the front-end
 									window.location.href = "leader.html?q=" + eid;
 								});

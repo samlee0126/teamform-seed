@@ -65,14 +65,23 @@ angular.module('teamform-event-app', ['firebase'])
                 //check if the user is admin or non-admin
                 var userRole = data.child("userRole").val();
                 if (!userRole) {
-                    var status = data.child("events").child(eid).child("role").val();
+                    var role = data.child("events").child(eid).child("role").val();
+                    var status = data.child("events").child(eid).child("status").val();
                     // check if the non-admin user is member or leader in this event
 
-                    if (status == "member") {
+                    if (role == "member") {
+
+                        if (status == "rejected") {
+                            $scope.noRole = true;
+                            $scope.memberIconShown = true;
+                            $scope.leaderIconShown = true;
+                            $scope.adminIconShown = false;
+                        }
+
                         $scope.memberIconShown = true;
                         $scope.leaderIconShown = false;
                         $scope.adminIconShown = false;
-                    } else if (status == "leader") {
+                    } else if (role == "leader") {
                         $scope.memberIconShown = false;
                         $scope.leaderIconShown = true;
                         $scope.adminIconShown = false;

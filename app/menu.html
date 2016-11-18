@@ -1,48 +1,53 @@
-  <title>sitAround@UST - Online Reservation and Team-forming Platform</title>
+<title>sitAround@UST - Online Reservation and Team-forming Platform</title>
+<div class="menu">
   <nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li style="margin-top: -5px"><a class="navbar-brand" href="index.html"><img src="img/ITDog_logo.png" width="30px" height="28px"/></a></li>
+          <li><a href="index.html##page_about">About</a></li>
+          <li><a href="index.html##events">Events</a></li>
+          <li><a href="index.html##page_team">Developers</a></li>
+          <li><a href="index.html##feedback">Feedback</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Coverage <span class="caret"></span></a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <a href="coverage/index.html" target="_blank">Report</a>
+              </li>
+              <li role="separator" class="divider"></li>
+
+              <li>
+                <a href="unit_tests/test_site.js" target="_blank">test_site.js (sample)</a>
+                <a href="unit_tests/test_index.js" target="_blank">test_index.js</a>
+                <a href="unit_tests/test_admin.js" target="_blank">test_admin.js</a>
+                <a href="unit_tests/test_leader.js" target="_blank">test_leader.js</a>
+                <a href="unit_tests/test_member.js" target="_blank">test_member.js</a>
+              </li>
+
+              <!--<li><a href="#">TODO: Add more test cases here... </a></li>-->
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a ng-show="isLogout" id="register" href="register.html" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a ng-show="isLogout" id="signin" href="signIn.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li><a ng-show="isLogin" id="logout" href="" ng-click="doLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+          <!--<a ng-show="isLogout" id="signin" class="btn btn-primary navbar-btn" href="signIn.html">Sign in</a>-->
+          <!--<a ng-show="isLogout" id="register" class="btn btn-primary navbar-btn" href="register.html">Register</a>-->
+        </ul>
+      </div>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-		<li style="margin-top: -5px"><a class="navbar-brand" href="index.html"><img src="img/ITDog_logo.png" width="30px" height="28px"/></a></li>
-        <li><a href="index.html##page_about">About</a></li>
-        <li><a href="index.html##events">Events</a></li>
-        <li><a href="index.html##page_team">Developers</a></li>
-        <li><a href="index.html##feedback">Feedback</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Coverage <span class="caret"></span></a>
-
-          <ul class="dropdown-menu">
-            <li>
-              <a href="coverage/index.html" target="_blank">Report</a>
-            </li>
-            <li role="separator" class="divider"></li>
-
-            <li>
-              <a href="unit_tests/test_site.js" target="_blank">test_site.js (sample)</a>
-              <a href="unit_tests/test_index.js" target="_blank">test_index.js</a>
-              <a href="unit_tests/test_admin.js" target="_blank">test_admin.js</a>
-              <a href="unit_tests/test_leader.js" target="_blank">test_leader.js</a>
-              <a href="unit_tests/test_member.js" target="_blank">test_member.js</a>
-            </li>
-
-            <!--<li><a href="#">TODO: Add more test cases here... </a></li>-->
-          </ul>
-        </li>
-      </ul>
-      <ul style="padding-right: 20px;"  class="nav navbar-right">
-        <a ng-show="isLogin" id="logout" class="btn btn-primary navbar-btn" ng-click="doLogout()">Sign out</a>
-        <a ng-show="isLogout" id="signin" class="btn btn-primary navbar-btn" href="signIn.html">Sign in</a>
-        <a ng-show="isLogout" id="register" class="btn btn-primary navbar-btn" href="register.html">Register</a>
-      </ul>
-  </div>
   </nav>
-  <br><br><br>
+</div>
+<br><br><br>

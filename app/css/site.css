@@ -123,3 +123,17 @@ body::-webkit-scrollbar-thumb{
 .glyphicon-search, .glyphicon-map-marker{
 	cursor: pointer;
 }
+
+
+/* Menu Css */
+.menu
+{
+	width:100%;
+	height: auto;
+	padding: 0 10px;
+	position: fixed;
+	margin: 0px;
+	z-index: 1;
+	opacity: 0.8;
+	font-weight: bold;
+}
