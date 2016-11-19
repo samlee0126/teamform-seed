@@ -19,7 +19,19 @@
 
 
 						};
-
+						$scope.showLogButton = function (user) {
+							if (user) {
+								$scope.isLogin = true;
+								$scope.isLogout = false;
+								$scope.username = user.displayName;
+								// update $scope
+							} else {
+								// No user is signed in.
+								$scope.isLogin = false;
+								$scope.isLogout = true;
+								console.log("YEAH - You did not login lol");
+							}
+						};
 						// var refPathEvent = "events/e1";
 						// retrieveOnceFirebase(firebase, refPathEvent, function(data) {
 						// 	$scope.eventName = data.child("eventName").val();
@@ -28,10 +40,12 @@
 						// });
 
 						firebase.auth().onAuthStateChanged(function(user) {
+							$scope.showLogButton(user);
 							if (user) {
 								var eid = getURLParameter("q");
 								$scope.uid = user.uid;
 								$scope.eid = getURLParameter("q");
+
 
 								// check the url contains eid or not
 								if (eid == null || eid == "") {

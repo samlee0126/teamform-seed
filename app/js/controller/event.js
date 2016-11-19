@@ -20,6 +20,7 @@ angular.module('teamform-event-app', ['firebase'])
         if (user) {
             $scope.isLogin = true;
             $scope.isLogout = false;
+            $scope.username = user.displayName;
             // update $scope
         } else {
             // No user is signed in.
