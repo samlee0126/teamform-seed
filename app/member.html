@@ -84,14 +84,21 @@
 										<div class="progress">
 											<div class="progress-bar progress-bar-custom" role="progressbar"
 											     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-											     style="width: {{countMembers(table)*100/12}}%;">
+											     style="width: {{countRequestedMembers(table)*100/12}}%;">
 											</div>
 										</div>
 										<div class="progress-text-style">
 											<span class="glyphicon glyphicon-user " aria-hidden="true"></span> 
-											{{countMembers(table)}}/ 12
+											{{countRequestedMembers(table)}}/ 12
 										</div>
-										<div align="right"><a class="btn-join" href="#">Join Now</a></div>
+										<div ng-show="table.showPasswordInput">
+											<input class="password-input" type="password" id="{{table.tid}}-password"
+									     		       placeholder="{{table.passwordPlaceholder}}"></input>
+										</div>							
+										<div align="right">
+											<button type="button" class="btn btn-join"
+										                ng-disabled="isJoinDisabled(table)" ng-click="sendRequest(table)"> 												Join Now</button>
+										</div>
 									</div>
 								</div>
 												
@@ -125,79 +132,6 @@
 	<hr>
 	<div ng-include="'footer.html'"></div>
 	
-<!--
-   <a href="index.html"
-   <button id="btn_admin" type="button" class="btn btn-primary" >Back to the front-end</button></a>
-
-   <br>
-
-   <div class="text-center">
-      <h1>Member Page</h1>
-      <h2 id="text_event_name"></h2>
-       <div id="member_page_controller" ng-controller="MemberCtrl">
-
-
-         <div class="row">
-
-            <div class="col-md-2 col-xs-2"></div>
-
-            <div class="col-md-8 col-xs-8 panel">
-			
-
-               
-               <form class="form-horizontal">
-                  <div class="form-group">
-                     <label for="inputUserID" class="col-sm-3 control-label">User ID</label>
-                     <div class="col-sm-5">
-                     <input type="text" class="form-control" id="inputUserID" ng-model="userID" placeholder="Enter your User ID">
-                     </div>
-					 
-					 <div class="col-sm-4">
-					   <button type="button" class="btn btn-primary" ng-click="saveFunc();" >Add/Modify</button>
-					  <button type="button" class="btn btn-primary" ng-click="loadFunc();" >Load</button>
-					  </div>
-                  </div>
-
-                  <div class="form-group">
-                     <label for="inputName" class="col-sm-3 control-label">Name</label>
-                     <div class="col-sm-9">
-                     <input type="text" class="form-control" id="inputUserName" ng-model="userName" placeholder="Type in your name">
-                     </div>
-                  </div>
-				  
-				  
-				 
-
-
-
-               </form>
-			   
-			     <div class="row text-left">
-			        
-				    <h3>Your team preference:</h3>
-			       <div ng-repeat="team in teams">
-					  					  
-					 <div class="checkbox">
-						<label><input type="checkbox" value="{{team.$id}}" 
-						  ng-checked="selection.indexOf(team.$id) > -1"
-						  ng-click="toggleSelection(team.$id)">
-						{{team.$id}}</label>
-					 </div>
-					  
-				  </div>
-				</div>
-
-               
-            </div>
-            <div class="col-md-2 col-xs-2"></div>
-         </div>
-
-
-
-       </div>
-   </div>
--->
-
    <!-- Angular and Angular-route libraries (v1.5.7) -->
    <script src="lib/angular.min.js"></script>
    <script src="lib/angular-route.min.js"></script>        
