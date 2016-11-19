@@ -40,6 +40,7 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <li><a style="color: white">Hi, {{username}} </a></li>
           <li><a ng-show="isLogout" id="register" href="register.html" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li><a ng-show="isLogout" id="signin" href="signIn.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           <li><a ng-show="isLogin" id="logout" href="" ng-click="doLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>

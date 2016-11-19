@@ -32,6 +32,7 @@ angular.module('teamform-login-app', ['firebase'])
 	
 			/* after login */
 			console.log(user);
+			sessionStorage.setItem("username",user.displayName);
 			if (sessionStorage.getItem("urlAfterLogin")) {// e.g store the one event page user clicked 
 				window.location.href = sessionStorage.getItem("urlAfterLogin");
 				sessionStorage.setItem("urlAfterLogin","");
