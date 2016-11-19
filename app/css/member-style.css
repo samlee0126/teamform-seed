@@ -103,7 +103,7 @@
   padding: 5px;
   text-decoration: none !important;
 }
-.btn-join:focus {
+.btn-join:disabled{
   background: #FFFFFF;
   color: #BCBCBC;
   border-radius: 0px;
@@ -113,4 +113,9 @@
 }
 .list-group {
   margin: 20px;
+}
+.password-input {
+  border: none;
+  height: 30px;
+  float: left;
 }

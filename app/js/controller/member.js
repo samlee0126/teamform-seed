@@ -20,11 +20,15 @@ angular.module('teamform-member-app', ['firebase'])
 	$scope.tableInfoTemp = [];
 	$scope.major = "";
 	$scope.gradYear = "";
+	var eid;
+	var uid;
+	var status;
+	var JoinDisabled = false;
+	$scope.hasPassword = false;
 
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
 	$scope.doLogout = function () {
-
 		firebase.auth().signOut().then(function() {
 			// Sign-out successful.
 			sessionStorage.setItem("urlAfterLogin","");
@@ -34,8 +38,6 @@ angular.module('teamform-member-app', ['firebase'])
 			// An error happened.
 			console.log(error)
 		});
-
-
 	};
 
 	$scope.showLogButton = function (user) {
@@ -54,9 +56,10 @@ angular.module('teamform-member-app', ['firebase'])
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
 		$scope.showLogButton(user);
-		var eid = getURLParameter("q");
+		eid = getURLParameter("q");
+		uid = user.uid;
 		// get member information from database by uid
-		var refPath = "members/" + user.uid;
+		var refPath = "members/" + uid;
 		retrieveOnceFirebase(firebase, refPath, function(data) {
 			// user name			
 			if ( data.child("name").val() != null ) {
@@ -101,7 +104,7 @@ angular.module('teamform-member-app', ['firebase'])
 				return;
 			}
 			
-			var status = data.child("events").child(eid).child("status").val();
+			status = data.child("events").child(eid).child("status").val();
 			
 			if (status != null ) {
 				
@@ -125,17 +128,22 @@ angular.module('teamform-member-app', ['firebase'])
 		});	
 		
 		// get table information from database by tid
-		var refPathTable = "tables";
-		retrieveOnceFirebase(firebase, refPathTable, function(data) {
+		var tableData = {};
+		retrieveOnceFirebase(firebase, "tables", function(data) {
 			data.forEach(function(childData) {
 				if(childData.child("event").val() == eid) {
-					$scope.tableInfo.push(childData.val());
-					// used for filtering and sorting, remains unchanged
-					$scope.tableInfoTemp.push(childData.val());
+					tableData[childData.key] = childData.val();
+					tableData[childData.key].tid = childData.key;
+					tableData[childData.key].showPasswordInput = false;
+					tableData[childData.key].passwordPlaceholder = "Please enter password";
+					tableData[childData.key].hasPassword = false;
 				}
 			});
+			$scope.tableInfo = Object.keys(tableData).map(function(k) {return tableData[k]});
+			$scope.tableInfoTemp = Object.keys(tableData).map(function(k) {return tableData[k]});
 			$scope.$apply();
 		});
+		
 	  } else {
 		// No user is signed in.
 		console.log("YEAH - You did not login lol");
@@ -162,7 +170,7 @@ angular.module('teamform-member-app', ['firebase'])
 				case "available":
 					// for each table, if it is full, then remove it
 					for (var j = 0; j < $scope.tableInfo.length; j++) {
-						if ($scope.countMembers($scope.tableInfo[j]) == 12) {
+						if ($scope.countRequestedMembers($scope.tableInfo[j]) == 12) {
 							$scope.tableInfo.splice(j, 1);
 							j--;
 						}
@@ -214,12 +222,11 @@ angular.module('teamform-member-app', ['firebase'])
 	$scope.sortTable = function() {
 		// get selected value
 		var sortValue = $('#sort-select').val();
-		$scope.sorter;
 		$scope.isReversed = false;
 		switch (sortValue) {
 			// from more seats to less
 			case "seat":
-				$scope.sorter = $scope.countMembers;
+				$scope.sorter = $scope.countRequestedMembers;
 				break;
 			// from newest from oldest
 			case "time":
@@ -230,16 +237,15 @@ angular.module('teamform-member-app', ['firebase'])
 			case "table-name":
 				$scope.sorter = "tableName";
 				break;
-			
 		}
 	};
 
 	// for counting number of members
-	$scope.countMembers = function(member) {
-		if (!angular.isObject(member.members)) {
+	$scope.countRequestedMembers = function(table) {
+		if (!angular.isObject(table.requestedMembers)) {
 			return 0;
 		}
-		return Object.keys(member.members).length;
+		return Object.keys(table.requestedMembers).length;
 	};
 
 	// for sorting time and date
@@ -247,101 +253,65 @@ angular.module('teamform-member-app', ['firebase'])
 		return Date.parse(dateString.createTime);
 	};
 	
-/*		
-	$scope.userID = "";
-	$scope.userName = "";	
-	$scope.teams = {};
+	// disable join button if table is full or request is already sent
+	$scope.isJoinDisabled = function(table) {
+		if ($scope.countRequestedMembers(table) == 12 || status == "waiting" || status == "confirmed" || status == "done" || JoinDisabled) {
+			return true;
+		} else
+			return false;
+	};
 	
-	
+	// send request
+	$scope.sendRequest = function(table) {
+		// if table is not disabled
+		if (!$scope.isJoinDisabled(table)) {
+			// if password input is incorrect
+			if (table.hasPassword && document.getElementById(table.tid + "-password").value != table.password) {
+				for (var i = 0; i < $scope.tableInfo.length; i++) {
+					if ($scope.tableInfo[i].tid == table.tid)
+						$scope.tableInfo[i].passwordPlaceholder = "Incorrect password";
+					else
+						$scope.tableInfo[i].passwordPlaceholder = "Please enter password";
+				}
+				document.getElementById(table.tid + "-password").value = "";
+			}
+			// if password input is correct or table has no password
+			if ((table.hasPassword && document.getElementById(table.tid + "-password").value == table.password) || table.password == "" ||
+			table.password == null) {
+				JoinDisabled = true;
+				var tid = Object.keys(table);
+				// update members/{uid}/events/{eid}
+				firebase.database().ref("members/" + uid + "/events/" + eid).update({
+					"role": "member",
+					"status": "waiting",
+					"tid": table.tid
+				});
 
-	$scope.loadFunc = function() {
-		var userID = $scope.userID;
-		if ( userID !== '' ) {
-			
-			var refPath = getURLParameter("q") + "/member/" + userID;
-			retrieveOnceFirebase(firebase, refPath, function(data) {
-								
-				if ( data.child("name").val() != null ) {
-					$scope.userName = data.child("name").val();
-				} else {
-					$scope.userName = "";
-				}
-				
-				
-				if (data.child("selection").val() != null ) {
-					$scope.selection = data.child("selection").val();
-				}
-				else {
-					$scope.selection = [];
-				}
-				$scope.$apply();
-			});
-		}
-	}
-	
-	$scope.saveFunc = function() {
-		
-		
-		var userID = $.trim( $scope.userID );
-		var userName = $.trim( $scope.userName );
-		
-		if ( userID !== '' && userName !== '' ) {
-									
-			var newData = {				
-				'name': userName,
-				'selection': $scope.selection
-			};
-			
-			var refPath = getURLParameter("q") + "/member/" + userID;	
-			var ref = firebase.database().ref(refPath);
-			
-			ref.set(newData, function(){
-				// complete call back
-				//alert("data pushed...");
-				
-				// Finally, go back to the front-end
-				window.location.href= "index.html";
-			});
-			
-			
-		
-					
-		}
-	}
-	
-	$scope.refreshTeams = function() {
-		var refPath = getURLParameter("q") + "/team";	
-		var ref = firebase.database().ref(refPath);
-		
-		// Link and sync a firebase object
-		$scope.selection = [];		
-		$scope.toggleSelection = function (item) {
-			var idx = $scope.selection.indexOf(item);    
-			if (idx > -1) {
-				$scope.selection.splice(idx, 1);
+				var userId = {};
+				userId[uid] = true;
+				// update events/{eid}/members/{uid}
+				firebase.database().ref("events/" + eid + "/members").update(userId);
+
+				// update tables/{tid}/members/{uid}
+				firebase.database().ref("tables/" + table.tid + "/members").update(userId);
+
+				// reload page to update status
+				location.reload();
 			}
-			else {
-				$scope.selection.push(item);
+			// if table has password
+			if (table.password != "" || table.password != null) {
+				for (var i = 0; i < $scope.tableInfo.length; i++) {
+					if ($scope.tableInfo[i].tid == table.tid) {
+						$scope.tableInfo[i].showPasswordInput = true;
+						$scope.tableInfo[i].hasPassword = true;
+					}
+					else {
+						$scope.tableInfo[i].showPasswordInput = false;
+						$scope.tableInfo[i].hasPassword = false;
+					}
+				}
+
 			}
 		}
-	
-	
-		$scope.teams = $firebaseArray(ref);
-		$scope.teams.$loaded()
-			.then( function(data) {
-								
-							
-							
-			}) 
-			.catch(function(error) {
-				// Database connection error handling...
-				//console.error("Error:", error);
-			});
-			
-		
-	}
-	
-	
-	$scope.refreshTeams(); // call to refresh teams...
-*/		
+	};
 }]);
