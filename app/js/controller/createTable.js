@@ -120,7 +120,7 @@
 								},
 								'tableName': tableName,
 								'password': password,
-								'numberOfMembers': 1,
+								'members': { uid : 'leader'},
 								//'local': local,
 								'leader': uid,
 								'createTime': createTime,
