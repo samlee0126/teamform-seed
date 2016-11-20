@@ -25,6 +25,7 @@ angular.module('teamform-member-app', ['firebase'])
 	var status;
 	var JoinDisabled = false;
 	$scope.hasPassword = false;
+	$scope.maxForEachTable = 0;
 
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
@@ -59,6 +60,10 @@ angular.module('teamform-member-app', ['firebase'])
 		$scope.showLogButton(user);
 		eid = getURLParameter("q");
 		uid = user.uid;
+		// get the maximum number of user in one table
+		retrieveOnceFirebase(firebase, "events/" + eid + "/maxForEachTable", function(data) {
+			$scope.maxForEachTable = data.val();
+		});
 		// get member information from database by uid
 		var refPath = "members/" + uid;
 		retrieveOnceFirebase(firebase, refPath, function(data) {
@@ -115,10 +120,14 @@ angular.module('teamform-member-app', ['firebase'])
 					$("#confirmed").removeClass("hide");
 				else if (status == "rejected")
 					$("#rejected").removeClass("hide");
+				else if (status == "done")
+					$("#done").removeClass("hide");
 				else
 					$("#no_status").removeClass("hide");
 				
 			}else {
+
+				$("#no_status").removeClass("hide");
 				//window.location.href = "index.html";	// future: the case user type url directly
 				console.log("no this event");
 				return;				
@@ -171,7 +180,7 @@ angular.module('teamform-member-app', ['firebase'])
 				case "available":
 					// for each table, if it is full, then remove it
 					for (var j = 0; j < $scope.tableInfo.length; j++) {
-						if ($scope.countRequestedMembers($scope.tableInfo[j]) == 12) {
+						if ($scope.countMembers($scope.tableInfo[j]) == $scope.maxForEachTable) {
 							$scope.tableInfo.splice(j, 1);
 							j--;
 						}
@@ -227,7 +236,7 @@ angular.module('teamform-member-app', ['firebase'])
 		switch (sortValue) {
 			// from more seats to less
 			case "seat":
-				$scope.sorter = $scope.countRequestedMembers;
+				$scope.sorter = $scope.countMembers;
 				break;
 			// from newest from oldest
 			case "time":
@@ -242,11 +251,12 @@ angular.module('teamform-member-app', ['firebase'])
 	};
 
 	// for counting number of members
-	$scope.countRequestedMembers = function(table) {
-		if (!angular.isObject(table.requestedMembers)) {
+	$scope.countMembers = function(table) {
+		console.log(table)
+		if (!angular.isObject(table.members)) {
 			return 0;
 		}
-		return Object.keys(table.requestedMembers).length;
+		return Object.keys(table.members).length;
 	};
 
 	// for sorting time and date
@@ -256,7 +266,7 @@ angular.module('teamform-member-app', ['firebase'])
 	
 	// disable join button if table is full or request is already sent
 	$scope.isJoinDisabled = function(table) {
-		if ($scope.countRequestedMembers(table) == 12 || status == "waiting" || status == "confirmed" || status == "done" || JoinDisabled) {
+		if ($scope.countMembers(table) == $scope.maxForEachTable || status == "waiting" || status == "confirmed" || status == "done" || JoinDisabled) {
 			return true;
 		} else
 			return false;

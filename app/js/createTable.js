@@ -12,12 +12,16 @@ $(document).ready(function() {
 						max: 20,
 						message: 'At most 20 characters are allowed.'
 					},
-					regexp: {
-						regexp: /^[A-z0-9_]+$/i,
-						message: 'Please use alphabets, digits or underscore only.'
-					},
 					notEmpty: {
 						message: 'Please provide a table name.'
+					}
+				}
+			},
+			description: {
+				validators: {
+					stringLength: {
+						max: 60,
+						message: 'At most 60 characters are allowed.'
 					}
 				}
 			},

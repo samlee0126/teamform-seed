@@ -68,32 +68,28 @@
 					<div class="row text-center">
 						<div class="col-12 schedule-container">
 							<div class="schedule-content">
-								<div class="col-md-4 col-sm-6" ng-repeat="table in tableInfo | orderBy:sorter:isReversed">
+
+								<div ng-if="tableInfo.length !== 0" class="col-md-4 col-sm-6" ng-repeat="table in tableInfo | orderBy:sorter:isReversed">
 									<div class="program program-schedule">
 										<h3>{{table.tableName}}
 											<span class="glyphicon glyphicon-lock" aria-hidden="true"
 											      ng-hide="table.password == ''"></span>
 										</h3>
-										<p>TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription
-										   TableDescription</p>
+										<p ng-bind="table.description" style="padding: 2px ; font-size: 14px ;height: 80px">
+										</p>
 										<div class="progress">
 											<div class="progress-bar progress-bar-custom" role="progressbar"
 											     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
-											     style="width: {{countRequestedMembers(table)*100/12}}%;">
+											     style="width: {{countMembers(table)*(100/maxForEachTable)}}%;">
 											</div>
 										</div>
 										<div class="progress-text-style">
 											<span class="glyphicon glyphicon-user " aria-hidden="true"></span> 
-											{{countRequestedMembers(table)}}/ 12
+											{{countMembers(table)}}/ {{maxForEachTable}}
 										</div>
 										<div ng-show="table.showPasswordInput">
 											<input class="password-input" type="password" id="{{table.tid}}-password"
-									     		       placeholder="{{table.passwordPlaceholder}}"></input>
+									     		       placeholder="{{table.passwordPlaceholder}}"/>
 										</div>							
 										<div align="right">
 											<button type="button" class="btn btn-join"
@@ -101,6 +97,8 @@
 										</div>
 									</div>
 								</div>
+
+
 												
 							</div>
 						</div>
@@ -111,14 +109,16 @@
 					<h2 class="text-center">Status</h2>
 						<ul class="list-group">
 						
-							<li id="no_status" class="list-group-item list-group-item-success hide"><span class="glyphicon glyphicon-ok-sign"></span> 
+							<li id="no_status" class="list-group-item list-group-item-success hide"><span class="glyphicon glyphicon-info-sign"></span>
 								You do not have any request now.</li>
 						 	<li id="confirmed" class="list-group-item list-group-item-success hide"><span class="glyphicon glyphicon-ok-sign"></span> 
-								Your request has been confirmed.</li>
+								Your request has been confirmed by the team leader.</li>
 							<li id="waiting" class="list-group-item list-group-item-info hide"><span class="glyphicon glyphicon-info-sign"></span>
 								Your request has been sent to the team leader.</li>
 						 	<li id="rejected" class="list-group-item list-group-item-danger hide"><span class="glyphicon glyphicon-remove-sign"></span>
 								Your request was rejected. Please select another table.</li>
+							<li id="done" class="list-group-item list-group-item-success hide"><span class="glyphicon glyphicon-ok-sign"></span>
+								Your table has been confirmed by Admin.</li>
 						</ul>
 					<h2 class="text-center">My Account</h2>
 						<ul class="list-group">

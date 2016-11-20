@@ -1,83 +1,91 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="teamform-login-app">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="keywords" content="teamform, team">
-      <!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="teamform, team">
+    <!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-	  
-      <!-- libraries and CSS 	  
-		JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)		
-		Bootstrap: Library and CSS for bootstrap framework (v3.3.7 is used)
-		Font-awesome: More icons for the web development (v4.6.3 is used)		
-		site.css: A customized css for our web application. Not from any web framework. 
-	  -->
-      <script src="lib/jquery.min.js"></script>      
-      <script src="lib/bootstrap.min.js"></script>      
-      	  
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">   
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">   
-	  <link rel="stylesheet" href="css/site.css">
-      <!-- Customized libraries shared by pages -->
-      <script src="js/site.js"></script>
-      <style>
-      		br { line-height: 5px; }
-      </style>
 
-	  	  
-   </head>
-   <body ng-controller="LoginCtrl">
+    <!-- libraries and CSS
+      JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)
+      Bootstrap: Library and CSS for bootstrap framework (v3.3.7 is used)
+      Font-awesome: More icons for the web development (v4.6.3 is used)
+      site.css: A customized css for our web application. Not from any web framework.
+    -->
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
 
-      <!-- MENU -->
-      <div class="navbar-wrapper" ng-include="'menu.html'"></div>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/site.css">
+    <!-- Customized libraries shared by pages -->
+    <script src="js/site.js"></script>
+    <style>
+        br {
+            line-height: 5px;
+        }
+    </style>
 
-      <!-- Login page -->
-      <div class="container" id="page_home">
-         <div class="row">
-            <div class="col-md-12">
-               <div class="row">
-                  <div class="col-md-6">
-                     	<h1>Sign In</h1><br>
-			<form>
-				<div class="form-group">
-					<label for="LoginEmail">User email</label>
-					<input ng-model="email" type="email" class="form-control" id="email" placeholder="User email">
-				</div>
-				<div class="form-group">
-					<label for="Password">Password</label>
-					<input ng-model="password" type="password" class="form-control" id="pawword" placeholder="Password">
-				</div>
-				<button ng-click="doLogin()" class="btn btn-warning">Sign in</button>				
-			</form>
-			<br>
-			<p>No account? <a href="register.html">Register</a> here.</p>
-		  </div>
-	       </div>
+
+</head>
+<body ng-controller="LoginCtrl">
+
+<!-- MENU -->
+<div class="navbar-wrapper" ng-include="'menu.html'"></div>
+
+<!-- Login page -->
+<div class="container" id="page_home">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Sign In</h1><br>
+                    <form>
+                        <div class="form-group">
+                            <label for="LoginEmail">User email</label>
+                            <input ng-model="email" type="email" class="form-control" id="email"
+                                   placeholder="User email">
+                        </div>
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <input ng-model="password" type="password" class="form-control" id="pawword"
+                                   placeholder="Password">
+                        </div>
+                        <button ng-click="doLogin()" class="btn btn-warning">Sign in</button>
+                    </form>
+                    <br>
+                    <p>No account? <a href="register.html">Register</a> here.</p>
+                </div>
+                <div style="margin-top: 100px" class="col-md-4 col-md-offset-1">
+
+                    <img src="img/dogsTableLarge.png" class="img-responsive" alt="Cinque Terre">
+                </div>
             </div>
-         </div>
-	<br><br><br>   
-    
-      <!-- /END THE FEATURETTES -->
-        <!-- FOOTER -->
-	<hr>
-        <div ng-include="'footer.html'"></div>
-      </div>
-      <!-- /.container -->
+        </div>
+    </div>
+    <br><br><br>
 
-		<!-- JavaScript of this page -->
+    <!-- /END THE FEATURETTES -->
+    <!-- FOOTER -->
+    <hr>
+    <div ng-include="'footer.html'"></div>
+</div>
+<!-- /.container -->
 
-		<!-- Angular and Angular-route libraries (v1.5.7) -->
-		<script src="lib/angular.min.js"></script>
-		<script src="lib/angular-route.min.js"></script>        
+<!-- JavaScript of this page -->
 
-		<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
-		<script src="lib/firebase.js"></script>     
-		<script src="lib/angularfire.min.js"></script>
-		<script src="js/controller/login.js"></script>
-		
+<!-- Angular and Angular-route libraries (v1.5.7) -->
+<script src="lib/angular.min.js"></script>
+<script src="lib/angular-route.min.js"></script>
 
-   </body>
+<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+<script src="lib/firebase.js"></script>
+<script src="lib/angularfire.min.js"></script>
+<script src="js/controller/login.js"></script>
+
+
+</body>
 </html>

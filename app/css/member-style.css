@@ -5,41 +5,42 @@
   margin-right: 30px;
 }
 .btn-danger {
-  background: #000000;
+  background: #808080;
   border: none;
-  border-radius: 0px;
+  border-radius: 3px;
 }
 .program h3 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #000000;
-  margin-bottom: 20px;
-}
+   font-size: 18px;
+   font-weight: bold;
+   color: #000000;
+   margin-bottom: 20px;
+ }
 .program p {
   background: #FFFFFF;
   word-wrap: break-word;
   text-align: left;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 .program.program-schedule {
   margin-bottom: 20px;
   padding: 10px 10px 15px 10px;
   background: #F1F1F1;
   border: 3px #F1F1F1 solid;
-/*  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
   border-radius: 4px;
-  -webkit-transition: 0.1s;
-  -o-transition: 0.1s;
-  transition: 0.1s;*/
+  /*  -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-transition: 0.1s;
+    -o-transition: 0.1s;
+    transition: 0.1s;*/
 }
 .program.program-schedule:hover, .program.program-schedule:focus {
-/*  -webkit-box-shadow: 0px 6px 55px -23px rgba(0, 0, 0, 0.72);
-  -moz-box-shadow: 0px 6px 55px -23px rgba(0, 0, 0, 0.72);
-  box-shadow: 0px 6px 55px -23px rgba(0, 0, 0, 0.72);*/
+  /*  -webkit-box-shadow: 0px 6px 55px -23px rgba(0, 0, 0, 0.72);
+    -moz-box-shadow: 0px 6px 55px -23px rgba(0, 0, 0, 0.72);
+    box-shadow: 0px 6px 55px -23px rgba(0, 0, 0, 0.72);*/
   background: #F1F1F1;
-  border: 3px #000000 solid;
+  border: 3px #808080 solid;
 }
 .schedule {
   padding: 0;
@@ -77,7 +78,7 @@
   margin-bottom: 3px;
 }
 .progress-bar-custom {
-  background: #000000;
+  background: #808080;
 }
 .progress-bar-custom-full {
   background: #CE0000;
@@ -88,17 +89,16 @@
   margin-bottom: 10px;
 }
 .btn-join {
+  border-radius: 2px;
   background: #FFCD00;
   color: #000000;
-  border-radius: 0px;
   border: none;
   padding: 5px;
   text-decoration: none !important;
 }
 .btn-join:hover {
-  background: #000000;
+  background: #808080;
   color: #FFFFFF;
-  border-radius: 0px;
   border: none;
   padding: 5px;
   text-decoration: none !important;
@@ -113,6 +113,7 @@
 }
 .list-group {
   margin: 20px;
+  color: #808080;
 }
 .password-input {
   border: none;
