@@ -20,6 +20,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="css/site.css">
 
 		<!-- Customized libraries shared by pages -->
@@ -42,10 +43,10 @@
 							<br>
 							<p>Person that waiting to approval:</p>
 							<table class="table table-bordered">
-							<tr><td>
-								<button type="button" class="btn btn-default" ng-repeat="requestedMember in requestedMembers">
+							<tr><td data-drop="true" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=requestedMembers])'}"  jqyoui-droppable="{multiple:true}">
+								<div class="btn btn-default btn-draggable" ng-repeat="requestedMember in requestedMembers" ng-model="requestedMembers" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{index: {{$index}},animate:true}">
 									Name: {{requestedMember.name}}<br>Grad. Year: {{requestedMember.gradYear}}<br>Major: {{requestedMember.major}}
-								</button>
+								</div>
 								</td>
 							</tr>
 							</table>
@@ -60,10 +61,10 @@
 							</div>
 							<p>Person that having approval:</p>
 							<table class="table table-bordered">
-							<tr><td>
-								<button type="button" class="btn btn-default" ng-repeat="member in members">
+							<tr><td data-drop="true" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=members])'}"  jqyoui-droppable="{multiple:true}">
+								<div class="btn btn-default btn-draggable" ng-repeat="member in members" ng-model="members" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{index: {{$index}},animate:true}">
 									Name: {{member.name}}<br>Grad. Year: {{member.gradYear}}<br>Major: {{member.major}}
-								</button>
+								</div>
 								</td>
 							</tr>
 							</table>
@@ -166,7 +167,10 @@
 		<div ng-include="'footer.html'"></div>
 
 
+
+
 				<!-- JavaScript of this page -->
+				<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 
 				<!-- Angular and Angular-route libraries (v1.5.7) -->
 				<script src="lib/angular.min.js"></script>
@@ -176,6 +180,8 @@
 				<script src="lib/firebase.js"></script>
 				<script src="lib/angularfire.min.js"></script>
 
+
+				<script src="js/angular-dragdrop.min.js"></script>
 				<script src="js/controller/leader.js"></script>
 
    </body>

@@ -1,5 +1,5 @@
-angular.module('teamform-team-app', ['firebase'])
-.controller('TeamCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$window', function($scope, $firebaseObject, $firebaseArray, $window) {
+angular.module('teamform-team-app', ['firebase','ngDragDrop'])
+.controller('TeamCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$window', function($scope, $firebaseObject, $firebaseArray, $window, $timeout) {
     // Call Firebase initialization code defined in site.js
     console.log("it is team controller!");
 
