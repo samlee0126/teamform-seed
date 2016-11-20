@@ -19,7 +19,7 @@
   background: #FFFFFF;
   word-wrap: break-word;
   text-align: left;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 .program.program-schedule {
   margin-bottom: 20px;
@@ -89,17 +89,16 @@
   margin-bottom: 10px;
 }
 .btn-join {
+  border-radius: 2px;
   background: #FFCD00;
   color: #000000;
-  border-radius: 0px;
   border: none;
   padding: 5px;
   text-decoration: none !important;
 }
 .btn-join:hover {
-  background: #000000;
+  background: #808080;
   color: #FFFFFF;
-  border-radius: 0px;
   border: none;
   padding: 5px;
   text-decoration: none !important;

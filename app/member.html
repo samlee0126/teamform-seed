@@ -75,8 +75,7 @@
 											<span class="glyphicon glyphicon-lock" aria-hidden="true"
 											      ng-hide="table.password == ''"></span>
 										</h3>
-										<p style="height: 60px">
-											<span ng-repeat="tag in table.tags">#{{tag}}<br></span>
+										<p ng-bind="table.description" style="padding: 2px ; font-size: 14px ;height: 80px">
 										</p>
 										<div class="progress">
 											<div class="progress-bar progress-bar-custom" role="progressbar"

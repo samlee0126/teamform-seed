@@ -107,6 +107,7 @@
 							var tag3 = ($scope.tag3) ? tag3 = $scope.tag3 : tag3 = "" ;
 							var eid = $scope.eid;
 							var uid = $scope.uid;
+							var description = ($scope.description) ? description = $scope.description : description = "" ;
 
 							//generate tid key
 							var myRef = firebase.database().ref().push();
@@ -124,7 +125,8 @@
 								//'local': local,
 								'leader': uid,
 								'createTime': createTime,
-								'event': eid
+								'event': eid,
+								'description' : description
 
 							};
 							// please change the correct path after testing

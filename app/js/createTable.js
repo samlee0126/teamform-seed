@@ -17,6 +17,14 @@ $(document).ready(function() {
 					}
 				}
 			},
+			description: {
+				validators: {
+					stringLength: {
+						max: 60,
+						message: 'At most 60 characters are allowed.'
+					}
+				}
+			},
 			input_password: {
 				validators: {
 					stringLength: {
