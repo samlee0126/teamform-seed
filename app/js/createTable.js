@@ -20,8 +20,8 @@ $(document).ready(function() {
 			description: {
 				validators: {
 					stringLength: {
-						max: 60,
-						message: 'At most 60 characters are allowed.'
+						max: 100,
+						message: 'At most 100 characters are allowed.'
 					}
 				}
 			},

@@ -309,8 +309,8 @@ angular.module('teamform-member-app', ['firebase'])
 				// update events/{eid}/members/{uid}
 				firebase.database().ref("events/" + eid + "/members").update(userId);
 
-				// update tables/{tid}/members/{uid}
-				firebase.database().ref("tables/" + table.tid + "/members").update(userId);
+				// update tables/{tid}/requestedMembers/{uid}
+				firebase.database().ref("tables/" + table.tid + "/requestedMembers").update(userId);
 
 				// reload page to update status
 				location.reload();

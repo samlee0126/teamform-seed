@@ -196,6 +196,9 @@ angular.module('teamform-createEvent-app', ['firebase'])
 			number.push($scope.paramEvent[i].$id.substr(1));
 		}
 		max = Math.max.apply(null, number);
+		if (!isNaN(max)) {
+			max = 0;
+		}
 		max = max + 1
 	});
 	
@@ -234,8 +237,8 @@ angular.module('teamform-createEvent-app', ['firebase'])
 		if(timeMin < 10){
 			timeMin = "0" + timeMin;
 		}
-		
-		
+
+
 		var createRef = firebase.database().ref(refEventCreate);
 		createRef.child("e" + max).set({
 			eventName: $scope.events.event_name,
@@ -253,7 +256,7 @@ angular.module('teamform-createEvent-app', ['firebase'])
 			visible: true
 		});
 		//console.log("success");
-		window.location.href= "../../event.html?event=e"+ max;
+		window.location.href= "index.html";
 	};
 	
 	$scope.goToEvent = function(eID) {
