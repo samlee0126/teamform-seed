@@ -83,6 +83,7 @@
 }
 
 #event_box .stat_bar .love span{
+	cursor: pointer;
 	background: url('../img/icon/love_white.png') no-repeat 0 2px;
 }
 

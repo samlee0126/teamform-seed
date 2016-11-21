@@ -51,20 +51,14 @@ angular.module('teamform-admin-app', ['firebase'])
 	};
 	
 	$scope.hideEvent = function(eID) {
-		
-		var createRef = firebase.database().ref("event/" + eID);
-		createRef.set({
-			visible: false
-		});
+		var createRef = firebase.database().ref("events/" + eID + "/visible");
+		createRef.set(false);
 		
 	};
 	
 	$scope.showEvent = function(eID) {
-		
-		var createRef = firebase.database().ref("event/" + eID);
-		createRef.set({
-			visible: true
-		});
+		var createRef = firebase.database().ref("events/" + eID + "/visible");
+		createRef.set(true);
 		
 	};
 		

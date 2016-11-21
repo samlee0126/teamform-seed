@@ -115,7 +115,7 @@ angular.module('teamform-createEvent-app', ['firebase'])
 		description: '',
 		date: '',
 		time: '',
-		venue: '',
+		venue: 'HKUST',
 		table_num: '',
 		people_num: '',
 		organizer: '',

@@ -112,19 +112,20 @@
 							<li id="no_status" class="list-group-item list-group-item-success hide"><span class="glyphicon glyphicon-info-sign"></span>
 								You do not have any request now.</li>
 						 	<li id="confirmed" class="list-group-item list-group-item-success hide"><span class="glyphicon glyphicon-ok-sign"></span> 
-								Your request has been confirmed by the team leader.</li>
+								Your request has been confirmed by {{tableName}}'s leader.</li>
 							<li id="waiting" class="list-group-item list-group-item-info hide"><span class="glyphicon glyphicon-info-sign"></span>
-								Your request has been sent to the team leader.</li>
+								Your request has been sent to {{tableName}}'s leader.</li>
 						 	<li id="rejected" class="list-group-item list-group-item-danger hide"><span class="glyphicon glyphicon-remove-sign"></span>
-								Your request was rejected. Please select another table.</li>
+								Your request was rejected by {{tableName}}'s leader. Please select another table.</li>
 							<li id="done" class="list-group-item list-group-item-success hide"><span class="glyphicon glyphicon-ok-sign"></span>
-								Your table has been confirmed by Admin.</li>
+								Your table {{tableName}} has been confirmed by Admin.</li>
 						</ul>
 					<h2 class="text-center">My Account</h2>
 						<ul class="list-group">
 							<li class="list-group-item"><b>User name: </b><b ng-bind="name"></b></li>
 							<li class="list-group-item"><b>Department: </b><b ng-bind="major"></b></li>
 							<li class="list-group-item"><b>Graduation year: </b><b ng-bind="gradYear"></b></li>
+							<li class="list-group-item"><b>Your Table: </b><b ng-bind="tableName"></b></li>
 						</ul>
 				</div>
 		</div>
