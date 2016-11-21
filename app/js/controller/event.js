@@ -115,6 +115,12 @@ angular.module('teamform-event-app', ['firebase'])
                 $scope.venue = data.child("venue").val();
                 $scope.organizer = data.child("organizer").val();
                 $scope.gps = data.child("gps").val();
+                $scope.visible = data.child("visible").val();
+
+                if (!$scope.visible){
+                    window.location.href = "index.html";	// future: the case user type url directly
+                    return;
+                }
 
                 // Google map
                 if ($scope.gps){
@@ -130,7 +136,7 @@ angular.module('teamform-event-app', ['firebase'])
                 //setup for vacancy-bar
                 var tab = data.child("confirmTables").val();
                 var confirmedTab = tableCount(tab);
-                var maxTab = data.child("maxForTable").val();
+                var maxTab = tableCount(data.child("tables").val());
                 $scope.confirmed = confirmedTab;
                 $scope.maxTab = maxTab;
                 var floatToFixed = +((confirmedTab / maxTab) * 100).toFixed(2);

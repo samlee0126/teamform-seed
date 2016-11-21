@@ -318,7 +318,7 @@
 
 			   <section id="event_box">
 
-				   <article class="event_content roundcard" ng-repeat="(key, value) in events">
+				   <article class="event_content roundcard" ng-repeat="(key, value) in events" ng-if="events[key].visible == true">
 					   <a href="event.html?q={{key}}">
 						   <div style="background: url('../img/event-2016-annual-dinner.jpg');
 							width: 250px; 
@@ -331,7 +331,7 @@
 
 					   <div class="overlay">
 						   <ul class="stat_bar">
-							   <li class="love"><span>20</span></li>
+							   <li ng-click="clickLike(key)" class="love"><span ng-bind="countLikes(events[key].likes)"></span></li>
 							   <!--<li class="star"><span>0</span></li>-->
 							   <li class="say"><span ng-bind="countTables(events[key].tables)"></span></li>
 						   </ul>
@@ -339,7 +339,8 @@
 					   <div class="content">
 						   <div class="em">
 							   <div>by {{events[key].organizer}}</div>
-							   {{events[key].date}}
+							   <div>Date: {{events[key].date}}, Deadline : {{events[key].deadline}}</div>
+
 						   </div>
 						   <div class="p" ng-bind="events[key].eventName"></div>
 						   <div class="p" ng-bind="events[key].description"></div>
@@ -368,11 +369,11 @@
 			   <div class="panel panel-default">
 				   <div class="panel-heading">
 					   <h4 class="panel-title">
-						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion">
 							   Cheung, Kin Yu King</a></p>
 					   </h4>
 				   </div>
-				   <div id="collapse1" class="panel-collapse collapse">
+				   <div id="collapse1" class="panel-collapse collapse-in">
 					   <div class="panel-body">
 						   <div class="col-md-12">
 							   <div class="row">
@@ -400,11 +401,11 @@
 			   <div class="panel panel-default">
 				   <div class="panel-heading">
 					   <h4 class="panel-title">
-						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion">
 							   Ko, Kin Man David</a></p>
 					   </h4>
 				   </div>
-				   <div id="collapse2" class="panel-collapse collapse">
+				   <div id="collapse2" class="panel-collapse collapse-in">
 					   <div class="panel-body">
 						   <div class="col-md-12">
 							   <div class="row">
@@ -433,11 +434,11 @@
 			   <div class="panel panel-default">
 				   <div class="panel-heading">
 					   <h4 class="panel-title">
-						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion">
 							   Lau, Chi Fung Jacky</a></p>
 					   </h4>
 				   </div>
-				   <div id="collapse3" class="panel-collapse collapse">
+				   <div id="collapse3" class="panel-collapse collapse-in">
 					   <div class="panel-body">
 						   <div class="col-md-12">
 							   <div class="row">
@@ -466,11 +467,11 @@
 			   <div class="panel panel-default">
 				   <div class="panel-heading">
 					   <h4 class="panel-title">
-						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion">
 							   Lee, Chun Wai Matthew</a></p>
 					   </h4>
 				   </div>
-				   <div id="collapse4" class="panel-collapse collapse">
+				   <div id="collapse4" class="panel-collapse collapse-in">
 					   <div class="panel-body">
 						   <div class="col-md-12">
 							   <div class="row">
@@ -497,11 +498,11 @@
 			   <div class="panel panel-default">
 				   <div class="panel-heading">
 					   <h4 class="panel-title">
-						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion">
 							   Lee, Ka Yue Sam</a></p>
 					   </h4>
 				   </div>
-				   <div id="collapse5" class="panel-collapse collapse">
+				   <div id="collapse5" class="panel-collapse collapse-in">
 					   <div class="panel-body">
 						   <div class="col-md-12">
 							   <div class="row">
@@ -530,11 +531,11 @@
 			   <div class="panel panel-default">
 				   <div class="panel-heading">
 					   <h4 class="panel-title">
-						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+						   <p>&diams;<a data-toggle="collapse" data-parent="#accordion" href="">
 							   Wong, Suet Yan Kathy</a></p>
 					   </h4>
 				   </div>
-				   <div id="collapse6" class="panel-collapse collapse">
+				   <div id="collapse6" class="panel-collapse collapse-in">
 					   <div class="panel-body">
 						   <div class="col-md-12">
 							   <div class="row">

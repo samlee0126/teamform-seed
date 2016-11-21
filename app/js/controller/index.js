@@ -63,6 +63,13 @@ angular.module('teamform-index-app', ['firebase'])
 				return Object.keys(tables).length;
 			};
 
+			$scope.countLikes = function(likes) {
+				if(!angular.isObject(likes)){
+					return 0;
+				}
+				return Object.keys(likes).length;
+			};
+
 			$scope.doLogout = function () {
 
 				firebase.auth().signOut().then(function() {
@@ -90,6 +97,32 @@ angular.module('teamform-index-app', ['firebase'])
 					$scope.isLogout = true;
 					console.log("YEAH - You did not login lol");
 				}
+			};
+
+			$scope.clickLike = function (eid) {
+
+				console.log(eid);
+				if (firebase.auth().currentUser) {
+
+					var refPathLike = "events/" + eid + "/likes/" + firebase.auth().currentUser.uid;
+					var refLike = firebase.database().ref(refPathLike);
+
+					refLike.set(true, function(){
+						// list all events
+						var refPathEvent = "events/";
+						retrieveOnceFirebase(firebase, refPathEvent, function(data) {
+							$scope.events = data.val();
+							$scope.$apply();
+						});
+					});
+
+
+				} else {
+					alert("Oh! Please login before you like the event")
+				}
+
+
+
 			}
 
 	}])
@@ -112,7 +145,7 @@ angular.module('teamform-index-app', ['firebase'])
 				var feedbackEmail = $.trim( $scope.feedbackEmail );
 				var feedbackName = $.trim( $scope.feedbackName );
 				var feedbackContent = $.trim( $scope.feedbackContent );
-				var feedbackTime = new Date().toUTCString();;
+				var feedbackTime = new Date().toUTCString();
 
 				if ( feedbackContent !== '') {
 

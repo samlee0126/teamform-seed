@@ -111,11 +111,18 @@ angular.module('teamform-member-app', ['firebase'])
 			}
 			
 			status = data.child("events").child(eid).child("status").val();
+
 			
 			if (status != null ) {
+				// get the table name
+				var tid = data.child("events").child(eid).child("tid").val();
+				retrieveOnceFirebase(firebase, "tables/" + tid + "/tableName", function(data) {
+					$scope.tableName = data.val();
+				});
 				
-				if (status == "waiting")
+				if (status == "waiting") {
 					$("#waiting").removeClass("hide");
+				}
 				else if (status == "confirmed")
 					$("#confirmed").removeClass("hide");
 				else if (status == "rejected")
@@ -252,7 +259,6 @@ angular.module('teamform-member-app', ['firebase'])
 
 	// for counting number of members
 	$scope.countMembers = function(table) {
-		console.log(table)
 		if (!angular.isObject(table.members)) {
 			return 0;
 		}
