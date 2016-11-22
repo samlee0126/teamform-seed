@@ -26,6 +26,8 @@ angular.module('teamform-member-app', ['firebase'])
 	var JoinDisabled = false;
 	$scope.hasPassword = false;
 	$scope.maxForEachTable = 0;
+	var counter;
+	$scope.memberInfo = [];
 
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
@@ -161,6 +163,17 @@ angular.module('teamform-member-app', ['firebase'])
 			$scope.$apply();
 		});
 		
+		// get member information for sorting by gender
+		var memberData = {};
+		retrieveOnceFirebase(firebase, "members", function(data) {
+			data.forEach(function(childData) {
+				memberData[childData.key] = childData.val();
+				memberData[childData.key].tid = childData.key;
+			});
+			$scope.memberInfo = Object.keys(memberData).map(function(k) {return memberData[k]});
+			$scope.$apply();
+		});
+
 	  } else {
 		// No user is signed in.
 		console.log("YEAH - You did not login lol");
@@ -254,6 +267,17 @@ angular.module('teamform-member-app', ['firebase'])
 			case "table-name":
 				$scope.sorter = "tableName";
 				break;
+			// from most to least
+			case "boy":
+				$scope.sortByGender = "male";
+				$scope.sorter = $scope.orderByGender;
+				$scope.isReversed = true;
+				break;
+			case "girl":
+				$scope.sortByGender = "female";
+				$scope.sorter = $scope.orderByGender;
+				$scope.isReversed = true;
+				break;
 		}
 	};
 
@@ -268,6 +292,25 @@ angular.module('teamform-member-app', ['firebase'])
 	// for sorting time and date
 	$scope.orderByDate = function(dateString) {
 		return Date.parse(dateString.createTime);
+	};
+
+	// for sorting by boys/ girls
+	$scope.orderByGender = function(table) {
+		counter = 0;
+		for (var i = 0; i < $scope.memberInfo.length; i++) {
+			if ("events" in $scope.memberInfo[i]) {
+				if (eid in $scope.memberInfo[i].events) {
+					if ($scope.memberInfo[i].events[eid].status == "confirmed" &&
+				    	    $scope.memberInfo[i].events[eid].tid == table.tid) {
+						if ($scope.sortByGender == "male" && $scope.memberInfo[i].gender == "male")
+							counter++;
+						else if ($scope.sortByGender == "female" && $scope.memberInfo[i].gender == "female")
+							counter++;
+					}
+				}
+			}
+		}
+		return counter;
 	};
 	
 	// disable join button if table is full or request is already sent
