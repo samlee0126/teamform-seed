@@ -117,7 +117,7 @@ body::-webkit-scrollbar-thumb{
 
 /* Modal CSS */
 .modal-open {
-	max-height: calc(100vh - 212px);
+	max-height: calc(100vh - 130px);
 	overflow-y: auto;
 }
 .glyphicon-search, .glyphicon-map-marker{

@@ -75,7 +75,8 @@
 											<span class="glyphicon glyphicon-lock" aria-hidden="true"
 											      ng-hide="table.password == ''"></span>
 										</h3>
-										<p ng-bind="table.description" style="padding: 2px ; font-size: 14px ;height: 80px">
+                                        <a href="" data-toggle="modal" data-target="#leaderDescription" ng-click="popUpLeader(table.tid)" style="font-family: LiHei Pro; font-weight: bold; font-size: 16px">About the leader</a>
+										<p ng-bind="table.description" style="font-family: LiHei Pro; margin-top: 2px; padding: 2px ; font-size: 16px ;height: 80px">
 										</p>
 										<div class="progress">
 											<div class="progress-bar progress-bar-custom" role="progressbar"
@@ -125,11 +126,60 @@
 							<li class="list-group-item"><b>User name: </b><b ng-bind="name"></b></li>
 							<li class="list-group-item"><b>Department: </b><b ng-bind="major"></b></li>
 							<li class="list-group-item"><b>Graduation year: </b><b ng-bind="gradYear"></b></li>
-							<li class="list-group-item"><b>Requested Table: </b><b ng-bind="tableName"></b></li>
+							<li class="list-group-item"><b>Requested Table: </b><b ng-bind="tableName"></b>
+								<a ng-show="removeIcon" href="#" ng-click="cancelRequest()">
+									<span class="glyphicon glyphicon-remove"></span>remove
+								</a>
+							</li>
 						</ul>
 				</div>
 		</div>
 	</div>
+
+    <div class="modal fade" id="leaderDescription" tabindex="-1" role="dialog"
+         aria-labelledby="mapModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="mapModalLabel">The Table Leader :-)</h4>
+                </div>
+                <div class="modal-body" style="font-size: 18px">
+					<table class="table">
+						<br>
+						<tbody>
+						<tr>
+							<td>Name :</td>
+							<td>{{leader.name}} ({{leader.local}})</td>
+						</tr>
+						<tr>
+							<td>Email : </td>
+							<td>{{leader.email}}</td>
+						</tr>
+						<tr>
+							<td>Department :</td>
+							<td>{{leader.major}}</td>
+						</tr>
+						<tr>
+							<td>Grad. Year :</td>
+							<td>{{leader.gradYear}}</td>
+						</tr>
+						<tr>
+							<td>Gender :</td>
+							<td>{{leader.gender}}</td>
+						</tr>
+						<tr>
+							<td>Registration Date :</td>
+							<td>{{leader.createTime}}</td>
+						</tr>
+						</tbody>
+					</table>
+                </div>
+
+            </div>
+        </div>
+    </div>
 	<hr>
 	<div ng-include="'footer.html'"></div>
 	
