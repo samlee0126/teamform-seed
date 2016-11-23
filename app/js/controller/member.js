@@ -28,6 +28,7 @@ angular.module('teamform-member-app', ['firebase'])
 	$scope.maxForEachTable = 0;
 	var counter;
 	$scope.memberInfo = [];
+	$scope.removeIcon = false;
 
 	// Call Firebase initialization code defined in site.js
 	initalizeFirebase();
@@ -118,12 +119,23 @@ angular.module('teamform-member-app', ['firebase'])
 			if (status != null ) {
 				// get the table name
 				var tid = data.child("events").child(eid).child("tid").val();
+
+				$scope.cancelRequest = function () {
+					firebase.database().ref("events/" + eid + "/members/" + uid).remove();
+					firebase.database().ref("tables/" + tid + "/requestedMembers/" + uid).remove();
+					firebase.database().ref("members/" + uid + "/events/" + eid ).remove();
+					// reload page to update status
+					location.reload();
+				};
+
 				retrieveOnceFirebase(firebase, "tables/" + tid + "/tableName", function(data) {
 					$scope.tableName = data.val();
+					$scope.$apply();
 				});
-				
+
 				if (status == "waiting") {
 					$("#waiting").removeClass("hide");
+					$scope.removeIcon = true;
 				}
 				else if (status == "confirmed")
 					$("#confirmed").removeClass("hide");
@@ -374,4 +386,20 @@ angular.module('teamform-member-app', ['firebase'])
 			}
 		}
 	};
+	$scope.leader = {};
+	$scope.leader.gender = '';
+	$scope.leader.name = '';
+	$scope.leader.major = '';
+	$scope.popUpLeader = function(tid){
+		retrieveOnceFirebase(firebase, "tables/" + tid + "/leader", function(data) {
+			var uid = data.val();
+			retrieveOnceFirebase(firebase, "members/" + uid , function(leaderdata) {
+				console.log(leaderdata.val());
+				$scope.leader = leaderdata.val();
+				$scope.$apply();
+			});
+		});
+
+	};
+
 }]);
