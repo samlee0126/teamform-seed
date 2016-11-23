@@ -192,14 +192,15 @@ angular.module('teamform-createEvent-app', ['firebase'])
 		console.log($scope.paramEvent);
 		
 		for(var i = 0 ; i < $scope.paramEvent.length ; i++){
-			console.log($scope.paramEvent[i].$id);
 			number.push($scope.paramEvent[i].$id.substr(1));
 		}
+		
 		max = Math.max.apply(null, number);
-		if (!isNaN(max)) {
+		
+		if (isNaN(max)) {
 			max = 0;
 		}
-		max = max + 1
+		max = max + 1;
 	});
 	
 	var refEventCreate = "events/";
