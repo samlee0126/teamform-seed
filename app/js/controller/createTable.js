@@ -121,7 +121,7 @@
 								},
 								'tableName': tableName,
 								'password': password,
-								'members': { uid : 'leader'},
+								'members': { [uid] : 'leader'},
 								//'local': local,
 								'leader': uid,
 								'createTime': createTime,
