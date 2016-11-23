@@ -20,6 +20,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="css/site.css">
 
 		<!-- Customized libraries shared by pages -->
@@ -42,14 +43,14 @@
 						<br>
 						
 						<ul class="list-group">
-							<li class="list-group-item">Request 1<span class="glyphicon glyphicon-ok-sign" style="float:right;color:green;"></span></li>
-							<li class="list-group-item">Request 2<span class="glyphicon glyphicon-ok-sign" style="float:right;color:red;"></span></li>
-							<li class="list-group-item">Request 3<span class="glyphicon glyphicon-ok-sign" style="float:right;color:green;"></span></li>
-							<li class="list-group-item">Request 4<span class="glyphicon glyphicon-ok-sign" style="float:right;color:green;"></span></li>
-							<li class="list-group-item">Request 5<span class="glyphicon glyphicon-ok-sign" style="float:right;color:green;"></span></li>
-							<li class="list-group-item">Request 6<span class="glyphicon glyphicon-ok-sign" style="float:right;color:green;"></span></li>
-							<li class="list-group-item">Request 7<span class="glyphicon glyphicon-ok-sign" style="float:right;color:red;"></span></li>
-							<li class="list-group-item">Request 8<span class="glyphicon glyphicon-ok-sign" style="float:right;color:red;"></span></li>
+							<li class="list-group-item" ng-repeat="table in tables">
+								Table Name: <span ng-bind="table.name"></span>
+								<div style="float:right;">
+									<span ng-bind="table.member_confirmed"></span> <span>/</span> <span ng-bind="events.max_member"></span>
+									<span ng-if="check_full" class="glyphicon glyphicon-ok-sign" style="color:green;"></span>
+									<span ng-if="!check_full" class="glyphicon glyphicon-ok-sign" style="color:red;"></span>
+								</div>
+							</li>
 						</ul>
 					</div>
 					
@@ -61,26 +62,22 @@
 							<br>
 							<p>Confirmed Table:</p>
 							<table class="table table-bordered">
-							<tr><td>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
+							<tr><td data-drop="true" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=tables])'}"  jqyoui-droppable="{multiple:true}">
+								<div class="btn btn-default btn-draggable" ng-repeat="table in tables" ng-model="tables" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{index: {{$index}},animate:true}">
+									Name: <span ng-bind="table.name"></span><br/>
+									Number of Member: <span ng-bind="table.member_confirmed"></span>/<span ng-bind="events.max_member"></span>
+								</div>
 								</td>
 							</tr>
 							</table>
 							
 							<p>Table that waiting to approval:</p>
 							<table class="table table-bordered">
-							<tr><td>
-								<button type="button" class="btn btn-primary">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-primary">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-primary">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-primary">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-primary">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-primary">Name: CSE IT Dog<br>Number of Member: 10/10</button>
+							<tr><td data-drop="true" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=requestTable])'}"  jqyoui-droppable="{multiple:true}">
+								<div class="btn btn-primary btn-draggable" ng-repeat="table in requestTable" ng-model="requestTable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{index: {{$index}},animate:true}">
+								Name: <span ng-bind="table.name"></span><br/>
+								Number of Member: <span ng-bind="table.member_confirmed"></span>/<span ng-bind="events.max_member"></span>
+								</div>
 								</td>
 							</tr>
 							</table>
@@ -99,12 +96,10 @@
 							<p>Confirmed Table:</p>
 							<table class="table table-bordered">
 							<tr><td>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
-								<button type="button" class="btn btn-default">Name: CSE IT Dog<br>Number of Member: 10/10</button>
+								<button type="button" class="btn btn-default" ng-repeat="table in tables">
+									Name: <span ng-bind="table.name"></span><br/>
+									Number of Member: <span ng-bind="table.member_confirmed"></span>/<span ng-bind="events.max_member"></span>
+								</button>
 								</td>
 							</tr>
 							</table>
@@ -134,20 +129,20 @@
 					</div>
 
 						<div class="list-group">
-						 <a href="#" class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-info-sign"></span> 7 confirmation request(s)</a>
+						 <a href="#" class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-info-sign"></span> <span ng-bind="events.table_confirmed"></span> confirmed request(s)</a>
 						</div>
 						
 						<ul class="list-group">
-							<li class="list-group-item"><b>Event name: </b><b></b></li>
-							<li class="list-group-item"><b>Date: </b><b ng-bind="eventName">Testing</b></li>
-							<li class="list-group-item"><b>Time: </b><b ng-bind="eventName">Testing</b></li>
-							<li class="list-group-item"><b>Venue: </b><b ng-bind="eventName">Testing</b></li>
-							<li class="list-group-item"><b>Organizer: </b><b ng-bind="eventName">Testing</b></li>
+							<li class="list-group-item"><b>Event name: </b><b ng-bind="events.name"></b></li>
+							<li class="list-group-item"><b>Date: </b><b ng-bind="events.date"></b></li>
+							<li class="list-group-item"><b>Time: </b><b ng-bind="events.time"></b></li>
+							<li class="list-group-item"><b>Venue: </b><b ng-bind="events.venue"></b></li>
+							<li class="list-group-item"><b>Organizer: </b><b ng-bind="events.organizer"></b></li>
 						</ul>
 						
-						<p>Confirmed Tables: 1/12</p>
+						<p>Confirmed Tables: <span ng-bind="events.table_confirmed"></span>/<span ng-bind="events.max_table"></span></p>
 						<div class="progress">
-						<div class="progress-bar" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width: 8%;">
+						<div id="confirmed_bar" class="progress-bar" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100">
 						</div>
 						</div>
 
@@ -171,6 +166,7 @@
 
 
 				<!-- JavaScript of this page -->
+				<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 
 				<!-- Angular and Angular-route libraries (v1.5.7) -->
 				<script src="lib/angular.min.js"></script>
@@ -179,7 +175,8 @@
 				<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
 				<script src="lib/firebase.js"></script>
 				<script src="lib/angularfire.min.js"></script>
-
+				
+				<script src="js/angular-dragdrop.min.js"></script>
 				<script src="js/controller/adminDashboard.js"></script>
 
    </body>
