@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="teamform-adminDashboard-app">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="keywords" content="teamform, team">
-		<!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="teamform, team">
+	<!-- The meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 		<!-- libraries and CSS
 			JQuery: Necessary for some bootstrap interactions (v1.12.4 is used)
@@ -25,36 +25,36 @@
 
 		<!-- Customized libraries shared by pages -->
 		<script src="js/site.js"></script>
-   </head>
-   <body ng-controller="AdminDashboardCtrl">
-		 <div ng-include="'menu.html'"></div>
+	</head>
+	<body ng-controller="AdminDashboardCtrl">
+		<div ng-include="'menu.html'"></div>
 
-        <!-- Content of leader start from here-->
+		<!-- Content of leader start from here-->
 		<div class="container" style="margin-bottom:100px;">
 			<div id="content">
 
 				<div id="application" class="col-12 col-sm-8">
 					<div class="tab-content">
-										
-					<div id="tableRequest" class="tab-pane fade in active">
-						<div class="text-center">
-							<h2>Table Request</h2>
+
+						<div id="tableRequest" class="tab-pane fade in active">
+							<div class="text-center">
+								<h2>Table Request</h2>
+							</div>
+							<br>
+
+							<ul class="list-group">
+								<li class="list-group-item" ng-repeat="table in tables">
+									Table Name: <span ng-bind="table.name"></span>
+									<div style="float:right;">
+										<span ng-bind="table.member_confirmed"></span> <span>/</span> <span ng-bind="events.max_member"></span>
+										<span ng-if="check_full" class="glyphicon glyphicon-ok-sign" style="color:green;"></span>
+										<span ng-if="!check_full" class="glyphicon glyphicon-ok-sign" style="color:red;"></span>
+									</div>
+								</li>
+							</ul>
 						</div>
-						<br>
-						
-						<ul class="list-group">
-							<li class="list-group-item" ng-repeat="table in tables">
-								Table Name: <span ng-bind="table.name"></span>
-								<div style="float:right;">
-									<span ng-bind="table.member_confirmed"></span> <span>/</span> <span ng-bind="events.max_member"></span>
-									<span ng-if="check_full" class="glyphicon glyphicon-ok-sign" style="color:green;"></span>
-									<span ng-if="!check_full" class="glyphicon glyphicon-ok-sign" style="color:red;"></span>
-								</div>
-							</li>
-						</ul>
-					</div>
-					
-					
+
+
 						<div id="tableAllocation" class="tab-pane fade">
 							<div class="text-center">
 								<h2>Table Allocation</h2>
@@ -62,122 +62,244 @@
 							<br>
 							<p>Confirmed Table:</p>
 							<table class="table table-bordered">
-							<tr><td data-drop="true" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=tables])'}"  jqyoui-droppable="{multiple:true}">
-								<div class="btn btn-default btn-draggable" ng-repeat="table in tables" ng-model="tables" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{index: {{$index}},animate:true}">
-									Name: <span ng-bind="table.name"></span><br/>
-									Number of Member: <span ng-bind="table.member_confirmed"></span>/<span ng-bind="events.max_member"></span>
-								</div>
+								<tr><td data-drop="true" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=tables])'}"  jqyoui-droppable="{multiple:true}">
+									<div class="btn btn-default btn-draggable" ng-repeat="table in tables" ng-model="tables" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{index: {{$index}},animate:true}">
+										Name: <span ng-bind="table.name"></span><br/>
+										Number of Member: <span ng-bind="table.member_confirmed"></span>/<span ng-bind="events.max_member"></span>
+									</div>
 								</td>
 							</tr>
-							</table>
-							
-							<p>Table that waiting to approval:</p>
-							<table class="table table-bordered">
+						</table>
+
+						<p>Table that waiting to approval:</p>
+						<table class="table table-bordered">
 							<tr><td data-drop="true" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=requestTable])'}"  jqyoui-droppable="{multiple:true}">
 								<div class="btn btn-primary btn-draggable" ng-repeat="table in requestTable" ng-model="requestTable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" jqyoui-draggable="{index: {{$index}},animate:true}">
-								Name: <span ng-bind="table.name"></span><br/>
-								Number of Member: <span ng-bind="table.member_confirmed"></span>/<span ng-bind="events.max_member"></span>
-								</div>
-								</td>
-							</tr>
-							</table>
-							<div class="text-center">
-								<br><br><br><br>
-								<button type="button" class="btn btn-lg btn-warning">Confirm</button>
-							</div>
-						</div>
-						
-						
-						<div id="memberAllocation" class="tab-pane fade">
-							<div class="text-center">
-								<h2>Member Allocation</h2>
-							</div>
-							<br>
-							<p>Confirmed Table:</p>
-							<table class="table table-bordered">
-							<tr><td>
-								<button type="button" class="btn btn-default" ng-repeat="table in tables">
 									Name: <span ng-bind="table.name"></span><br/>
 									Number of Member: <span ng-bind="table.member_confirmed"></span>/<span ng-bind="events.max_member"></span>
-								</button>
-								</td>
-							</tr>
-							</table>
-							
-							<p>Person that waiting to allocation:</p>
-							<table class="table table-bordered">
-							<tr><td>
-								<button type="button" class="btn btn-primary">Name: CHAN Tai Man<br>Grad. Year: 2019<br>Major: COMP</button>
-								<button type="button" class="btn btn-primary">Name: CEUNG Tai Wai<br>Grad. Year: 2019<br>Major: COMP</button>
-								<button type="button" class="btn btn-primary">Name: LEE Shiu Wai<br>Grad. Year: 2019<br>Major: CPENG</button>
-								<button type="button" class="btn btn-primary">Name: WONG Shiu Ming<br>Grad. Year: 2019<br>Major: MATH</button>
-								</td>
-							</tr>
-							</table>
-							<div class="text-center">
-								<br><br><br><br>
-								<button type="button" class="btn btn-lg btn-warning">Confirm</button>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-				<div id="Progress" class="col-12 col-sm-4">
+								</div>
+							</td>
+						</tr>
+					</table>
 					<div class="text-center">
-						<h2>Status</h2>
+						<br><br><br><br>
+						<button type="button" class="btn btn-lg btn-warning">Confirm</button>
 					</div>
-
-						<div class="list-group">
-						 <a href="#" class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-info-sign"></span> <span ng-bind="events.table_confirmed"></span> confirmed request(s)</a>
-						</div>
-						
-						<ul class="list-group">
-							<li class="list-group-item"><b>Event name: </b><b ng-bind="events.name"></b></li>
-							<li class="list-group-item"><b>Date: </b><b ng-bind="events.date"></b></li>
-							<li class="list-group-item"><b>Time: </b><b ng-bind="events.time"></b></li>
-							<li class="list-group-item"><b>Venue: </b><b ng-bind="events.venue"></b></li>
-							<li class="list-group-item"><b>Organizer: </b><b ng-bind="events.organizer"></b></li>
-						</ul>
-						
-						<p>Confirmed Tables: <span ng-bind="events.table_confirmed"></span>/<span ng-bind="events.max_table"></span></p>
-						<div class="progress">
-						<div id="confirmed_bar" class="progress-bar" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100">
-						</div>
-						</div>
-
-						<div id="changePage">
-							<div class="text-center">
-								<h2>Option</h2>
-							</div>
-						<ul class="list-group">
-							<li class="list-group-item list-group-item-info active"><a data-toggle="tab" href="#tableRequest">Table Request</a></li>
-							<li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#tableAllocation">Table Allocation</a></li>
-							<li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#memberAllocation">Member Allocation</a></li>
-						</ul>
-						</div>
 				</div>
-				</div>
+
+
+				<div id="memberAllocation" class="tab-pane fade">
+					<div class="text-center">
+						<h2>Member Allocation</h2>
+					</div>
+					<br>
+					<p>Confirmed Table:</p>
+					<table class="table table-bordered">
+						<tr><td>
+							<button type="button" class="btn btn-default" ng-repeat="table in tables">
+								Name: <span ng-bind="table.name"></span><br/>
+								Number of Member: <span ng-bind="table.member_confirmed"></span>/<span ng-bind="events.max_member"></span>
+							</button>
+						</td>
+					</tr>
+				</table>
+
+				<p>Person that waiting to allocation:</p>
+				<table class="table table-bordered">
+					<tr><td>
+						<button type="button" class="btn btn-primary">Name: CHAN Tai Man<br>Grad. Year: 2019<br>Major: COMP</button>
+						<button type="button" class="btn btn-primary">Name: CEUNG Tai Wai<br>Grad. Year: 2019<br>Major: COMP</button>
+						<button type="button" class="btn btn-primary">Name: LEE Shiu Wai<br>Grad. Year: 2019<br>Major: CPENG</button>
+						<button type="button" class="btn btn-primary">Name: WONG Shiu Ming<br>Grad. Year: 2019<br>Major: MATH</button>
+					</td>
+				</tr>
+			</table>
+			<div class="text-center">
+				<br><br><br><br>
+				<button type="button" class="btn btn-lg btn-warning">Confirm</button>
 			</div>
 		</div>
 
-        <!-- Content of leader -->
-		<div ng-include="'footer.html'"></div>
+		<div id="editEvent" class="tab-pane fade">
+			<div class="text-center">
+				<h2>Edit Event Details</h2>
+			</div>
+			<br>
+			<form id="create_event_form" class="form-horizontal" data-toggle="validator" role="form">
+
+				<div class="form-group">
+					<label for="event_name" class="col-sm-3 control-label">Event Name</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" ng-model="newNameField" name="event_name" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="description" class="col-sm-3 control-label">Description</label>
+					<div class="col-sm-9">
+						<textarea class="form-control" style="resize:none;" ng-model="newDescriptionField" name="description"></textarea>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="date" class="col-sm-3 control-label">Date</label>
+					<div class="col-sm-9">
+						<input type="date" id="date" class="form-control" ng-model="newDateField" name="date" placeholder="Date" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="time" class="col-sm-3 control-label">Time</label>
+					<div class="col-sm-9">
+						<input type="time" class="form-control" ng-model="newTimeField" name="time" placeholder="Time" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="venue" class="col-sm-3 control-label">Venue</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" ng-model="newVenueField" name="venue" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="table_num" class="col-sm-3 control-label">Number of Table</label>
+					<div class="col-sm-9">
+						<input type="number" class="form-control" ng-model="newTableNumField" name="table_num" min="0" max="200" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="organizer" class="col-sm-3 control-label">Organizer</label>
+					<div class="col-sm-9">
+						<input type="text" class="form-control" ng-model="newOrganizerField" name="organizer" placeholder="Organizer" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="deadline" class="col-sm-3 control-label">Deadline</label>
+					<div class="col-sm-9">
+						<input type="date" id="deadline" class="form-control" ng-model="newDeadlineField" name="deadline" placeholder="Deadline" required>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="gps" class="col-sm-3 control-label">Map Location</label>
+					<div class="col-sm-9">
+						<div class="input-group">
+							<input type="text" id="gps" ng-model="newGPSField" class="form-control" name="gps"
+							placeholder="Google Map">
+							<span class="input-group-addon" data-toggle="modal" data-target="#mapModal"><div
+								class="glyphicon glyphicon glyphicon-map-marker"></div></span>
+							</div>
+						</div>
+					</div>
 
 
-				<!-- JavaScript of this page -->
-				<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+					<!-- Map Modal -->
+					<div class="modal fade" id="mapModal" tabindex="-1" role="dialog"
+					aria-labelledby="mapModalLabel">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span></button>
+									<h4 class="modal-title" id="mapModalLabel">Google Map - Find your location</h4>
+								</div>
+								<div class="modal-body">
+									<div>
+										<label for="googlemapByAddr">Search By Place Name</label>
+										<div class="input-group">
+											<input id="googlemapByAddr" class="form-control" type="text"
+											placeholder="Type a place name" required="">
+											<span class="input-group-addon" id="searchByAddr"><i
+												class="glyphicon glyphicon-search"></i></span>
+											</div>
+										</div>
+										<div>
+											<label for="googlemapByGPS">Search By Latitude,Longitude</label>
+											<div class="input-group">
+												<input id="googlemapByGPS" class="form-control" type="text"
+												placeholder="Type a coordinate" required="">
+												<span class="input-group-addon" id="searchByGPS"><i
+													class="glyphicon glyphicon-search"></i></span>
+												</div>
+											</div>
+											<br>
+											<div id="latlongmap" style="width: 565px; height: 300px;"></div>
+											<div>Current location: <span id="mlat">(0,0)</span></div>
+											<div>Marked location: <span id="latlngspan">(0,0)</span></div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" id="modal_save" ng-click="saveGoogleMap()" class="btn btn-default"
+											data-dismiss="modal">Save
+										</button>
+										<button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+					</form>
+					<div class="text-center">
+						<br><br><br><br>
+						<button type="button" ng-click="saveChange()" class="btn btn-lg btn-warning">Save Changes</button>
+					</div>
+				</div>
 
-				<!-- Angular and Angular-route libraries (v1.5.7) -->
-				<script src="lib/angular.min.js"></script>
-				<script src="lib/angular-route.min.js"></script>
+			</div>
+		</div>
 
-				<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
-				<script src="lib/firebase.js"></script>
-				<script src="lib/angularfire.min.js"></script>
-				
-				<script src="js/angular-dragdrop.min.js"></script>
-				<script src="js/controller/adminDashboard.js"></script>
+		<div id="Progress" class="col-12 col-sm-4">
+			<div class="text-center">
+				<h2>Status</h2>
+			</div>
 
-   </body>
+			<div class="list-group">
+				<a href="#" class="list-group-item list-group-item-info"><span class="glyphicon glyphicon-info-sign"></span> <span ng-bind="events.table_confirmed"></span> confirmed request(s)</a>
+			</div>
+
+			<ul class="list-group">
+				<li class="list-group-item"><b>Event name: </b><b ng-bind="events.name"></b></li>
+				<li class="list-group-item"><b>Date: </b><b ng-bind="events.date"></b></li>
+				<li class="list-group-item"><b>Time: </b><b ng-bind="events.time"></b></li>
+				<li class="list-group-item"><b>Venue: </b><b ng-bind="events.venue"></b></li>
+				<li class="list-group-item"><b>Organizer: </b><b ng-bind="events.organizer"></b></li>
+			</ul>
+
+			<p>Confirmed Tables: <span ng-bind="events.table_confirmed"></span>/<span ng-bind="events.max_table"></span></p>
+			<div class="progress">
+				<div id="confirmed_bar" class="progress-bar" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100">
+				</div>
+			</div>
+
+			<div id="changePage">
+				<div class="text-center">
+					<h2>Option</h2>
+				</div>
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-info active"><a data-toggle="tab" href="#tableRequest">Table Request</a></li>
+					<li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#tableAllocation">Table Allocation</a></li>
+					<li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#memberAllocation">Member Allocation</a></li>
+					<li class="list-group-item list-group-item-info"><a data-toggle="tab" href="#editEvent">Edit Event Details</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- Content of leader -->
+<div ng-include="'footer.html'"></div>
+
+
+<!-- JavaScript of this page -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+
+<!-- Angular and Angular-route libraries (v1.5.7) -->
+<script src="lib/angular.min.js"></script>
+<script src="lib/angular-route.min.js"></script>
+
+<!-- Firebase (v3.0.3) and AngularFire (v2.0.0) (after angular library is loaded) -->
+<script src="lib/firebase.js"></script>
+<script src="lib/angularfire.min.js"></script>
+
+<script src="js/angular-dragdrop.min.js"></script>
+<script src="js/controller/adminDashboard.js"></script>
+
+</body>
 </html>

@@ -136,7 +136,7 @@ angular.module('teamform-event-app', ['firebase'])
                 //setup for vacancy-bar
                 var tab = data.child("confirmTables").val();
                 var confirmedTab = tableCount(tab);
-                var maxTab = tableCount(data.child("tables").val());
+                var maxTab = data.child("maxForTable").val();
                 $scope.confirmed = confirmedTab;
                 $scope.maxTab = maxTab;
                 var floatToFixed = +((confirmedTab / maxTab) * 100).toFixed(2);
