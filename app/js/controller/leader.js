@@ -71,6 +71,12 @@ angular.module('teamform-team-app', ['firebase','ngDragDrop'])
 
                 tid = data.child("events").child(eid).child("tid").val();
 
+                var status = data.child("events").child(eid).child("status").val();
+                if(status=="done") {
+                  document.getElementById('confirmBtn').innerHTML = "Confirmed";
+                  $("#confirmBtn").prop('disabled', true);
+                }
+
                 var refPathTable = "tables/" + tid;
                 var noOfMembers;
                 console.log(refPathTable);
@@ -211,6 +217,28 @@ angular.module('teamform-team-app', ['firebase','ngDragDrop'])
                         else {
                           window.location.href = "leader.html?q=" + eid;
                         }
+                    };
+
+                    $scope.confirmTable = function () {
+                        console.log(tid);
+                        console.log(noOfMembers);
+                        var refPathTable = "events/" + eid +"/confirmTables/";
+                        console.log(refPathTable);
+                        var refTable = firebase.database().ref(refPathTable);
+                        var updates = {};
+                        updates[tid] = noOfMembers;
+                        refTable.set(updates);
+
+                        var refPathTable = "members/" + uid +"/events/"+eid;
+                        console.log(refPathTable);
+                        var refTable = firebase.database().ref(refPathTable);
+                        updates= {};
+                        updates["status"] = "done";
+
+                        refTable.update(updates, function(){
+                            // refresh page
+                            window.location.href = "leader.html?q=" + eid;
+                        });
                     };
 
                 });
